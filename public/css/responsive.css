@@ -1,0 +1,22 @@
+
+/* Mobile - Tablet */
+@media (max-width: 1023px) {
+
+}
+
+/* Tablet */
+@media (min-width: 740px) and (max-width: 1023px) {
+    .banner_list_dv {
+        margin-top: 28px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 739px) {
+    .banner_list {
+        margin-top: 15px;
+    }
+    .banner_list_dv {
+        margin-top: 28px;
+    }
+}

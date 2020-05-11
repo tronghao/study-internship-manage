@@ -19,8 +19,8 @@ class GuestController extends Controller
     }
 
     public function index() {
-    	$data = $this->get_3_thong_bao_trang_chu(); 
-    	return view('guest/trang-chu')->with(compact('data'));
+    	//$data = $this->get_3_thong_bao_trang_chu(); 
+    	return view('guest/trang-chu');
     }
 }
 
