@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ThongBaoModel;
+use Auth;
 
 class GuestController extends Controller
 {
@@ -21,6 +22,13 @@ class GuestController extends Controller
     public function index() {
     	//$data = $this->get_3_thong_bao_trang_chu(); 
     	return view('guest/trang-chu');
+    }
+
+    public function handleLoginAfter() {
+    	if (Auth::check()) {
+    		 return view('admin.quan-tri');
+		}
+    	return redirect('');
     }
 }
 

@@ -40,7 +40,7 @@
                     <a class="nav-link" href="#">Trang chủ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#myModal">Đăng nhập</a>
+                    <a id="dang-nhap" class="nav-link" href="#" data-toggle="modal" data-target="#myModal">Đăng nhập</a>
                 </li>
                 <!-- <li class="nav-item">
                     <a class="nav-link" href="#">Đăng ký</a>
@@ -355,17 +355,24 @@
                                 <!-- <div class="card card-signin my-5"> -->
                                 <div class="card-body">
                                     <h5 class="card-title text-center" style="font-size: 2rem; margin-bottom: 25px;">Đăng nhập</h5>
-                                    <form class="form-signin">
+                                    <form class="form-signin" action="{{ asset('login') }}" method="post">
+                                        {{ csrf_field() }}
                                         <div class="form-label-group">
-                                            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                                            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="email" required autofocus>
                                             <label for="inputEmail">Địa chỉ email</label>
                                         </div>
-                        
                                         <div class="form-label-group">
-                                            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                                            <input type="password" id="inputPassword" name ="password" class="form-control" placeholder="Password" required>
                                             <label for="inputPassword">Mật khẩu</label>
                                         </div>
-                        
+                                        @if ($errors->has('email'))
+                                            <span class="help-block">
+                                                <strong>Tài khoản hoặc mật khẩu không đúng</strong>
+                                            </span>
+                                            <script>
+                                                document.getElementById('dang-nhap').click();
+                                            </script>
+                                        @endif
                                         <div class="custom-control custom-checkbox mb-3">
                                             <input type="checkbox" class="custom-control-input" id="customCheck1">
                                           
