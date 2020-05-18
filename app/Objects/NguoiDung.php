@@ -1,4 +1,6 @@
 <?php
+namespace App\Objects;
+use App\User;
 
 class NguoiDung {
 	protected $id;	
@@ -7,9 +9,10 @@ class NguoiDung {
 	protected $sdt;
 	protected $trangThai;
 	protected $loiGioiThieu;
+    protected $user;
 
 	public function __construct(){
-
+        $this->user = new User();
     }
 
 	//getter and setter
@@ -137,5 +140,12 @@ class NguoiDung {
     //phuong thuc
     public function dang_xuat() {
 
+    }
+
+    public function ton_tai_user($email) {
+        $soLuong = $this->user->whereRaw('email = ?', [$email])->count();
+        if($soLuong)
+            return true;
+        else return false;
     }
 }

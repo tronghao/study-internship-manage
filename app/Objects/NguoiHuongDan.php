@@ -1,6 +1,7 @@
 <?php
+namespace App;
 
-use App\object\NguoiDung;
+use App\Objects\NguoiDung;
 
 class NguoiHuongDan extends NguoiDung {
 

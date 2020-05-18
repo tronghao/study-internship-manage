@@ -281,48 +281,22 @@
     <!-- Kết thúc quy trình thực tập-->
     <div class="container" data-aos="fade-up" data-aos-duration="2000">
         <div class="row">
+            @foreach($listThongBao as $value)
             <div class="col-lg-4 notification">
                 <div class="notification_list h-100">
-                    <a href="#"><img class="notification_item-img" src="{{ asset('public/img/don_vi_thuc_tap.jpg') }}" alt=""></a>
+                    <a href="#"><img class="notification_item-img" src="{{ $value->getImg() }}" alt=""></a>
                     <div class="notification_body">
                         <h4 class="notification_item-title">
-                            <a href="#">Thông báo về việc nộp kết quả thực tập</a>
+                            <a href="#">{{ $value->getTitle() }}</a>
                         </h4>
                         <p class="notification_item-text">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque esse quia rerum iusto odit explicabo in distinctio veritatis ea fugit. Esse cupiditate architecto ullam voluptates enim alias aliquid doloremque odit.
+                           {{ $value->getQuote() }}
                         </p>
                     </div>
                     <div class="btn btn-danger notification_item-btn">Xem thêm</div>
                 </div>
             </div>
-            <div class="col-lg-4 notification">
-                <div class="notification_list h-100">
-                    <a href="#"><img class="notification_item-img" src="{{ asset('public/img/don_vi_thuc_tap.jpg') }}" alt=""></a>
-                    <div class="notification_body">
-                        <h4 class="notification_item-title">
-                            <a href="#">Thông báo về việc nộp kết quả thực tập</a>
-                        </h4>
-                        <p class="notification_item-text">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque esse quia rerum iusto odit explicabo in distinctio veritatis ea fugit. Esse cupiditate architecto ullam voluptates enim alias aliquid doloremque odit.
-                        </p>
-                    </div>
-                    <div class="btn btn-danger notification_item-btn">Xem thêm</div>
-                </div>
-            </div>
-            <div class="col-lg-4 notification">
-                <div class="notification_list h-100">
-                    <a href="#"><img class="notification_item-img" src="{{ asset('public/img/don_vi_thuc_tap.jpg') }}" alt=""></a>
-                    <div class="notification_body">
-                        <h4 class="notification_item-title">
-                            <a href="#">Thông báo về việc nộp kết quả thực tập</a>
-                        </h4>
-                        <p class="notification_item-text">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque esse quia rerum iusto odit explicabo in distinctio veritatis ea fugit. Esse cupiditate architecto ullam voluptates enim alias aliquid doloremque odit.
-                        </p>
-                    </div>
-                    <div class="btn btn-danger notification_item-btn">Xem thêm</div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 
@@ -382,10 +356,10 @@
                                         <button class="btn btn-lg btn-primary btn-block text-uppercase btn-my-dang_nhap" type="submit">Đăng nhập</button>
                                         <hr class="my-4">
                                         <p class="form-text">Lưu ý: Giảng viên và sinh viên đăng nhập bằng mail của trường</p>
-                                        <button class="btn btn-lg btn-google btn-block text-uppercase btn-my-gmail" type="submit" style="background-color: #ea4335; color: white;">                                           
+                                        <a href="{{ $loginURL }}" class="btn btn-lg btn-google btn-block text-uppercase btn-my-gmail" style="background-color: #ea4335; color: white;">                                           
                                             <i class="fab fa-google mr-2"></i> 
                                             Đăng nhập với Google
-                                        </button>
+                                        </a>
                                     </form>
                                 </div>
                                 <!-- </div>
