@@ -1,6 +1,6 @@
 <?php
 namespace App\Objects;
-use App\User;
+use App\UserModel;
 
 class NguoiDung {
 	protected $id;	
@@ -12,7 +12,7 @@ class NguoiDung {
     protected $user;
 
 	public function __construct(){
-        $this->user = new User();
+        $this->user = new UserModel();
     }
 
 	//getter and setter
@@ -143,7 +143,7 @@ class NguoiDung {
     }
 
     public function ton_tai_user($email) {
-        $soLuong = $this->user->whereRaw('email = ?', [$email])->count();
+        $soLuong = $this->user->where('email', '=', $email)->count();
         if($soLuong)
             return true;
         else return false;

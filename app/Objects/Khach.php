@@ -10,6 +10,7 @@ class Khach extends NguoiDung {
 	private $thongbao_table;
 
 	public function __construct() {
+		parent::__construct();
 		$this->thongbao_table = new ThongBaoModel();
 	}
 

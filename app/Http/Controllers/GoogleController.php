@@ -56,7 +56,7 @@ class GoogleController extends Controller
 			$token = $this->gClient->fetchAccessTokenWithAuthCode($_GET['code']);
 			$_SESSION['access_token'] = $token;
 		} else {
-			header('Location: index.php');
+			//header('Location: index.php');
 			exit();
 		}
 

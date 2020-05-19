@@ -34,8 +34,8 @@ class GuestController extends Controller
     	return redirect('');
     }
 
-    public function handleGoogleLoginAfter($userData) {
-        $email = "abc@sv.tvu.edu.vn";
+    public function handleGoogleLoginAfter($userData, Request $rq) {
+        $email = "abc@gmail.com";
 
         //$email = $userData["email"];
         //kiem tra co ton tai user
@@ -72,16 +72,16 @@ class GuestController extends Controller
             $kyHieuGmailGiangVienTVU = "@tvu.edu.vn";
 
             if( strpos($email, $kyHieuGmailSinhVienTVU) ) {
-                // cho nhap cac thong tin can thiet cua sinh vien
-                echo "SinhVien";
+                //$rq->session()->put('user-role', 'sinhvien');
+                return view('guest.nhap-thong-tin-sinh-vien');
             }
             else if( strpos($email, $kyHieuGmailGiangVienTVU) ) {
-                //  cho nhap cac thong tin can thiet cua giang vien
-                echo "GiangVien";
+                //$rq->session()->put('user-role', 'giangvien');
+                return view('guest.nhap-thong-tin-giang-vien');
             }
             else {
-                //  cho nhap cac thong tin can thiet cua can bo don vi
-                echo "CanBo";
+                //$rq->session()->put('user-role', 'nguoihuongdan');
+                return view('guest.nhap-thong-tin-nguoi-huong-dan');
             }
         }
     }
