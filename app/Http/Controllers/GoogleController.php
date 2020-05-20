@@ -63,11 +63,13 @@ class GoogleController extends Controller
 		$oAuth = new Google_Service_Oauth2($this->gClient);
 		$userData = $oAuth->userinfo_v2_me->get();
 
-		//$guest = new GuestController();
-		//$guest->handleGoogleLoginAfter($userData);
-		echo "<pre>";
-		print_r($userData);
-		echo "</pre>";
+		$guest = new GuestController();
+		$view = $guest->handleGoogleLoginAfter($userData);
+		// echo "<pre>";
+		// print_r($userData);
+		// echo "</pre>";
+
+		return view($view);
     }
 
 }

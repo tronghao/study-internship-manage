@@ -7,15 +7,19 @@ use App\ThongBaoModel;
 use Auth;
 use App\Http\Controllers\GoogleController;
 use App\Objects\Khach;
+use App\Objects\NguoiDung;
 
 class GuestController extends Controller
 {
 	private $thongbao_table;
     private $khach;
+    private $nguoiDung;
     
 	public function __construct() {
 		$this->thongbao_table = new ThongBaoModel();
         $this->khach = new Khach();
+        $this->nguoiDung = new NguoiDung();
+
 	}
 
     public function index() {
@@ -34,8 +38,11 @@ class GuestController extends Controller
     	return redirect('');
     }
 
-    public function handleGoogleLoginAfter($userData, Request $rq) {
-        $email = "abc@gmail.com";
+    public function handleGoogleLoginAfter($userData) {
+        $email = $userData["email"];
+        $hoTen = $userData["givenName"]." ".$userData["familyName"];
+        $anhDaiDien = $userData["picture"];
+        $trangThai = "chờ duyệt";
 
         //$email = $userData["email"];
         //kiem tra co ton tai user
@@ -72,16 +79,31 @@ class GuestController extends Controller
             $kyHieuGmailGiangVienTVU = "@tvu.edu.vn";
 
             if( strpos($email, $kyHieuGmailSinhVienTVU) ) {
+                $loaiUser = "sinh viên";
+                $dataNguoiDung = new NguoiDung();
+                $dataNguoiDung->setData($hoTen, $email, $trangThai, $anhDaiDien, $loaiUser);
+
+                $this->nguoiDung->luu_du_lieu($dataNguoiDung);
                 //$rq->session()->put('user-role', 'sinhvien');
-                return view('guest.nhap-thong-tin-sinh-vien');
+                return "guest.nhap-thong-tin-sinh-vien";
             }
             else if( strpos($email, $kyHieuGmailGiangVienTVU) ) {
+                $loaiUser = "giảng viên";
+                $dataNguoiDung = new NguoiDung();
+                $dataNguoiDung->setData($hoTen, $email, $trangThai, $anhDaiDien, $loaiUser);
+
+                $this->nguoiDung->luu_du_lieu($dataNguoiDung);
                 //$rq->session()->put('user-role', 'giangvien');
-                return view('guest.nhap-thong-tin-giang-vien');
+                return "guest.nhap-thong-tin-giang-vien";
             }
             else {
+                $loaiUser = "người hướng dẫn";
+                $dataNguoiDung = new NguoiDung();
+                $dataNguoiDung->setData($hoTen, $email, $trangThai, $anhDaiDien, $loaiUser);
+
+                $this->nguoiDung->luu_du_lieu($dataNguoiDung);
                 //$rq->session()->put('user-role', 'nguoihuongdan');
-                return view('guest.nhap-thong-tin-nguoi-huong-dan');
+                return "guest.nhap-thong-tin-nguoi-huong-dan";
             }
         }
     }

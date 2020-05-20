@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     {
       //admin pass: 12345678
         DB::table('users')->insert([
-          array('id' => 335535, 
+          array('id' => '335535', 
                 'hoTen' => 'Quản Trị Viên', 
                 'email' => 'admin@admin',
                 'anhDaiDien' => 'https://weplus.vn/wp-content/uploads/avatars/1/5d6dee5365c67-bpthumb.png',
@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
                 'loiGioiThieu' => '',
                 'loaiUser' => 'Admin'
               ),
-          array('id' => 1,
+          array('id' => '1',
                 'hoten' => 'Nguyễn Minh Bé',
                 'email' => '110117001@sv.tvu.edu.vn',
                 'anhDaiDien' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTQuHWTw485tT27sG2g3SUyd3DSKNFzjZXe_b1ESR1GP9aKv4Oe&usqp=CAU',
@@ -31,9 +31,9 @@ class DatabaseSeeder extends Seeder
                 'sdt' => '0123456781',
                 'trangThai' => 'chờ duyệt',
                 'loiGioiThieu' => 'Tôi là sinh viên',
-                'loaiUser' => 'Sinh viên'
+                'loaiUser' => 'sinh viên'
               ),
-          array('id' => 2,
+          array('id' => '2',
                 'hoten' => 'Nguyễn Minh Minh',
                 'email' => '110117002@sv.tvu.edu.vn',
                 'anhDaiDien' => 'https://lh3.googleusercontent.com/proxy/3WWucPpz_62J0VoNz01zkJ9HVN_mxWIr3oJ1lvvUeuuOB5_inkFcCSF5YtTmvQKV2TLofkJsrSMjfnmRqbznPoGyExEokrAndiNh3ng8CF00dt2mT28ApIrzjUleykw',
@@ -41,9 +41,9 @@ class DatabaseSeeder extends Seeder
                 'sdt' => '0123456782',
                 'trangThai' => 'chờ duyệt',
                 'loiGioiThieu' => 'Tôi là sinh viên',
-                'loaiUser' => 'Sinh viên'
+                'loaiUser' => 'sinh viên'
               ),
-          array('id' => 3,
+          array('id' => '3',
                 'hoten' => 'Nguyễn Trọng Đào',
                 'email' => '110117003@sv.tvu.edu.vn',
                 'anhDaiDien' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTQuHWTw485tT27sG2g3SUyd3DSKNFzjZXe_b1ESR1GP9aKv4Oe&usqp=CAU',
@@ -51,9 +51,9 @@ class DatabaseSeeder extends Seeder
                 'sdt' => '0123456783',
                 'trangThai' => 'chờ duyệt',
                 'loiGioiThieu' => 'Tôi là sinh viên',
-                'loaiUser' => 'Sinh viên'
+                'loaiUser' => 'sinh viên'
               ),
-          array('id' => 4,
+          array('id' => '4',
                 'hoten' => 'Kiên Văn Duy',
                 'email' => '110117004@sv.tvu.edu.vn',
                 'anhDaiDien' => 'https://lh3.googleusercontent.com/proxy/3WWucPpz_62J0VoNz01zkJ9HVN_mxWIr3oJ1lvvUeuuOB5_inkFcCSF5YtTmvQKV2TLofkJsrSMjfnmRqbznPoGyExEokrAndiNh3ng8CF00dt2mT28ApIrzjUleykw',
@@ -61,9 +61,9 @@ class DatabaseSeeder extends Seeder
                 'sdt' => '0123456784',
                 'trangThai' => 'chờ duyệt',
                 'loiGioiThieu' => 'Tôi là sinh viên',
-                'loaiUser' => 'Sinh viên'
+                'loaiUser' => 'sinh viên'
               ),
-          array('id' => 5,
+          array('id' => '5',
                 'hoten' => 'Nhan Minh Phúc',
                 'email' => 'nmphuc@tvu.edu.vn',
                 'anhDaiDien' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTQuHWTw485tT27sG2g3SUyd3DSKNFzjZXe_b1ESR1GP9aKv4Oe&usqp=CAU',
@@ -71,9 +71,9 @@ class DatabaseSeeder extends Seeder
                 'sdt' => '0918603800',
                 'trangThai' =>   'chờ duyệt',
                 'loiGioiThieu' => 'Tôi là giảng viên',
-                'loaiUser' => 'Giảng viên'
+                'loaiUser' => 'giảng viên'
               ),
-          array('id' => 6,
+          array('id' => '6',
                 'hoten' => 'Phan Thị Phương Nam',
                 'email' => 'ptpnam@tvu.edu.vn',
                 'anhDaiDien' => 'https://lh3.googleusercontent.com/proxy/3WWucPpz_62J0VoNz01zkJ9HVN_mxWIr3oJ1lvvUeuuOB5_inkFcCSF5YtTmvQKV2TLofkJsrSMjfnmRqbznPoGyExEokrAndiNh3ng8CF00dt2mT28ApIrzjUleykw',
@@ -81,9 +81,9 @@ class DatabaseSeeder extends Seeder
                 'sdt' => '0989236100',
                 'trangThai' =>   'chờ duyệt',
                 'loiGioiThieu' => 'Tôi là giảng viên',
-                'loaiUser' => 'Giảng viên'
+                'loaiUser' => 'giảng viên'
               ),
-          array('id' => 7,
+          array('id' => '7',
                 'hoten' => 'Dương Ngọc Vân Khanh',
                 'email' => 'vankhanh@gmail.com',
                 'anhDaiDien' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRydLSvuKEq1VQ-k_l7C-dQquzeLp12ZGRjcMrpBysJ2GezLJuO&usqp=CAU',
@@ -91,9 +91,9 @@ class DatabaseSeeder extends Seeder
                 'sdt' => '0988332000',
                 'trangThai' =>   'chờ duyệt',
                 'loiGioiThieu' => 'Tôi là nhân viên công ty BStar',
-                'loaiUser' => 'Người hướng dẫn'
+                'loaiUser' => 'người hướng dẫn'
               ),
-          array('id' => 8,
+          array('id' => '8',
                 'hoten' => 'Nguyễn Bá Nhiệm',
                 'email' => 'nhiemnb@gmail.com',
                 'anhDaiDien' => 'https://lh3.googleusercontent.com/proxy/kRoPLUBJqum-S04A_BfuskDobxoXrcfZ75Fk2t9_5DEJMtJfJYxld5O7iT8mZYNTXfku9uCu0Vo6SZmgz93b9h1ZlSZqa13sGQ10yMXe7i-1RyK_9W_oGdYoxjDkQJN6sxsp6PVm5SC3GkKpLWOT7v0_',
@@ -101,9 +101,9 @@ class DatabaseSeeder extends Seeder
                 'sdt' => '0983303600',
                 'trangThai' =>   'chờ duyệt',
                 'loiGioiThieu' => 'Tôi là nhân viên công ty BStar',
-                'loaiUser' => 'Người hướng dẫn'
+                'loaiUser' => 'người hướng dẫn'
               ),
-          array('id' => 9,
+          array('id' => '9',
                 'hoten' => 'Phạm Thái',
                 'email' => 'pthai@ gmail.com',
                 'anhDaiDien' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRydLSvuKEq1VQ-k_l7C-dQquzeLp12ZGRjcMrpBysJ2GezLJuO&usqp=CAU',
@@ -111,9 +111,9 @@ class DatabaseSeeder extends Seeder
                 'sdt' => '0918603801',
                 'trangThai' =>   'chờ duyệt',
                 'loiGioiThieu' => 'Tôi là nhân viên công ty TMA',
-                'loaiUser' => 'Người hướng dẫn'
+                'loaiUser' => 'người hướng dẫn'
               ),
-          array('id' => 10,
+          array('id' => '10',
               'hoten' => 'Đỗ Trọng Hợp',
               'email' => 'dthop@ gmail.com',
               'anhDaiDien' => 'https://lh3.googleusercontent.com/proxy/kRoPLUBJqum-S04A_BfuskDobxoXrcfZ75Fk2t9_5DEJMtJfJYxld5O7iT8mZYNTXfku9uCu0Vo6SZmgz93b9h1ZlSZqa13sGQ10yMXe7i-1RyK_9W_oGdYoxjDkQJN6sxsp6PVm5SC3GkKpLWOT7v0_',
@@ -121,9 +121,9 @@ class DatabaseSeeder extends Seeder
               'sdt' => '0989236101',
               'trangThai' =>   'chờ duyệt',
               'loiGioiThieu' => 'Tôi là nhân viên công ty TMA',
-              'loaiUser' => 'Người hướng dẫn'
+              'loaiUser' => 'người hướng dẫn'
             ),
-          array('id' => 11,
+          array('id' => '11',
               'hoten' => 'Lâm Thành Thép',
               'email' => 'ltthep@ gmail.com',
               'anhDaiDien' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRydLSvuKEq1VQ-k_l7C-dQquzeLp12ZGRjcMrpBysJ2GezLJuO&usqp=CAU',
@@ -131,9 +131,9 @@ class DatabaseSeeder extends Seeder
               'sdt' => '0988332001',
               'trangThai' =>   'chờ duyệt',
               'loiGioiThieu' => 'Tôi là nhân viên công ty FPT',
-              'loaiUser' => 'Người hướng dẫn'
+              'loaiUser' => 'người hướng dẫn'
             ),
-          array('id' => 12,
+          array('id' => '12',
               'hoten' => 'Vũ Văn Hiếu',
               'email' => 'vvhieu@ gmail.com',
               'anhDaiDien' => 'https://lh3.googleusercontent.com/proxy/kRoPLUBJqum-S04A_BfuskDobxoXrcfZ75Fk2t9_5DEJMtJfJYxld5O7iT8mZYNTXfku9uCu0Vo6SZmgz93b9h1ZlSZqa13sGQ10yMXe7i-1RyK_9W_oGdYoxjDkQJN6sxsp6PVm5SC3GkKpLWOT7v0_',
@@ -141,7 +141,7 @@ class DatabaseSeeder extends Seeder
               'sdt' => '0983303601',
               'trangThai' =>   'chờ duyệt',
               'loiGioiThieu' => 'Tôi là nhân viên công ty FPT',
-              'loaiUser' => 'Người hướng dẫn'
+              'loaiUser' => 'người hướng dẫn'
             ),
 
         ]);

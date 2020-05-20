@@ -14,12 +14,12 @@ class ThongBao extends Migration
     public function up()
     {
         Schema::create('thong-bao', function(Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigInteger('id');
             $table->string('img');
             $table->string('title');
             $table->text('content');
             $table->text('quote');
-            $table->bigInteger('idAdmin');
+            $table->string('idAdmin');
             $table->foreign('idAdmin')->references('id')->on('users')->onDelete('cascade');
         });
     }

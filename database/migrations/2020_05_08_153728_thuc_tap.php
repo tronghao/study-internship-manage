@@ -14,9 +14,9 @@ class ThucTap extends Migration
     public function up()
     {
         Schema::create('thuctap', function (Blueprint $table) {
-            $table->bigInteger('idSinhVien');
-            $table->bigInteger('idGiangVien');
-            $table->bigInteger('idNguoiHuongDan');
+            $table->string('idSinhVien');
+            $table->string('idGiangVien');
+            $table->string('idNguoiHuongDan');
             $table->string('maDonVi');
             $table->bigInteger('idKinhPhi');
             $table->date('ngayBatDauThucTap');
