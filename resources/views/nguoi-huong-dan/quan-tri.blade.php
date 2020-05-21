@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('nguoi-huong-dan.layouts.app')
 
 @section('title-page')
-	Quản Trị - Admin
+	Quản Trị - Người Hướng Dẫn
 @endsection
 
 @section('title-content-page')

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title-page')
-	Quản Trị - Admin
+	Quản Trị - Giảng Viên
 @endsection
 
 @section('title-content-page')

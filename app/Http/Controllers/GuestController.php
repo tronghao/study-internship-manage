@@ -27,7 +27,18 @@ class GuestController extends Controller
 
         $google = new GoogleController();
         $loginURL = $google->getLoginURL(); 
+
     	return view('guest.trang-chu')->with(compact('loginURL', 'listThongBao'));
+    }
+
+    public function index2() {
+        $listThongBao = $this->khach->get_3_thong_bao();
+
+        $google = new GoogleController();
+        $loginURL = $google->getLoginURL(); 
+
+        $info = "Tài khoản chưa được cấp quyền. Bạn cần chờ admin duyệt!";
+        return view("guest.trang-chu")->with( compact('info', 'listThongBao', 'loginURL') );
     }
 
     public function handleLoginAfter() {
@@ -66,13 +77,31 @@ class GuestController extends Controller
             //      cho nhap cac thong tin can thiet cua can bo don vi
 
         if( $this->khach->ton_tai_user($email) ) {
-            //  if TrangThai cho duyet
-            //      Thong Bao cho duyet - khong cho login vao
-            //  if TrangThai da duyet
-            //      Cho phep login vao
-            //  if TrangThai disable
-            //      Thong bao an va chi co quyen xem lai ket qua
-            // 
+            $thanhVien = new Khach();
+            $thanhVien = $this->khach->getUserByEmail($email);
+            if( $thanhVien->getTrangThai() == "chờ duyệt" ) {
+                return "chờ duyệt";
+            }
+            else if( $thanhVien->getTrangThai() == "đã duyệt" ) {
+                $kyHieuGmailSinhVienTVU = "@sv.tvu.edu.vn";
+                $kyHieuGmailGiangVienTVU = "@tvu.edu.vn";
+
+                if( strpos($email, $kyHieuGmailSinhVienTVU) ) {
+                    session(['email' => $email]);
+                    session(['role' => 'sinhvien']);
+                    return "sinh-vien.quan-tri";
+                }
+                else if( strpos($email, $kyHieuGmailGiangVienTVU) ) {
+                    session(['email' => $email]);
+                    session(['role' => 'giangvien']);
+                    return "giang-vien.quan-tri";
+                }
+                else {
+                    session(['email' => $email]);
+                    session(['role' => 'nguoihuongdan']);
+                    return "nguoi-huong-dan/home";
+                }
+            }
         }else {
             //  co phai la email cua truong dai hoc tra vinh hay khong
             $kyHieuGmailSinhVienTVU = "@sv.tvu.edu.vn";

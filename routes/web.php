@@ -12,8 +12,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('abc/{id}', 'GuestController@handleGoogleLoginAfter');
+//Route::get('abc/{id}', 'GuestController@handleGoogleLoginAfter');
 Route::get('/', 'GuestController@index');
+Route::get('/home', 'GuestController@index2');
 Auth::routes();
 
 Route::get('login', 'GuestController@index');
@@ -25,3 +26,5 @@ Route::match(['get', 'post'], 'register', function(){
 Route::get('loginAfter', 'GuestController@handleLoginAfter');
 Route::get('google-callback', 'GoogleController@callback');
 
+//middleware - người hướng dẫn
+Route::get('nguoi-huong-dan/home', 'NguoiHuongDanController@index');

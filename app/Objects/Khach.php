@@ -33,4 +33,10 @@ class Khach extends NguoiDung {
 
 	}
 
+	public function getUserByEmail($email) {
+        $data = $this->user->where('email', '=', $email)->get()->toArray();
+        $khach = new Khach();
+        $khach->setData($data[0]["hoTen"], $data[0]["email"], $data[0]["trangThai"], $data[0]["anhDaiDien"], $data[0]["loaiUser"]);
+        return $khach;
+    }
 }

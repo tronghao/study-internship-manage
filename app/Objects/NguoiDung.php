@@ -247,6 +247,4 @@ class NguoiDung {
             return $uuid;
         }
     }
-
-
 }

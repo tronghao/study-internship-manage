@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Google_Client;
 use Google_Service_Oauth2;
 use App\Http\Controllers\GuestController;
+use App\Objects\Khach;
 
 class GoogleController extends Controller
 {
@@ -68,8 +69,19 @@ class GoogleController extends Controller
 		// echo "<pre>";
 		// print_r($userData);
 		// echo "</pre>";
-
-		return view($view);
+		// echo $view;
+		
+		switch ($view) {
+			case 'chờ duyệt':
+				return redirect("home");
+				break;
+			case 'nguoi-huong-dan/home':
+				return redirect($view);
+				break;
+			default:
+				return view($view);
+				break;
+		}			
     }
 
 }
