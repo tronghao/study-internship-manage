@@ -2,8 +2,16 @@
 namespace App\Objects;
 
 use App\Objects\NguoiDung;
+use App\SinhVienModel;
 
 class SinhVien extends NguoiDung {
+
+	private $sinhVien;
+
+	public function __construct() {
+		parent::__construct();
+		$this->sinhVien = new SinhVienModel();
+	}
 
 	public function dang_ky_thuc_tap() {
 
@@ -21,4 +29,10 @@ class SinhVien extends NguoiDung {
 
 	}
 
+	public function ton_tai( $email ) {
+		$soLuong = $this->sinhVien->where('email', '=', $email)->count();
+        if($soLuong)
+            return true;
+        else return false;
+	}
 }

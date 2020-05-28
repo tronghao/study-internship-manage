@@ -70,16 +70,33 @@ class GoogleController extends Controller
 		// print_r($userData);
 		// echo "</pre>";
 		// echo $view;
-		
+		$email = $userData["email"];
+
 		switch ($view) {
 			case 'chờ duyệt':
-				return redirect("home");
+				return redirect("home/1");
+				break;
+			case 'guest.nhap-thong-tin-sinh-vien':
+				$khach = new Khach();
+				$duLieuLop = $khach->getAllLop(); 
+				return view($view)->with(compact('email', 'duLieuLop'));
+				break;
+			case 'guest.nhap-thong-tin-giang-vien':
+				$khach = new Khach();
+				$duLieuHocVi = $khach->getALLHocVi(); 
+				return view($view)->with(compact('email', 'duLieuHocVi'));
+				break;
+			case 'guest.nhap-thong-tin-nguoi-huong-dan':
+				$khach = new Khach();
+				$duLieuDonVi = $khach->getALLDonVi();
+				$duLieuChucVu = $khach->getALLChucVu(); 
+				return view($view)->with(compact('email', 'duLieuDonVi', 'duLieuChucVu'));
 				break;
 			case 'nguoi-huong-dan/home':
 				return redirect($view);
 				break;
 			default:
-				return view($view);
+				return view($view)->with(compact('email'));
 				break;
 		}			
     }

@@ -2,8 +2,16 @@
 namespace App\Objects;
 
 use App\Objects\NguoiDung;
+use App\NguoiHuongDanModel;
 
 class NguoiHuongDan extends NguoiDung {
+
+	private $canBo;
+
+	public function __construct() {
+		parent::__construct();
+		$this->canBo = new NguoiHuongDanModel();
+	}
 
 	public function dang_ky_chon_sinh_vien_thuc_tap() {
 
@@ -28,4 +36,10 @@ class NguoiHuongDan extends NguoiDung {
         return $nguoiHD;
     }
 
+    public function ton_tai( $email ) {
+		$soLuong = $this->canBo->where('email', '=', $email)->count();
+        if($soLuong)
+            return true;
+        else return false;
+	}
 }

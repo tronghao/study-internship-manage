@@ -8,18 +8,26 @@ use Auth;
 use App\Http\Controllers\GoogleController;
 use App\Objects\Khach;
 use App\Objects\NguoiDung;
+use App\Objects\GiangVien;
+use App\Objects\SinhVien;
+use App\Objects\NguoiHuongDan;
 
 class GuestController extends Controller
 {
 	private $thongbao_table;
     private $khach;
     private $nguoiDung;
+    private $sinhVien;
+    private $giangVien;
+    private $canBo;
     
 	public function __construct() {
 		$this->thongbao_table = new ThongBaoModel();
         $this->khach = new Khach();
         $this->nguoiDung = new NguoiDung();
-
+        $this->sinhVien = new SinhVien();
+        $this->giangVien = new GiangVien();
+        $this->canBo = new NguoiHuongDan();
 	}
 
     public function index() {
@@ -31,14 +39,21 @@ class GuestController extends Controller
     	return view('guest.trang-chu')->with(compact('loginURL', 'listThongBao'));
     }
 
-    public function index2() {
+    public function index2($id) {
         $listThongBao = $this->khach->get_3_thong_bao();
 
         $google = new GoogleController();
         $loginURL = $google->getLoginURL(); 
 
-        $info = "Tài khoản chưa được cấp quyền. Bạn cần chờ admin duyệt!";
-        return view("guest.trang-chu")->with( compact('info', 'listThongBao', 'loginURL') );
+        if($id == 1) {
+            $info = "Tài khoản chưa được cấp quyền. Bạn cần chờ admin duyệt!";
+            return view("guest.trang-chu")->with( compact('info', 'listThongBao', 'loginURL') );
+        }
+        else {
+            $info = "Đã cập nhật thông tin";
+            return view("guest.trang-chu")->with( compact('info', 'listThongBao', 'loginURL') );
+        }
+        
     }
 
     public function handleLoginAfter() {
@@ -55,37 +70,54 @@ class GuestController extends Controller
         $anhDaiDien = $userData["picture"];
         $trangThai = "chờ duyệt";
 
-        //$email = $userData["email"];
-        //kiem tra co ton tai user
-        ////if ton tai -> da dang nhap r
-        /////  if TrangThai cho duyet
-            //      Thong Bao cho duyet - khong cho login vao
-            //  if TrangThai da duyet
-            //      Cho phep login vao
-            //  if TrangThai disable
-            //      Thong bao an va chi co quyen xem lai ket qua
-            // 
-        //if chua -> dang nhap lan dau
-            //  co phai la email cua truong dai hoc tra vinh hay khong
-            //  yes
-            //      if co phai la sinh vien hay k
-            //      yes
-            //          cho nhap cac thong tin can thiet cua sinh vien
-            //      no
-            //          cho nhap cac thong tin can thiet cua giang vien
-            //  no
-            //      cho nhap cac thong tin can thiet cua can bo don vi
+        $kyHieuGmailSinhVienTVU = "@sv.tvu.edu.vn";
+        $kyHieuGmailGiangVienTVU = "@tvu.edu.vn";
 
+        /*
+        kiem tra co ton tai user
+        if ton tai -> da dang nhap r
+          if TrangThai cho duyet
+                 Thong Bao cho duyet - khong cho login vao
+             if TrangThai da duyet
+                 Cho phep login vao
+             if TrangThai disable
+                 Thong bao an va chi co quyen xem lai ket qua
+            
+        if chua -> dang nhap lan dau
+             co phai la email cua truong dai hoc tra vinh hay khong
+             yes
+                 if co phai la sinh vien hay k
+                 yes
+                     cho nhap cac thong tin can thiet cua sinh vien
+                 no
+                     cho nhap cac thong tin can thiet cua giang vien
+             no
+                 cho nhap cac thong tin can thiet cua can bo don vi
+        */
         if( $this->khach->ton_tai_user($email) ) {
             $thanhVien = new Khach();
             $thanhVien = $this->khach->getUserByEmail($email);
             if( $thanhVien->getTrangThai() == "chờ duyệt" ) {
-                return "chờ duyệt";
+                if( strpos($email, $kyHieuGmailSinhVienTVU) ) {
+                    if($this->sinhVien->ton_tai($email)) {
+                        return "chờ duyệt";
+                    }
+                    else return "guest.nhap-thong-tin-sinh-vien";
+                }
+                else if( strpos($email, $kyHieuGmailGiangVienTVU) ) {
+                    if($this->giangVien->ton_tai($email)) {
+                        return "chờ duyệt";
+                    }
+                    else return "guest.nhap-thong-tin-giang-vien";
+                }
+                else {
+                    if($this->canBo->ton_tai($email)) {
+                        return "chờ duyệt";
+                    }
+                    else return "guest.nhap-thong-tin-nguoi-huong-dan";
+                }
             }
             else if( $thanhVien->getTrangThai() == "đã duyệt" ) {
-                $kyHieuGmailSinhVienTVU = "@sv.tvu.edu.vn";
-                $kyHieuGmailGiangVienTVU = "@tvu.edu.vn";
-
                 if( strpos($email, $kyHieuGmailSinhVienTVU) ) {
                     session(['email' => $email]);
                     session(['role' => 'sinhvien']);
@@ -104,9 +136,6 @@ class GuestController extends Controller
             }
         }else {
             //  co phai la email cua truong dai hoc tra vinh hay khong
-            $kyHieuGmailSinhVienTVU = "@sv.tvu.edu.vn";
-            $kyHieuGmailGiangVienTVU = "@tvu.edu.vn";
-
             if( strpos($email, $kyHieuGmailSinhVienTVU) ) {
                 $loaiUser = "sinh viên";
                 $dataNguoiDung = new NguoiDung();
@@ -135,6 +164,24 @@ class GuestController extends Controller
                 return "guest.nhap-thong-tin-nguoi-huong-dan";
             }
         }
+    }
+
+    public function insertSinhVien(Request $rq, $email) {
+        $data = $rq->all();
+        $this->khach->cap_nhat_thong_tin($data, "sinhvien", $email);
+        return redirect("home/2");
+    }
+
+    public function insertGiangVien(Request $rq, $email) {
+        $data = $rq->all();
+        $this->khach->cap_nhat_thong_tin($data, "giangvien", $email);
+        return redirect("home/2");
+    }
+
+    public function insertCanBo(Request $rq, $email) {
+        $data = $rq->all();
+        $this->khach->cap_nhat_thong_tin($data, "canbo", $email);
+        return redirect("home/2");
     }
 }
 

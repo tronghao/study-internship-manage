@@ -37,4 +37,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $primaryKey = "id";  //trường khóa chính
+    protected $keyType = 'string'; //kieur dữ liệu của trường đó
 }
