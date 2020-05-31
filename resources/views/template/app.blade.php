@@ -130,7 +130,7 @@
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
+                  Đăng xuất
                 </a>
               </div>
             </li>
@@ -141,7 +141,7 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid">
+        <div class="container-fluid content-ajax">
 
           
 			       @yield('content')
@@ -150,15 +150,16 @@
 
         </div>
         <!-- /.container-fluid -->
+      
 
       </div>
       <!-- End of Main Content -->
 
       <!-- Footer -->
-      <footer class="sticky-footer bg-white">
+      <footer class="sticky-footer bg-white" style="background-color: rgb(210, 227, 230) !important;">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span style="font-size: 15px">@yield('copyright')</span>
+            <span style="font-size: 1rem; color: black;">@yield('copyright')</span>
           </div>
         </div>
       </footer>
@@ -180,20 +181,22 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Bạn muốn đăng xuất?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-body">Chọn "Đăng xuất" bên dưới nếu bạn thật sự muốn đăng xuất</div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy bỏ</button>
+          <a class="btn btn-primary" href=" {{ asset('logout') }} ">Đăng xuất</a>
         </div>
       </div>
     </div>
   </div>
-
+  
+   <!-- Custom scripts for all pages-->
+  <script src=" {{ asset('public/admin/js/sb-admin-2.min.js') }}"></script>
   <!-- Bootstrap core JavaScript-->
   <script src=" {{ asset('public/admin/include/jquery/jquery.min.js') }}"></script>
   <script src=" {{ asset('public/admin/include/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -201,16 +204,7 @@
   <!-- Core plugin JavaScript-->
   <script src=" {{ asset('public/admin/include/jquery-easing/jquery.easing.min.js') }}"></script>
 
-  <!-- Custom scripts for all pages-->
-  <script src=" {{ asset('public/admin/js/sb-admin-2.min.js') }}"></script>
-
-  <!-- Page level plugins -->
-  <script src=" {{ asset('public/admin/include/chart.js/Chart.min.js') }}"></script>
-
-  <!-- Page level custom scripts -->
-  <script src=" {{ asset('public/admin/js/demo/chart-area-demo.js') }}"></script>
-  <script src=" {{ asset('public/admin/js/demo/chart-pie-demo.js') }}"></script>
-
+  
 </body>
 
 </html>

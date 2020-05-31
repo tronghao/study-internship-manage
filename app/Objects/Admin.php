@@ -2,13 +2,24 @@
 namespace App\Objects;
 
 use App\Objects\NguoiDung;
+use App\ThongBaoModel;
+use App\Objects\ThongBao;
+use App\KinhPhiHoTroModel;
+use App\DonViThucTapModel;
+use App\Objects\DonVi;
 
 class Admin extends NguoiDung {
 
 	private $password;
+	private $thongBao;
+	private $kinhPhi;
+	private $donVi;
 
-	public function __construct(){
-
+	public function __construct() {
+		parent::__construct();
+		$this->thongBao = new ThongBaoModel();
+		$this->kinhPhi = new KinhPhiHoTroModel();
+		$this->donVi = new DonViThucTapModel();
     }
 
 	//getter and setter
@@ -50,6 +61,42 @@ class Admin extends NguoiDung {
 
 	}
 
+	public function hien_thi_thong_bao() {
+		$duLieu = $this->thongBao->all();
+		$listThongBao = [];
+		foreach($duLieu as $value) {
+			$thongBaoItem = new ThongBao($value["id"], $value["img"], $value["title"], $value["content"], $value["quote"]);
+			$listThongBao[] = $thongBaoItem;
+		}
+		return $listThongBao;
+	}
+
+	public function hien_thi_kinh_phi() {
+		$duLieu = $this->kinhPhi->all();
+		return $duLieu[0];
+	}
+
+	public function cap_nhat_kinh_phi($kp) {
+		try { 
+			$duLieu = $this->kinhPhi->where('idKinhPhi', '=', 1)->first();
+			$duLieu->soTien = $kp;
+			$duLieu->save();
+			return true;
+		} catch(\Illuminate\Database\QueryException $ex){ 
+		  	return false;
+		}
+		
+	}
+
+	public function hien_thi_don_vi() {
+		$duLieu = $this->donVi->all();
+		$listDonVi = [];
+		foreach($duLieu as $value) {
+			$donViItem = new DonVi($value["maDonVi"], $value["tenDonVi"], $value["diaChiDonVi"], $value["sdtDonVi"], $value["soKM"]);
+			$listDonVi[] = $donViItem;
+		}
+		return $listDonVi;
+	}
 
 	//user
 	public function duyet_user() {

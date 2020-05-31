@@ -1,0 +1,68 @@
+.container_content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.content_text {
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.content_icon {
+    margin-top: 5px;
+}
+
+.content_icon-plus {
+    padding-right: 4px;
+}
+
+/* Table */
+.my_table {
+    box-shadow: 10px 5px 20px darkgrey;
+}
+
+.table_img {
+    width: 200px;
+    height: 100px;
+}
+
+.btn_active {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.btn_edit {
+    cursor: pointer;
+}
+
+.btn_delete {
+    cursor: pointer;
+}
+
+.icon_edit {
+    padding-right: 4px;
+}
+
+.icon_delete {
+    padding-right: 4px;
+}
+
+/* Modal */
+.md_text{
+    color: black;
+}
+
+.md_text_tb {
+    font-weight: bold;
+    color: blue;
+}
+
+/* footer */
+.my_footer {
+    background-color: rgb(210, 227, 230);
+}
+
+table#tableData {
+    font-family: auto;
+}

@@ -18,12 +18,12 @@ Route::get('home/{id?}', 'GuestController@index2');
 Auth::routes();
 
 Route::get('login', 'GuestController@index');
+Route::get('logout', 'GuestController@logout');
 Route::match(['get', 'post'], 'register', function(){
     return redirect('/');
 });
 
 
-Route::get('loginAfter', 'GuestController@handleLoginAfter');
 Route::get('google-callback', 'GoogleController@callback');
 
 Route::post('thong-tin-sinh-vien/{email}', 'GuestController@insertSinhVien');
@@ -32,3 +32,21 @@ Route::post('thong-tin-can-bo/{email}', 'GuestController@insertCanBo');
 
 //middleware - người hướng dẫn
 Route::get('nguoi-huong-dan/home', 'NguoiHuongDanController@index');
+
+
+Route::group(["middleware" => "Admin", "prefix" => "admin"], function(){
+	Route::get('home/{menu?}/{success?}', 'AdminController@home');
+	Route::get('thong-bao', 'AdminController@hienThiThongBao');
+
+	//Quản trị kinh phí
+	Route::get('kinh-phi', 'AdminController@hienThiKinhPhi');
+	Route::post('cap-nhat-kinh-phi', 'AdminController@capNhatKinhPhi');
+
+	//Quản trị đơn vị
+	Route::get('don-vi', 'AdminController@hienThiDonVi');
+});
+
+// Route::group(["middleware" => "Admin", "prefix" => "admin"], function(){
+
+	
+// });

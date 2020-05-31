@@ -101,4 +101,7 @@ class GoogleController extends Controller
 		}			
     }
 
+    public function logout() {
+    	$this->gClient->revokeToken();
+    }
 }

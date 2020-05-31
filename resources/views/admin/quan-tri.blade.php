@@ -17,14 +17,45 @@
 @endsection
 
 @section('css')
+  <!-- jquery cho ajax -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  
+  <!-- datatable -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  
+  <!-- CKEDITOR -->
+  <script src=" {{ asset('public/admin/include/ckeditor/ckeditor.js') }} "></script>
 
 @endsection
 
 @section('menu')
-	<li class="nav-item active">
-        <a class="nav-link" href="index.html">
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Quản Trị
+      </div>
+
+	    <li class="nav-item">
+        <a class="nav-link thong-bao-menu" href="#">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
+          <span>Thông Báo</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link kinh-phi-menu" href="#">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Kinh Phí</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link don-vi-menu" href="#">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Đơn Vị Thực Tập</span></a>
       </li>
 
       <!-- Divider -->
@@ -108,6 +139,56 @@
           <i class="fas fa-fw fa-table"></i>
           <span>Tables</span></a>
       </li>
+
+    <!-- my script -->
+    <script>
+        $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+        $('.thong-bao-menu').on('click',function(){
+            $value = $(this).val();
+            $.ajax({
+                type: 'get',
+                url: '{{ URL::to('admin/thong-bao') }}',
+                data: {
+                    '': $value
+                },
+                success:function(data){
+                    $('.content-ajax').html(data);
+                }
+            });
+        })
+        //$.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+
+        //kinh phí hỗ trợ
+        $('.kinh-phi-menu').on('click',function(){
+            $value = $(this).val();
+            $.ajax({
+                type: 'get',
+                url: '{{ URL::to('admin/kinh-phi') }}',
+                data: {
+                    '': $value
+                },
+                success:function(data){
+                    $('.content-ajax').html(data);
+                }
+            });
+        })
+
+        //Đơn vị thực tập
+        $('.don-vi-menu').on('click',function(){
+            $value = $(this).val();
+            $.ajax({
+                type: 'get',
+                url: '{{ URL::to('admin/don-vi') }}',
+                data: {
+                    '': $value
+                },
+                success:function(data){
+                    $('.content-ajax').html(data);
+                }
+            });
+        })
+        
+    </script>
 @endsection
 
 @section('user-name')
@@ -119,5 +200,19 @@
 @endsection
 
 @section('content')
-	
+	abc
+  @if(isset($menu))
+      @if($menu == 'kinhphi')
+        <script>
+            var kinhphi = document.getElementsByClassName("kinh-phi-menu");
+            kinhphi[0].click();
+        </script>
+      @endif
+  @endif
+
+  @if(isset($info))    
+    <script>
+        alert("{{ $info }}");
+    </script>
+  @endif
 @endsection

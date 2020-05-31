@@ -56,12 +56,12 @@ class GuestController extends Controller
         
     }
 
-    public function handleLoginAfter() {
-        
-    	if (Auth::check()) {
-    		 return view('admin.quan-tri');
-		}
-    	return redirect('');
+    public function logout(Request $request) {
+        $request->session()->forget('access_token');
+        $google = new GoogleController();
+        $google->logout(); 
+        $request->session()->flush();
+        return redirect('');
     }
 
     public function handleGoogleLoginAfter($userData) {
