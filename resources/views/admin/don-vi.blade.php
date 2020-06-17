@@ -1,9 +1,9 @@
 <script>
   $(document).ready( function () {
-    $('#tableData').DataTable();
-} );
+      $('#tableData').DataTable();
+  });
 </script>
-
+  
 <div class="container_content">
       <!-- Header content -->
     <div class="header_content">
@@ -23,6 +23,7 @@
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-primary">Đơn vị thực tập</h6>
   </div>
+  @if( count($duLieuDonVi) != 0 )
   <div class="card-body">
     <div class="table-responsive">
      <table class="table table-bordered" id="tableData" width="100%" cellspacing="0">
@@ -63,9 +64,11 @@
                         <div class="btn btn-success btn_edit" data-toggle="modal" data-target="#md_Add">
                             <i class="fas fa-edit icon_edit"></i>Sửa
                         </div>
-                        <div class="btn btn-danger btn_delete">
-                            <i class="far fa-trash-alt icon_delete"></i>Xóa
-                        </div>
+                        <a href="{{ asset('admin/xoa-don-vi/'.$value->getMaDonVi()) }}">
+                          <div class="btn btn-danger btn_delete">
+                              <i class="far fa-trash-alt icon_delete"></i>Xóa
+                          </div>
+                        </a>
                     </div>
                 </td>
               </tr>
@@ -77,6 +80,7 @@
       
     </div>
   </div>
+  @endif
 </div>
 
 

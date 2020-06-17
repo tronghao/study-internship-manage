@@ -22,6 +22,8 @@ class Admin extends NguoiDung {
 		$this->donVi = new DonViThucTapModel();
     }
 
+    //=====================================================================
+
 	//getter and setter
 	/**
      * @return mixed
@@ -30,6 +32,8 @@ class Admin extends NguoiDung {
     {
         return $this->password;
     }
+
+    //=====================================================================
 
     /**
      * @param mixed $password
@@ -43,23 +47,65 @@ class Admin extends NguoiDung {
         return $this;
     }
 
-
-
+    //=====================================================================
 
 
 	//CRUD thong bao
-	public function them_thong_bao() {
-
+	public function them_thong_bao($data, $fileName) {
+		try {
+			$tb_item = new ThongBaoModel();
+			$tb_item->img = $fileName;
+			$tb_item->title = $data["tieu-de"];
+			$tb_item->content = $data["noi-dung"];
+			$tb_item->quote = $data["trich-dan"];
+			$tb_item->idAdmin = "335535";
+			$tb_item->save();
+			return true;
+		} catch(\Illuminate\Database\QueryException $ex){ 
+		  return false;
+		}
 	}
 
-	public function sua_thong_bao() {
+	//=====================================================================
 
+	public function sua_thong_bao($id, $fileName, $data) {
+		try {
+
+			if($fileName == "giữ lại") {
+				echo "abc";
+				$tb_item = $this->thongBao->where('id', '=', $id)->first();
+				$tb_item->title = $data["tieu-de"];
+				$tb_item->content = $data["noi-dung"];
+				$tb_item->quote = $data["trich-dan"];
+				$tb_item->save();
+			}
+			else {
+				echo "def";
+				$tb_item = $this->thongBao->where('id', '=', $id)->first();
+				$tb_item->img = $fileName;
+				$tb_item->title = $data["tieu-de"];
+				$tb_item->content = $data["noi-dung"];
+				$tb_item->quote = $data["trich-dan"];
+				$tb_item->save();
+			}
+			return true;
+		} catch(\Illuminate\Database\QueryException $ex){ 
+		  return false;
+		}
 	}
 
-	
-	public function xoa_thong_bao() {
+	//=====================================================================
 
+	public function xoa_thong_bao($id) {
+		try {
+			$this->thongBao->where('id', '=', $id)->delete();
+			return true;
+		} catch(\Illuminate\Database\QueryException $ex){ 
+		  return false;
+		}
 	}
+
+	//=====================================================================
 
 	public function hien_thi_thong_bao() {
 		$duLieu = $this->thongBao->all();
@@ -71,10 +117,14 @@ class Admin extends NguoiDung {
 		return $listThongBao;
 	}
 
+	//=====================================================================
+
 	public function hien_thi_kinh_phi() {
 		$duLieu = $this->kinhPhi->all();
 		return $duLieu[0];
 	}
+
+	//=====================================================================
 
 	public function cap_nhat_kinh_phi($kp) {
 		try { 
@@ -88,6 +138,8 @@ class Admin extends NguoiDung {
 		
 	}
 
+	//=====================================================================
+
 	public function hien_thi_don_vi() {
 		$duLieu = $this->donVi->all();
 		$listDonVi = [];
@@ -98,25 +150,61 @@ class Admin extends NguoiDung {
 		return $listDonVi;
 	}
 
+	//=====================================================================
+
+	public function xoa_don_vi($maDV) {
+		try {
+            $this->donVi->where('maDonVi', '=', $maDV)->delete();
+            return true;
+        } catch(\Illuminate\Database\QueryException $ex){ 
+          return false;
+        }
+	}
+
+	//=====================================================================
+
 	//user
-	public function duyet_user() {
+	 public function user_chua_duyet() {
+        $data = $this->user->where('trangThai', '=', 'chờ duyệt')->get();
+        $listUserChuaDuyet = [];
+        foreach ($data as $value) {
+            $tb = new NguoiDung();
+            $tb->setEmail( $value["email"] );
+            $tb->setHoTen( $value["hoTen"] );
+            $tb->setLoiGioiThieu( $value["loiGioiThieu"] );
+            $tb->setId( $value["id"] );
 
+            $listThongBao[] = $tb;
+        }
+
+        return $listThongBao;
+    }
+
+    //=====================================================================
+
+    public function xoa_user($id) {
+        try {
+            $this->user->where('id', '=', $id)->delete();
+            return true;
+        } catch(\Illuminate\Database\QueryException $ex){ 
+          return false;
+        }
+    }
+
+    //=====================================================================
+
+	public function duyet_user($id) {
+		try {
+            $userItem = $this->user->where('id', '=', $id)->first();
+            $userItem->trangThai = "đã duyệt";
+            $userItem->save();
+            return true;
+        } catch(\Illuminate\Database\QueryException $ex){ 
+          return false;
+        }
 	}
 
-	public function xoa_user() {
-	 
-	}
-
-	public function sua_user() {
-
-	}
-
-
-	//kinh phi
-	public function sua_kinh_phi() {
-
-	}
-
+	//=====================================================================
 
 	//dang ky thuc tap
 	public function xoa_dang_ky_thuc_tap() {

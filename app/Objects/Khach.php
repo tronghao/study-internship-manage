@@ -26,7 +26,7 @@ class Khach extends NguoiDung {
 	}
 
 	public function get_3_thong_bao() {
-		$data = $this->thongbao_table->all()->take(3);
+		$data = $this->thongbao_table->whereRaw("1 = 1")->orderBy('id', 'DESC')->take(3)->get();
 		$listThongBao = [];
 		foreach ($data as $value) {
 			$tb = new ThongBao($value["id"], $value["img"], $value["title"], $value["content"], $value["quote"]);
@@ -35,6 +35,15 @@ class Khach extends NguoiDung {
 		}
 		return $listThongBao;
 	}
+
+    public function get_1_thong_bao($id) {
+        $data = $this->thongbao_table->whereRaw("id = ?", [$id])->get();
+        foreach ($data as $value) {
+            $tb = new ThongBao($value["id"], $value["img"], $value["title"], $value["content"], $value["quote"]);
+
+            return $tb;
+        }
+    }
 
 	public function kiem_tra_ton_tai() {
 

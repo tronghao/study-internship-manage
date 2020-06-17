@@ -31,6 +31,7 @@ class NguoiDung {
         $this->user = new User();
     }
 
+    //=====================================================================
 
 	//getter and setter
     /**
@@ -40,6 +41,8 @@ class NguoiDung {
     {
         return $this->id;
     }
+
+    //=====================================================================
 
     /**
      * @param mixed $id
@@ -53,6 +56,8 @@ class NguoiDung {
         return $this;
     }
 
+    //=====================================================================
+
     /**
      * @return mixed
      */
@@ -60,6 +65,8 @@ class NguoiDung {
     {
         return $this->hoTen;
     }
+
+    //=====================================================================
 
     /**
      * @param mixed $hoTen
@@ -73,6 +80,8 @@ class NguoiDung {
         return $this;
     }
 
+    //=====================================================================
+
     /**
      * @return mixed
      */
@@ -80,6 +89,8 @@ class NguoiDung {
     {
         return $this->email;
     }
+
+    //=====================================================================
 
     /**
      * @param mixed $email
@@ -93,6 +104,8 @@ class NguoiDung {
         return $this;
     }
 
+    //=====================================================================
+
     /**
      * @return mixed
      */
@@ -100,6 +113,8 @@ class NguoiDung {
     {
         return $this->sdt;
     }
+
+    //=====================================================================
 
     /**
      * @param mixed $sdt
@@ -113,6 +128,8 @@ class NguoiDung {
         return $this;
     }
 
+    //=====================================================================
+
     /**
      * @return mixed
      */
@@ -120,6 +137,8 @@ class NguoiDung {
     {
         return $this->trangThai;
     }
+
+    //=====================================================================
 
     /**
      * @param mixed $trangThai
@@ -133,6 +152,8 @@ class NguoiDung {
         return $this;
     }
 
+    //=====================================================================
+
     /**
      * @return mixed
      */
@@ -140,6 +161,8 @@ class NguoiDung {
     {
         return $this->loiGioiThieu;
     }
+
+    //=====================================================================
 
     /**
      * @param mixed $loiGioiThieu
@@ -153,6 +176,8 @@ class NguoiDung {
         return $this;
     }
 
+    //=====================================================================
+
         /**
      * @return mixed
      */
@@ -160,6 +185,8 @@ class NguoiDung {
     {
         return $this->anhDaiDien;
     }
+
+    //=====================================================================
 
     /**
      * @param mixed $anhDaiDien
@@ -173,6 +200,7 @@ class NguoiDung {
         return $this;
     }
 
+    //=====================================================================
 
     /**
      * @return mixed
@@ -181,6 +209,8 @@ class NguoiDung {
     {
         return $this->loaiUser;
     }
+
+    //=====================================================================
 
     /**
      * @param mixed $loaiUser
@@ -194,6 +224,8 @@ class NguoiDung {
         return $this;
     }
 
+    //=====================================================================
+
 
     //phuong thuc
     
@@ -206,9 +238,13 @@ class NguoiDung {
         $this->loaiUser = $loaiUser;
     }
 
+    //=====================================================================
+
     public function dang_xuat() {
 
     }
+
+    //=====================================================================
 
     public function ton_tai_user($email) {
         $soLuong = $this->user->where('email', '=', $email)->count();
@@ -216,6 +252,8 @@ class NguoiDung {
             return true;
         else return false;
     }
+
+    //=====================================================================
 
     public function luu_du_lieu(NguoiDung $data) {
         $this->user->id = $this->getGUID();
@@ -229,6 +267,8 @@ class NguoiDung {
         $this->user->loaiUser = $data->getLoaiUser();
         $this->user->save();
     }
+
+    //=====================================================================
 
     function getGUID(){
         if (function_exists('com_create_guid')){
@@ -247,4 +287,5 @@ class NguoiDung {
             return $uuid;
         }
     }
+
 }

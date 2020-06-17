@@ -44,19 +44,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Trang chủ</a>
-                </li>
-                <li class="nav-item">
-                    <a id="dang-nhap" class="nav-link" href="#" data-toggle="modal" data-target="#myModal">Đăng nhập</a>
-                </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link" href="#">Đăng ký</a>
-                </li> -->
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Trợ giúp</a>
-                </li>
-            
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="dang-nhap" class="nav-link" href="#" data-toggle="modal" data-target="#myModal">Đăng nhập</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -292,16 +285,16 @@
             @foreach($listThongBao as $value)
             <div class="col-lg-4 notification">
                 <div class="notification_list h-100">
-                    <a href="#"><img class="notification_item-img" src="{{ $value->getImg() }}" alt=""></a>
+                    <img class="notification_item-img" src="{{ $value->getImg() }}" alt="">
                     <div class="notification_body">
                         <h4 class="notification_item-title">
-                            <a href="#">{{ $value->getTitle() }}</a>
+                            <a href="{{ asset('thong-bao/'.$value->getId()) }}">{{ $value->getTitle() }}</a>
                         </h4>
                         <p class="notification_item-text">
                            {{ $value->getQuote() }}
                         </p>
                     </div>
-                    <div class="btn btn-danger notification_item-btn">Xem thêm</div>
+                    <a href="{{ asset('thong-bao/'.$value->getId()) }}"><div class="btn btn-danger notification_item-btn">Xem thêm</div></a>
                 </div>
             </div>
             @endforeach

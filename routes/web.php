@@ -30,6 +30,8 @@ Route::post('thong-tin-sinh-vien/{email}', 'GuestController@insertSinhVien');
 Route::post('thong-tin-giang-vien/{email}', 'GuestController@insertGiangVien');
 Route::post('thong-tin-can-bo/{email}', 'GuestController@insertCanBo');
 
+Route::get('thong-bao/{id}', 'GuestController@hienThiThongBao');
+
 //middleware - người hướng dẫn
 Route::get('nguoi-huong-dan/home', 'NguoiHuongDanController@index');
 
@@ -37,6 +39,9 @@ Route::get('nguoi-huong-dan/home', 'NguoiHuongDanController@index');
 Route::group(["middleware" => "Admin", "prefix" => "admin"], function(){
 	Route::get('home/{menu?}/{success?}', 'AdminController@home');
 	Route::get('thong-bao', 'AdminController@hienThiThongBao');
+	Route::post('them-thong-bao', 'AdminController@themThongBao');
+	Route::get('xoa-thong-bao/{id}', 'AdminController@xoaThongBao');
+	Route::post('sua-thong-bao/{id}', 'AdminController@suaThongBao');
 
 	//Quản trị kinh phí
 	Route::get('kinh-phi', 'AdminController@hienThiKinhPhi');
@@ -44,6 +49,12 @@ Route::group(["middleware" => "Admin", "prefix" => "admin"], function(){
 
 	//Quản trị đơn vị
 	Route::get('don-vi', 'AdminController@hienThiDonVi');
+	Route::get('xoa-don-vi/{maDV}', 'AdminController@xoaDonVi');
+
+	//Duyệt User
+	Route::get('chua-duyet', 'AdminController@danhSachChuaDuyet');
+	Route::get('duyet-user/{id}', 'AdminController@duyetUser');
+	Route::get('xoa-user/{id}', 'AdminController@xoaUser');
 });
 
 // Route::group(["middleware" => "Admin", "prefix" => "admin"], function(){

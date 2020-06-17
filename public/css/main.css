@@ -1,7 +1,6 @@
 
 nav.my_navbar {
-    /* background-color: red !important; */
-    background-image: linear-gradient(to bottom, rgb(255, 115, 0), #f9a352);
+    background-color: #343A40 !important; 
 }
 
 .container__gioithieu {

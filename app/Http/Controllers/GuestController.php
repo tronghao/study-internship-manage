@@ -56,6 +56,13 @@ class GuestController extends Controller
         
     }
 
+    public function hienThiThongBao($id) {
+        $thongBaoItem = $this->khach->get_1_thong_bao($id);
+        $google = new GoogleController();
+        $loginURL = $google->getLoginURL(); 
+        return view('guest.thong-bao')->with(compact('thongBaoItem', 'loginURL'));
+    }
+
     public function logout(Request $request) {
         $request->session()->forget('access_token');
         $google = new GoogleController();
