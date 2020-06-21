@@ -1,25 +1,18 @@
 <?php
 namespace App\Objects;
 use App\User;
+use App\ChucVuModel;
 
 class ChucVu {
 	protected $maChucVu;	
 	protected $tenChucVu;
+    private $chucvu_table;
 
 
-    /**
-     * Class Constructor
-     * @param    $maChucVu   
-     * @param    $tenChucVu   
-     */
-    public function __construct($maChucVu, $tenChucVu)
-    {
-        $this->maChucVu = $maChucVu;
-        $this->tenChucVu = $tenChucVu;
+    public function __construct() {
+        $this->chucvu_table = new ChucVuModel();
     }
-
-
-    
+   
 
     /**
      * @return mixed
@@ -59,5 +52,27 @@ class ChucVu {
         $this->tenChucVu = $tenChucVu;
 
         return $this;
+    }
+
+
+    //================================================================
+        
+    public function setData($maChucVu, $tenChucVu)
+    {
+        $this->maChucVu = $maChucVu;
+        $this->tenChucVu = $tenChucVu;
+    }
+
+    //================================================================
+    
+    public function getAll() {
+        $duLieuChucVu = $this->chucvu_table->all();
+        $data = [];
+        foreach ($duLieuChucVu as $value) {
+            $chucVu = new ChucVu();
+            $chucVu->setData($value["maChucVu"], $value["tenChucVu"]);
+            $data[] = $chucVu;
+        }
+        return $data;
     }
 }

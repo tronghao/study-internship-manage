@@ -1,24 +1,18 @@
 <?php
 namespace App\Objects;
 use App\User;
+use App\LopModel;
 
 class Lop {
 	protected $maLop;	
 	protected $tenLop;
+    private $lop_table;
 
-
-    /**
-     * Class Constructor
-     * @param    $maLop   
-     * @param    $tenLop   
-     */
-    public function __construct($maLop, $tenLop)
-    {
-        $this->maLop = $maLop;
-        $this->tenLop = $tenLop;
+    public function __construct() {
+        $this->lop_table = new LopModel();
     }
-	
 
+    //=============================================================
 
     /**
      * @return mixed
@@ -27,6 +21,8 @@ class Lop {
     {
         return $this->maLop;
     }
+
+    //=============================================================
 
     /**
      * @param mixed $maLop
@@ -40,6 +36,8 @@ class Lop {
         return $this;
     }
 
+    //=============================================================
+
     /**
      * @return mixed
      */
@@ -48,6 +46,7 @@ class Lop {
         return $this->tenLop;
     }
 
+    //=============================================================
     /**
      * @param mixed $tenLop
      *
@@ -59,4 +58,25 @@ class Lop {
 
         return $this;
     }
+
+    //=============================================================
+
+    public function setData($maLop, $tenLop)
+    {
+        $this->maLop = $maLop;
+        $this->tenLop = $tenLop;
+    }
+
+    //=============================================================
+    public function getAllLop() {
+        $duLieuLop = $this->lop_table->all();
+        $data = [];
+        foreach ($duLieuLop as $value) {
+            $lop = new Lop();
+            $lop->setData($value["maLop"], $value["tenLop"]);
+            $data[] = $lop;
+        }
+        return $data;
+    }
+
 }

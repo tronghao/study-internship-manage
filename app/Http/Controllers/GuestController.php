@@ -16,6 +16,7 @@ class GuestController extends Controller
 {
 	private $thongbao_table;
     private $khach;
+    private $google;
     private $nguoiDung;
     private $sinhVien;
     private $giangVien;
@@ -24,6 +25,7 @@ class GuestController extends Controller
 	public function __construct() {
 		$this->thongbao_table = new ThongBaoModel();
         $this->khach = new Khach();
+        $this->google = new GoogleController();
         $this->nguoiDung = new NguoiDung();
         $this->sinhVien = new SinhVien();
         $this->giangVien = new GiangVien();
@@ -33,8 +35,7 @@ class GuestController extends Controller
     public function index() {
     	$listThongBao = $this->khach->get_3_thong_bao();
 
-        $google = new GoogleController();
-        $loginURL = $google->getLoginURL(); 
+        $loginURL = $this->google->getLoginURL(); 
 
     	return view('guest.trang-chu')->with(compact('loginURL', 'listThongBao'));
     }
@@ -42,8 +43,7 @@ class GuestController extends Controller
     public function index2($id) {
         $listThongBao = $this->khach->get_3_thong_bao();
 
-        $google = new GoogleController();
-        $loginURL = $google->getLoginURL(); 
+        $loginURL = $this->google->getLoginURL(); 
 
         if($id == 1) {
             $info = "Tài khoản chưa được cấp quyền. Bạn cần chờ admin duyệt!";
@@ -58,15 +58,13 @@ class GuestController extends Controller
 
     public function hienThiThongBao($id) {
         $thongBaoItem = $this->khach->get_1_thong_bao($id);
-        $google = new GoogleController();
-        $loginURL = $google->getLoginURL(); 
+        $loginURL = $this->google->getLoginURL(); 
         return view('guest.thong-bao')->with(compact('thongBaoItem', 'loginURL'));
     }
 
     public function logout(Request $request) {
         $request->session()->forget('access_token');
-        $google = new GoogleController();
-        $google->logout(); 
+        $this->google->logout(); 
         $request->session()->flush();
         return redirect('');
     }
@@ -101,7 +99,7 @@ class GuestController extends Controller
              no
                  cho nhap cac thong tin can thiet cua can bo don vi
         */
-        if( $this->khach->ton_tai_user($email) ) {
+        if( $this->khach->ton_tai_user( $email ) ) {
             $thanhVien = new Khach();
             $thanhVien = $this->khach->getUserByEmail($email);
             if( $thanhVien->getTrangThai() == "chờ duyệt" ) {
@@ -145,28 +143,19 @@ class GuestController extends Controller
             //  co phai la email cua truong dai hoc tra vinh hay khong
             if( strpos($email, $kyHieuGmailSinhVienTVU) ) {
                 $loaiUser = "sinh viên";
-                $dataNguoiDung = new NguoiDung();
-                $dataNguoiDung->setData($hoTen, $email, $trangThai, $anhDaiDien, $loaiUser);
-
-                $this->nguoiDung->luu_du_lieu($dataNguoiDung);
+                $this->khach->luu_user( $hoTen, $email, $trangThai, $anhDaiDien, $loaiUser );
                 //$rq->session()->put('user-role', 'sinhvien');
                 return "guest.nhap-thong-tin-sinh-vien";
             }
             else if( strpos($email, $kyHieuGmailGiangVienTVU) ) {
                 $loaiUser = "giảng viên";
-                $dataNguoiDung = new NguoiDung();
-                $dataNguoiDung->setData($hoTen, $email, $trangThai, $anhDaiDien, $loaiUser);
-
-                $this->nguoiDung->luu_du_lieu($dataNguoiDung);
+                $this->khach->luu_user( $hoTen, $email, $trangThai, $anhDaiDien, $loaiUser );
                 //$rq->session()->put('user-role', 'giangvien');
                 return "guest.nhap-thong-tin-giang-vien";
             }
             else {
                 $loaiUser = "người hướng dẫn";
-                $dataNguoiDung = new NguoiDung();
-                $dataNguoiDung->setData($hoTen, $email, $trangThai, $anhDaiDien, $loaiUser);
-
-                $this->nguoiDung->luu_du_lieu($dataNguoiDung);
+                $this->khach->luu_user( $hoTen, $email, $trangThai, $anhDaiDien, $loaiUser );
                 //$rq->session()->put('user-role', 'nguoihuongdan');
                 return "guest.nhap-thong-tin-nguoi-huong-dan";
             }

@@ -19,8 +19,8 @@ class ThongBao extends Migration
             $table->string('title');
             $table->text('content');
             $table->text('quote');
-            $table->string('idAdmin');
-            $table->foreign('idAdmin')->references('id')->on('users')->onDelete('cascade');
+            $table->string('email');
+            $table->foreign('email')->references('email')->on('users')->onDelete('cascade');
         });
     }
 

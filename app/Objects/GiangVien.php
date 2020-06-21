@@ -6,12 +6,28 @@ use App\GiangVienModel;
 
 class GiangVien extends NguoiDung {
 
-	private $giangVien; 
+	private $giangVien_table; 
 
 	public function __construct() {
 		parent::__construct();
-		$this->giangVien = new GiangVienModel();
+		$this->giangVien_table = new GiangVienModel();
 	}
+
+	//==============================================================
+	
+	public function cap_nhat_du_lieu($email, $data) {
+        $guest = $this->user->where('email', '=', $email)->first();
+        $guest->sdt = $data["sdt"];
+        $guest->loiGioiThieu = $data["loiGioiThieu"];
+        $guest->save();
+
+        $gv = new GiangVienModel();
+        $gv->email = $email;
+        $gv->maHocVi = $data["maHocVi"];
+        $gv->save();
+    }
+
+
 
 	public function dang_ky_chon_sinh_vien_thuc_tap() {
 
@@ -30,7 +46,7 @@ class GiangVien extends NguoiDung {
 	}
 
 	public function ton_tai( $email ) {
-		$soLuong = $this->giangVien->where('email', '=', $email)->count();
+		$soLuong = $this->giangVien_table->where('email', '=', $email)->count();
         if($soLuong)
             return true;
         else return false;

@@ -14,7 +14,7 @@ class PhieuCham extends Migration
     public function up()
     {
         Schema::create('phieucham', function (Blueprint $table) {
-            $table->string('maPhieuCham');
+            $table->string('maPhieuCham')->primary();
             $table->float('diem');
             $table->date('ngayCham');
             $table->text('nhanXet');

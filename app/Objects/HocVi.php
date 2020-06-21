@@ -1,18 +1,20 @@
 <?php
 namespace App\Objects;
 use App\User;
+use App\HocViModel;
 
 class HocVi {
 	protected $maHocVi;	
 	protected $tenHocVi;
+    private $hocvi_table;
 
+    public function __construct() {
+        $this->hocvi_table = new HocViModel();
+    }
 
-    /**
-     * Class Constructor
-     * @param    $maHocVi   
-     * @param    $tenHocVi   
-     */
-    public function __construct($maHocVi, $tenHocVi)
+    //================================================================
+
+    public function setData($maHocVi, $tenHocVi)
     {
         $this->maHocVi = $maHocVi;
         $this->tenHocVi = $tenHocVi;
@@ -57,5 +59,17 @@ class HocVi {
         $this->tenHocVi = $tenHocVi;
 
         return $this;
+    }
+
+
+    public function getAll() {
+        $duLieuHocVi = $this->hocvi_table->all();
+        $data = [];
+        foreach ($duLieuHocVi as $value) {
+            $hocVi = new HocVi();
+            $hocVi->setData($value["maHocVi"], $value["tenHocVi"]);
+            $data[] = $hocVi;
+        }
+        return $data;
     }
 }

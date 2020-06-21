@@ -50,12 +50,26 @@ Route::group(["middleware" => "Admin", "prefix" => "admin"], function(){
 	//Quản trị đơn vị
 	Route::get('don-vi', 'AdminController@hienThiDonVi');
 	Route::get('xoa-don-vi/{maDV}', 'AdminController@xoaDonVi');
+	Route::post('them-don-vi', 'AdminController@themDonVi');
+	Route::post('sua-don-vi/{maDV}', 'AdminController@suaDonVi');
 
 	//Duyệt User
-	Route::get('chua-duyet', 'AdminController@danhSachChuaDuyet');
-	Route::get('duyet-user/{id}', 'AdminController@duyetUser');
-	Route::get('xoa-user/{id}', 'AdminController@xoaUser');
+	Route::get('danh-sach-user', 'AdminController@danhSachUser');
+	Route::get('duyet-user/{email}', 'AdminController@duyetUser');
+	Route::get('xoa-user/{email}', 'AdminController@xoaUser');
+	Route::post('edit-user/{email}', 'AdminController@suaUser');
+
+	//Danh sách thực tập
+	Route::get('admin/danh-sach-thuc-tap', 'AdminController@danhSachThucTap');
 });
+
+Route::group(["middleware" => "SinhVien", "prefix" => "sinh-vien"], function(){
+	Route::get('home/{id?}', 'SinhVienController@home');
+	Route::get('kinh-phi', 'SinhVienController@xemKinhPhi');
+	Route::get('dang-ky-thuc-tap', 'SinhVienController@dangKyThucTap');
+	Route::post('dang-ky-thuc-tap', 'SinhVienController@xuLyDangKyThucTap');
+});
+
 
 // Route::group(["middleware" => "Admin", "prefix" => "admin"], function(){
 

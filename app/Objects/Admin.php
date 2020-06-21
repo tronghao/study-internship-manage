@@ -17,9 +17,9 @@ class Admin extends NguoiDung {
 
 	public function __construct() {
 		parent::__construct();
-		$this->thongBao = new ThongBaoModel();
+		$this->thongBao = new ThongBao();
 		$this->kinhPhi = new KinhPhiHoTroModel();
-		$this->donVi = new DonViThucTapModel();
+		$this->donVi = new DonVi();
     }
 
     //=====================================================================
@@ -52,68 +52,25 @@ class Admin extends NguoiDung {
 
 	//CRUD thong bao
 	public function them_thong_bao($data, $fileName) {
-		try {
-			$tb_item = new ThongBaoModel();
-			$tb_item->img = $fileName;
-			$tb_item->title = $data["tieu-de"];
-			$tb_item->content = $data["noi-dung"];
-			$tb_item->quote = $data["trich-dan"];
-			$tb_item->idAdmin = "335535";
-			$tb_item->save();
-			return true;
-		} catch(\Illuminate\Database\QueryException $ex){ 
-		  return false;
-		}
+		return $this->thongBao->them_thong_bao( $data, $fileName );
 	}
 
 	//=====================================================================
 
 	public function sua_thong_bao($id, $fileName, $data) {
-		try {
-
-			if($fileName == "giữ lại") {
-				echo "abc";
-				$tb_item = $this->thongBao->where('id', '=', $id)->first();
-				$tb_item->title = $data["tieu-de"];
-				$tb_item->content = $data["noi-dung"];
-				$tb_item->quote = $data["trich-dan"];
-				$tb_item->save();
-			}
-			else {
-				echo "def";
-				$tb_item = $this->thongBao->where('id', '=', $id)->first();
-				$tb_item->img = $fileName;
-				$tb_item->title = $data["tieu-de"];
-				$tb_item->content = $data["noi-dung"];
-				$tb_item->quote = $data["trich-dan"];
-				$tb_item->save();
-			}
-			return true;
-		} catch(\Illuminate\Database\QueryException $ex){ 
-		  return false;
-		}
+		return $this->thongBao->sua_thong_bao( $id, $fileName, $data );
 	}
 
 	//=====================================================================
 
 	public function xoa_thong_bao($id) {
-		try {
-			$this->thongBao->where('id', '=', $id)->delete();
-			return true;
-		} catch(\Illuminate\Database\QueryException $ex){ 
-		  return false;
-		}
+		return $this->thongBao->xoa_thong_bao( $id );
 	}
 
 	//=====================================================================
 
 	public function hien_thi_thong_bao() {
-		$duLieu = $this->thongBao->all();
-		$listThongBao = [];
-		foreach($duLieu as $value) {
-			$thongBaoItem = new ThongBao($value["id"], $value["img"], $value["title"], $value["content"], $value["quote"]);
-			$listThongBao[] = $thongBaoItem;
-		}
+		$listThongBao = $this->thongBao->getAll();
 		return $listThongBao;
 	}
 
@@ -141,68 +98,33 @@ class Admin extends NguoiDung {
 	//=====================================================================
 
 	public function hien_thi_don_vi() {
-		$duLieu = $this->donVi->all();
-		$listDonVi = [];
-		foreach($duLieu as $value) {
-			$donViItem = new DonVi($value["maDonVi"], $value["tenDonVi"], $value["diaChiDonVi"], $value["sdtDonVi"], $value["soKM"]);
-			$listDonVi[] = $donViItem;
-		}
-		return $listDonVi;
+		return $this->donVi->getAll();
 	}
 
 	//=====================================================================
 
 	public function xoa_don_vi($maDV) {
-		try {
-            $this->donVi->where('maDonVi', '=', $maDV)->delete();
-            return true;
-        } catch(\Illuminate\Database\QueryException $ex){ 
-          return false;
-        }
+		return $this->donVi->xoa_don_vi( $maDV );
+	}
+
+	//=====================================================================
+
+	public function them_don_vi($data) {
+		return $this->donVi->them_don_vi( $data );
+	}
+
+	//=====================================================================
+
+	public function sua_don_vi($maDV, $data) {
+		return $this->donVi->sua_don_vi( $maDV, $data );
 	}
 
 	//=====================================================================
 
 	//user
-	 public function user_chua_duyet() {
-        $data = $this->user->where('trangThai', '=', 'chờ duyệt')->get();
-        $listUserChuaDuyet = [];
-        foreach ($data as $value) {
-            $tb = new NguoiDung();
-            $tb->setEmail( $value["email"] );
-            $tb->setHoTen( $value["hoTen"] );
-            $tb->setLoiGioiThieu( $value["loiGioiThieu"] );
-            $tb->setId( $value["id"] );
-
-            $listThongBao[] = $tb;
-        }
-
-        return $listThongBao;
+	 public function danh_sach_user() {
+        return $this->getAll();
     }
-
-    //=====================================================================
-
-    public function xoa_user($id) {
-        try {
-            $this->user->where('id', '=', $id)->delete();
-            return true;
-        } catch(\Illuminate\Database\QueryException $ex){ 
-          return false;
-        }
-    }
-
-    //=====================================================================
-
-	public function duyet_user($id) {
-		try {
-            $userItem = $this->user->where('id', '=', $id)->first();
-            $userItem->trangThai = "đã duyệt";
-            $userItem->save();
-            return true;
-        } catch(\Illuminate\Database\QueryException $ex){ 
-          return false;
-        }
-	}
 
 	//=====================================================================
 
@@ -242,24 +164,8 @@ class Admin extends NguoiDung {
 
 	}
 
-	public function danh_sach_user() {
-
-	}
 
 	public function danh_sach_don_vi_thuc_tap() {
-
-	}
-
-	//CRUD don vi thuc tap
-	public function them_don_vi_thuc_tap() {
-
-	}
-
-	public function xoa_don_vi_thuc_tap() {
-
-	}
-
-	public function sua_don_vi_thuc_tap() {
 
 	}
 

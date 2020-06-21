@@ -6,13 +6,27 @@ use App\NguoiHuongDanModel;
 
 class NguoiHuongDan extends NguoiDung {
 
-	private $canBo;
+	private $nguoiHuongDan_table;
 
 	public function __construct() {
 		parent::__construct();
-		$this->canBo = new NguoiHuongDanModel();
+		$this->nguoiHuongDan_table = new NguoiHuongDanModel();
 	}
 
+	//==============================================================
+	
+	public function cap_nhat_du_lieu($email, $data) {
+        $guest = $this->user->where('email', '=', $email)->first();
+        $guest->sdt = $data["sdt"];
+        $guest->loiGioiThieu = $data["loiGioiThieu"];
+        $guest->save();
+
+        $cb = new NguoiHuongDanModel();
+        $cb->email = $email;
+        $cb->maDonVi = $data["maDonVi"];
+        $cb->maChucVu = $data["maChucVu"];
+        $cb->save();
+    }
 	public function dang_ky_chon_sinh_vien_thuc_tap() {
 
 	}
@@ -37,7 +51,7 @@ class NguoiHuongDan extends NguoiDung {
     }
 
     public function ton_tai( $email ) {
-		$soLuong = $this->canBo->where('email', '=', $email)->count();
+		$soLuong = $this->nguoiHuongDan_table->where('email', '=', $email)->count();
         if($soLuong)
             return true;
         else return false;

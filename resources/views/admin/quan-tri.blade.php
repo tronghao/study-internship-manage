@@ -61,7 +61,13 @@
       <li class="nav-item">
         <a class="nav-link duyet-user-menu" href="#">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Duyệt User</span></a>
+          <span>User</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link danh-sach-thuc-tap-menu" href="#">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Danh Sách thực tập</span></a>
       </li>
 
       <!-- Divider -->
@@ -199,7 +205,22 @@
             $value = $(this).val();
             $.ajax({
                 type: 'get',
-                url: '{{ URL::to('admin/chua-duyet') }}',
+                url: '{{ URL::to('admin/danh-sach-user') }}',
+                data: {
+                    '': $value
+                },
+                success:function(data){
+                    $('.content-ajax').html(data);
+                }
+            });
+        })
+
+        //Danh sách thực tập
+        $('.danh-sach-thuc-tap-menu').on('click',function(){
+            $value = $(this).val();
+            $.ajax({
+                type: 'get',
+                url: '{{ URL::to('admin/danh-sach-thuc-tap') }}',
                 data: {
                     '': $value
                 },

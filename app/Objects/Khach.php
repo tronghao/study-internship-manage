@@ -15,127 +15,118 @@ use App\DonViThucTapModel;
 use App\Objects\DonVi;
 use App\ChucVuModel;
 use App\Objects\ChucVu;
+use App\Objects\SinhVien;
+use App\Objects\GiangVien;
+use App\Objects\NguoiHuongDan;
 
 
-class Khach extends NguoiDung {
-	private $thongbao_table;
+class Khach {
+	private $thongBao;
+    private $lop;
+    private $user;
+    private $sinhvien;
+    private $giangvien;
+    private $canbo;
+    private $hocVi;
+    private $donVi;
+    private $chucVu;
 
 	public function __construct() {
-		parent::__construct();
-		$this->thongbao_table = new ThongBaoModel();
+		$this->thongBao = new ThongBao();
+        $this->lop = new Lop();
+        $this->user = new NguoiDung();
+        $this->sinhvien = new SinhVien();
+        $this->giangvien = new GiangVien();
+        $this->canbo = new NguoiHuongDan();
+        $this->hocVi = new HocVi();
+        $this->donVi = new DonVi();
+        $this->chucVu = new ChucVu();
 	}
 
-	public function get_3_thong_bao() {
-		$data = $this->thongbao_table->whereRaw("1 = 1")->orderBy('id', 'DESC')->take(3)->get();
-		$listThongBao = [];
-		foreach ($data as $value) {
-			$tb = new ThongBao($value["id"], $value["img"], $value["title"], $value["content"], $value["quote"]);
+    //========================================================
 
-			$listThongBao[] = $tb;
-		}
+	public function get_3_thong_bao() {
+		$listThongBao = $this->thongBao->get_3_thong_bao();
 		return $listThongBao;
 	}
 
-    public function get_1_thong_bao($id) {
-        $data = $this->thongbao_table->whereRaw("id = ?", [$id])->get();
-        foreach ($data as $value) {
-            $tb = new ThongBao($value["id"], $value["img"], $value["title"], $value["content"], $value["quote"]);
+    //========================================================
 
-            return $tb;
-        }
+    public function get_1_thong_bao($id) {
+        $tb = $this->thongBao->get_1_thong_bao( $id );
+        return $tb;
     }
 
-	public function kiem_tra_ton_tai() {
+    //========================================================
 
+    public function luu_user( $hoTen, $email, $trangThai, $anhDaiDien, $loaiUser ) {
+        $dataNguoiDung = new NguoiDung();
+        $dataNguoiDung->setData($hoTen, $email, $trangThai, $anhDaiDien, $loaiUser);
+        $dataNguoiDung->luu_du_lieu($dataNguoiDung);
+    }
+
+    //========================================================
+
+	public function ton_tai_user( $email ) {
+        if( $this->user->ton_tai_user( $email ) )
+            return true;
+        else return false;
 	}
+
+    //========================================================
 
 	public function them_du_lieu_dang_ky() {
 
 	}
 
+    //========================================================
+
 	public function getUserByEmail($email) {
-        $data = $this->user->where('email', '=', $email)->get()->toArray();
-        $khach = new Khach();
-        $khach->setData($data[0]["hoTen"], $data[0]["email"], $data[0]["trangThai"], $data[0]["anhDaiDien"], $data[0]["loaiUser"]);
-        return $khach;
+        $user_item = $this->user->getUser( $email );
+        return $user_item;
     }
+
+    //========================================================
 
     public function cap_nhat_thong_tin($data, $user, $email) {
     	switch ($user) {
-    		case 'sinhvien':
-    			$guest = $this->user->where('email', '=', $email)->first();
-		        $guest->sdt = $data["sdt"];
-		        $guest->loiGioiThieu = $data["loiGioiThieu"];
-		        $guest->save();
-
-		        $sv = new SinhVienModel();
-		        $sv->email = $email;
-		        $sv->maLop = $data["maLop"];
-		        $sv->save();
-    			break;
-    		case 'giangvien':
-    			$guest = $this->user->where('email', '=', $email)->first();
-		        $guest->sdt = $data["sdt"];
-		        $guest->loiGioiThieu = $data["loiGioiThieu"];
-		        $guest->save();
-
-		        $gv = new GiangVienModel();
-		        $gv->email = $email;
-		        $gv->maHocVi = $data["maHocVi"];
-		        $gv->save();
-    			break;
-    		case 'canbo':
-    			$guest = $this->user->where('email', '=', $email)->first();
-		        $guest->sdt = $data["sdt"];
-		        $guest->loiGioiThieu = $data["loiGioiThieu"];
-		        $guest->save();
-
-		        $cb = new NguoiHuongDanModel();
-		        $cb->email = $email;
-		        $cb->maDonVi = $data["maDonVi"];
-		        $cb->maChucVu = $data["maChucVu"];
-		        $cb->save();
-    			break;
-    	}
+            case 'sinhvien':
+                $this->sinhvien->cap_nhat_du_lieu($email, $data);
+                break;
+            case 'giangvien':
+                $this->giangvien->cap_nhat_du_lieu($email, $data);
+                break;
+            case 'canbo':
+                $this->canbo->cap_nhat_du_lieu($email, $data);
+                break;
+        }
     }
+
+    //========================================================
 
     public function getAllLop() {
-    	$duLieuLop = LopModel::all();
-    	$data = [];
-    	foreach ($duLieuLop as $value) {
-    		$lop = new Lop($value["maLop"], $value["tenLop"]);
-    		$data[] = $lop;
-    	}
+    	$data = $this->lop->getAllLop();
     	return $data;
     }
+
+    //========================================================
 
     public function getAllHocVi() {
-    	$duLieuHocVi = HocViModel::all();
-    	$data = [];
-    	foreach ($duLieuHocVi as $value) {
-    		$hocVi = new HocVi($value["maHocVi"], $value["tenHocVi"]);
-    		$data[] = $hocVi;
-    	}
-    	return $data;
+    	$listHV = $this->hocVi->getAll();
+        return $listHV;
     }
+
+    //========================================================
 
     public function getAllDonVi() {
-    	$duLieuDonVi = DonViThucTapModel::all();
-    	$data = [];
-    	foreach ($duLieuDonVi as $value) {
-    		$donVi = new DonVi($value["maDonVi"], $value["tenDonVi"],$value["diaChiDonVi"], $value["sdtDonVi"], $value["soKM"]);
-    		$data[] = $donVi;
-    	}
-    	return $data;
+    	$listDonVi = $this->donVi->getAllDonVi();
+        return $listDonVi;
     }
 
+    //========================================================
+
     public function getAllChucVu() {
-    	$duLieuChucVu = ChucVuModel::all();
-    	$data = [];
-    	foreach ($duLieuChucVu as $value) {
-    		$chucVu = new ChucVu($value["maChucVu"], $value["tenChucVu"]);
-    		$data[] = $chucVu;
-    	}
+    	$data = $this->chucVu->getAll();
     	return $data;
     }
 }

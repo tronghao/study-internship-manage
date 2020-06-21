@@ -16,7 +16,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
+    protected $fillable = ['email',
         'hoten', 'password', 'sdt', 'trangThai', 'loiGioiThieu', 'loaiUser'
     ];
 
@@ -38,6 +38,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected $primaryKey = "id";  //trường khóa chính
+    protected $primaryKey = "email";  //trường khóa chính
     protected $keyType = 'string'; //kieur dữ liệu của trường đó
 }

@@ -3,9 +3,8 @@ namespace App\Objects;
 use App\User;
 
 class NguoiDung {
-	protected $id;	
+    protected $email;
 	protected $hoTen;
-	protected $email;
 	protected $sdt;
 	protected $trangThai;
 	protected $loiGioiThieu;
@@ -13,19 +12,6 @@ class NguoiDung {
     protected $loaiUser;
     protected $user;
 
-
-    /**
-     * Class Constructor
-     * @param    $id   
-     * @param    $hoTen   
-     * @param    $email   
-     * @param    $sdt   
-     * @param    $trangThai   
-     * @param    $loiGioiThieu   
-     * @param    $anhDaiDien   
-     * @param    $loaiUser   
-     * @param    $user   
-     */
     
 	public function __construct(){
         $this->user = new User();
@@ -34,30 +20,6 @@ class NguoiDung {
     //=====================================================================
 
 	//getter and setter
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    //=====================================================================
-
-    /**
-     * @param mixed $id
-     *
-     * @return self
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    //=====================================================================
-
     /**
      * @return mixed
      */
@@ -238,11 +200,6 @@ class NguoiDung {
         $this->loaiUser = $loaiUser;
     }
 
-    //=====================================================================
-
-    public function dang_xuat() {
-
-    }
 
     //=====================================================================
 
@@ -256,7 +213,6 @@ class NguoiDung {
     //=====================================================================
 
     public function luu_du_lieu(NguoiDung $data) {
-        $this->user->id = $this->getGUID();
         $this->user->hoTen = $data->getHoTen();
         $this->user->email = $data->getEmail();
         $this->user->anhDaiDien = $data->getAnhDaiDien();
@@ -270,21 +226,67 @@ class NguoiDung {
 
     //=====================================================================
 
-    function getGUID(){
-        if (function_exists('com_create_guid')){
-            return com_create_guid();
-        }else{
-            mt_srand((double)microtime()*10000);//optional for php 4.2.0 and up.
-            $charid = strtoupper(md5(uniqid(rand(), true)));
-            $hyphen = chr(45);// "-"
-            $uuid = chr(123)// "{"
-                .substr($charid, 0, 8).$hyphen
-                .substr($charid, 8, 4).$hyphen
-                .substr($charid,12, 4).$hyphen
-                .substr($charid,16, 4).$hyphen
-                .substr($charid,20,12)
-                .chr(125);// "}"
-            return $uuid;
+    public function getUser($email) {
+        $user_item = $this->user->where('email', '=', $email)->get();
+        $nguoiDung = new NguoiDung();
+        $nguoiDung->setData($user_item[0]["hoTen"], $user_item[0]["email"], $user_item[0]["trangThai"], $user_item[0]["anhDaiDien"], $user_item[0]["loaiUser"]);
+        return $nguoiDung;
+    }
+
+    //=====================================================================
+
+    public function getAll() {
+        $data = $this->user->whereRaw("1 = 1")->orderBy("trangThai", "DESC")->get();
+        $listUserChuaDuyet = [];
+        foreach ($data as $value) {
+            $tb = new NguoiDung();
+            $tb->setEmail( $value["email"] );
+            $tb->setHoTen( $value["hoTen"] );
+            $tb->setLoiGioiThieu( $value["loiGioiThieu"] );
+            $tb->setTrangThai( $value["trangThai"] );
+            $tb->setSdt( $value["sdt"] );
+
+            $listUserChuaDuyet[] = $tb;
+        }
+
+        return $listUserChuaDuyet;
+    }
+
+    //=====================================================================
+    
+    public function duyet_user( $email ) {
+        try {
+            $userItem = $this->user->where('email', '=', $email)->first();
+            $userItem->trangThai = "đã duyệt";
+            $userItem->save();
+            return true;
+        } catch(\Illuminate\Database\QueryException $ex){ 
+          return false;
+        }
+    }
+
+    //=====================================================================
+
+    public function xoa_user($email) {
+        try {
+            $this->user->where('email', '=', $email)->delete();
+            return true;
+        } catch(\Illuminate\Database\QueryException $ex){ 
+          return false;
+        }
+    }
+
+    //=====================================================================
+
+    public function sua_user($email, $data) {
+        try {
+            $user_item = $this->user->where('email', '=', $email)->first();
+            $user_item->hoTen = $data["ho-ten"];
+            $user_item->sdt = $data["sdt"];
+            $user_item->save();
+            return true;
+        } catch(\Illuminate\Database\QueryException $ex){ 
+          return false;
         }
     }
 

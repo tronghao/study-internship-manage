@@ -177,9 +177,31 @@ class AdminController extends Controller
 
     //=====================================================================
 
-    public function danhSachChuaDuyet() {
-        $danhsachUserChuaDuyet = $this->admin->user_chua_duyet();
-        return view('admin.duyet-user')->with(compact('danhsachUserChuaDuyet'));
+    public function themDonVi(Request $rq) {
+        $data = $rq->all();
+        $kq = $this->admin->them_don_vi($data);
+        if($kq)
+            return redirect("admin/home/don-vi/1");
+        else
+            return redirect("admin/home/don-vi/2");
+    }
+
+    //=====================================================================
+
+    public function suaDonVi($maDV, Request $rq) {
+        $data = $rq->all();
+        $kq = $this->admin->sua_don_vi($maDV, $data);
+        if($kq)
+            return redirect("admin/home/don-vi/3");
+        else
+            return redirect("admin/home/don-vi/4");
+    }
+
+    //=====================================================================
+
+    public function danhSachUser() {
+        $danhsachUser = $this->admin->danh_sach_user();
+        return view('admin.danh-sach-user')->with(compact('danhsachUser'));
     }
 
     //=====================================================================
@@ -194,9 +216,25 @@ class AdminController extends Controller
 
     //=====================================================================
 
-    public function duyetUser($id) {
-        if( $this->admin->duyet_user($id) )
+    public function duyetUser($email) {
+        if( $this->admin->duyet_user($email) )
             return redirect("admin/home/duyet-user/7");
         else return redirect("admin/home/duyet-user/8");
+    }
+
+    //=====================================================================
+
+    public function suaUser($id, Request $rq) {
+        $data = $rq->all();
+        if( $this->admin->sua_user($id, $data) )
+            return redirect("admin/home/duyet-user/3");
+        else return redirect("admin/home/duyet-user/4");
+    }
+
+    //=====================================================================
+
+    public function danhSachThucTap() {
+        $danhSachThucTap = "";
+        return view();
     }
 }

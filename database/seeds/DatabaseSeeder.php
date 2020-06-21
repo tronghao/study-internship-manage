@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     {
       //admin pass: 12345678
         DB::table('users')->insert([
-          array('id' => '335535', 
+          array( 
                 'hoTen' => 'Quản Trị Viên', 
                 'email' => 'admin@admin',
                 'anhDaiDien' => 'https://weplus.vn/wp-content/uploads/avatars/1/5d6dee5365c67-bpthumb.png',
@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
                 'loiGioiThieu' => '',
                 'loaiUser' => 'Admin'
               ),
-          array('id' => '1',
+          array(
                 'hoten' => 'Nguyễn Minh Bé',
                 'email' => '110117001@sv.tvu.edu.vn',
                 'anhDaiDien' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTQuHWTw485tT27sG2g3SUyd3DSKNFzjZXe_b1ESR1GP9aKv4Oe&usqp=CAU',
@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
                 'loiGioiThieu' => 'Tôi là sinh viên',
                 'loaiUser' => 'sinh viên'
               ),
-          array('id' => '2',
+          array(
                 'hoten' => 'Nguyễn Minh Minh',
                 'email' => '110117002@sv.tvu.edu.vn',
                 'anhDaiDien' => 'https://lh3.googleusercontent.com/proxy/3WWucPpz_62J0VoNz01zkJ9HVN_mxWIr3oJ1lvvUeuuOB5_inkFcCSF5YtTmvQKV2TLofkJsrSMjfnmRqbznPoGyExEokrAndiNh3ng8CF00dt2mT28ApIrzjUleykw',
@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
                 'loiGioiThieu' => 'Tôi là sinh viên',
                 'loaiUser' => 'sinh viên'
               ),
-          array('id' => '3',
+          array(
                 'hoten' => 'Nguyễn Trọng Đào',
                 'email' => '110117003@sv.tvu.edu.vn',
                 'anhDaiDien' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTQuHWTw485tT27sG2g3SUyd3DSKNFzjZXe_b1ESR1GP9aKv4Oe&usqp=CAU',
@@ -53,7 +53,7 @@ class DatabaseSeeder extends Seeder
                 'loiGioiThieu' => 'Tôi là sinh viên',
                 'loaiUser' => 'sinh viên'
               ),
-          array('id' => '4',
+          array(
                 'hoten' => 'Kiên Văn Duy',
                 'email' => '110117004@sv.tvu.edu.vn',
                 'anhDaiDien' => 'https://lh3.googleusercontent.com/proxy/3WWucPpz_62J0VoNz01zkJ9HVN_mxWIr3oJ1lvvUeuuOB5_inkFcCSF5YtTmvQKV2TLofkJsrSMjfnmRqbznPoGyExEokrAndiNh3ng8CF00dt2mT28ApIrzjUleykw',
@@ -63,7 +63,7 @@ class DatabaseSeeder extends Seeder
                 'loiGioiThieu' => 'Tôi là sinh viên',
                 'loaiUser' => 'sinh viên'
               ),
-          array('id' => '5',
+          array(
                 'hoten' => 'Nhan Minh Phúc',
                 'email' => 'nmphuc@tvu.edu.vn',
                 'anhDaiDien' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTQuHWTw485tT27sG2g3SUyd3DSKNFzjZXe_b1ESR1GP9aKv4Oe&usqp=CAU',
@@ -73,7 +73,7 @@ class DatabaseSeeder extends Seeder
                 'loiGioiThieu' => 'Tôi là giảng viên',
                 'loaiUser' => 'giảng viên'
               ),
-          array('id' => '6',
+          array(
                 'hoten' => 'Phan Thị Phương Nam',
                 'email' => 'ptpnam@tvu.edu.vn',
                 'anhDaiDien' => 'https://lh3.googleusercontent.com/proxy/3WWucPpz_62J0VoNz01zkJ9HVN_mxWIr3oJ1lvvUeuuOB5_inkFcCSF5YtTmvQKV2TLofkJsrSMjfnmRqbznPoGyExEokrAndiNh3ng8CF00dt2mT28ApIrzjUleykw',
@@ -83,7 +83,7 @@ class DatabaseSeeder extends Seeder
                 'loiGioiThieu' => 'Tôi là giảng viên',
                 'loaiUser' => 'giảng viên'
               ),
-          array('id' => '7',
+          array(
                 'hoten' => 'Dương Ngọc Vân Khanh',
                 'email' => 'vankhanh@gmail.com',
                 'anhDaiDien' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRydLSvuKEq1VQ-k_l7C-dQquzeLp12ZGRjcMrpBysJ2GezLJuO&usqp=CAU',
@@ -93,7 +93,7 @@ class DatabaseSeeder extends Seeder
                 'loiGioiThieu' => 'Tôi là nhân viên công ty BStar',
                 'loaiUser' => 'người hướng dẫn'
               ),
-          array('id' => '8',
+          array(
                 'hoten' => 'Nguyễn Bá Nhiệm',
                 'email' => 'nhiemnb@gmail.com',
                 'anhDaiDien' => 'https://lh3.googleusercontent.com/proxy/kRoPLUBJqum-S04A_BfuskDobxoXrcfZ75Fk2t9_5DEJMtJfJYxld5O7iT8mZYNTXfku9uCu0Vo6SZmgz93b9h1ZlSZqa13sGQ10yMXe7i-1RyK_9W_oGdYoxjDkQJN6sxsp6PVm5SC3GkKpLWOT7v0_',
@@ -103,9 +103,9 @@ class DatabaseSeeder extends Seeder
                 'loiGioiThieu' => 'Tôi là nhân viên công ty BStar',
                 'loaiUser' => 'người hướng dẫn'
               ),
-          array('id' => '9',
+          array(
                 'hoten' => 'Phạm Thái',
-                'email' => 'pthai@ gmail.com',
+                'email' => 'pthai@gmail.com',
                 'anhDaiDien' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRydLSvuKEq1VQ-k_l7C-dQquzeLp12ZGRjcMrpBysJ2GezLJuO&usqp=CAU',
                 'password' => 'djflkdsafdsfdsipofsdvuioxvncxvasfjdiofjwoirueojsdkfjsdfsdj',
                 'sdt' => '0918603801',
@@ -113,9 +113,9 @@ class DatabaseSeeder extends Seeder
                 'loiGioiThieu' => 'Tôi là nhân viên công ty TMA',
                 'loaiUser' => 'người hướng dẫn'
               ),
-          array('id' => '10',
+          array(
               'hoten' => 'Đỗ Trọng Hợp',
-              'email' => 'dthop@ gmail.com',
+              'email' => 'dthop@gmail.com',
               'anhDaiDien' => 'https://lh3.googleusercontent.com/proxy/kRoPLUBJqum-S04A_BfuskDobxoXrcfZ75Fk2t9_5DEJMtJfJYxld5O7iT8mZYNTXfku9uCu0Vo6SZmgz93b9h1ZlSZqa13sGQ10yMXe7i-1RyK_9W_oGdYoxjDkQJN6sxsp6PVm5SC3GkKpLWOT7v0_',
               'password' => 'djflkdsafdsfdsipofsdvuioxvncxvasfjdiofjwoirueojsdkfjsdfsdj',
               'sdt' => '0989236101',
@@ -123,9 +123,9 @@ class DatabaseSeeder extends Seeder
               'loiGioiThieu' => 'Tôi là nhân viên công ty TMA',
               'loaiUser' => 'người hướng dẫn'
             ),
-          array('id' => '11',
+          array(
               'hoten' => 'Lâm Thành Thép',
-              'email' => 'ltthep@ gmail.com',
+              'email' => 'ltthep@gmail.com',
               'anhDaiDien' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRydLSvuKEq1VQ-k_l7C-dQquzeLp12ZGRjcMrpBysJ2GezLJuO&usqp=CAU',
               'password' => 'djflkdsafdsfdsipofsdvuioxvncxvasfjdiofjwoirueojsdkfjsdfsdj',
               'sdt' => '0988332001',
@@ -133,9 +133,9 @@ class DatabaseSeeder extends Seeder
               'loiGioiThieu' => 'Tôi là nhân viên công ty FPT',
               'loaiUser' => 'người hướng dẫn'
             ),
-          array('id' => '12',
+          array(
               'hoten' => 'Vũ Văn Hiếu',
-              'email' => 'vvhieu@ gmail.com',
+              'email' => 'vvhieu@gmail.com',
               'anhDaiDien' => 'https://lh3.googleusercontent.com/proxy/kRoPLUBJqum-S04A_BfuskDobxoXrcfZ75Fk2t9_5DEJMtJfJYxld5O7iT8mZYNTXfku9uCu0Vo6SZmgz93b9h1ZlSZqa13sGQ10yMXe7i-1RyK_9W_oGdYoxjDkQJN6sxsp6PVm5SC3GkKpLWOT7v0_',
               'password' => 'djflkdsafdsfdsipofsdvuioxvncxvasfjdiofjwoirueojsdkfjsdfsdj',
               'sdt' => '0983303601',
@@ -158,7 +158,7 @@ class DatabaseSeeder extends Seeder
 
 					<p>Số doanh nghiệp thành lập mới nhiều hơn nhưng số ngừng kinh doanh còn tăng cao hơn. Trong ba tháng đầu năm, cả nước có 29.700 doanh nghiệp đăng ký thành lập mới, tăng 4,4%, 14.800 doanh nghiệp trở lại hoạt động nhưng số ngừng kinh doanh có thời hạn lên tới 18.600 doanh nghiệp, tăng 26%. </p>',
           		'quote'=>'Navigos Search vừa chạy thử chiến dịch "Career Support - Hỗ trợ sự nghiệp" trong một tuần cho người lao động. Hơn 1.200 ứng viên ở đa dạng các ngành nghề và lĩnh vực đã gửi hồ sơ về để mong nhận được hỗ trợ giới thiệu cơ hội việc làm mới trong đại dịch. Kết quả là, gần một nửa số hồ sơ đề xuất hỗ trợ việc làm đến từ nhóm ứng viên cấp trung.',
-              'idAdmin' => '335535',
+              'email' => 'admin@admin',
             ),
 
           array('id'=>2,
@@ -166,7 +166,7 @@ class DatabaseSeeder extends Seeder
           		'title'=>'Thông báo 2',
           		'content'=>'',
           		'quote'=>'',
-              'idAdmin' => '335535',
+              'email' => 'admin@admin',
             ),
 
           array('id'=>3,
@@ -174,7 +174,7 @@ class DatabaseSeeder extends Seeder
           		'title'=>'Thông báo 3',
           		'content'=>'',
           		'quote'=>'',
-              'idAdmin' => '335535',
+              'email' => 'admin@admin',
             ),
 
         ]);
@@ -259,32 +259,28 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('thuctap')->insert([
-          array('idSinhVien' =>  1,
-                'idGiangVien' => 5,
-                'idNguoiHuongDan' => 7,
+          array('emailSV' =>  '110117001@sv.tvu.edu.vn',
+                'emailGV' => 'nmphuc@tvu.edu.vn',
+                'emailNHD' => 'dthop@gmail.com',
                 'maDonVi' => 'DV01',
-                'idKinhPhi' =>  1,
                 'ngayBatDauThucTap' => '2018-06-01'
               ),
-          array('idSinhVien' =>  2,
-                'idGiangVien' => 6,
-                'idNguoiHuongDan' => 8,
+          array('emailSV' =>  '110117002@sv.tvu.edu.vn',
+                'emailGV' => 'ptpnam@tvu.edu.vn',
+                'emailNHD' => 'ltthep@gmail.com',
                 'maDonVi' => 'DV01',
-                'idKinhPhi' =>  1,
                 'ngayBatDauThucTap' => '2018-06-01'
               ),
-          array('idSinhVien' =>  3,
-                'idGiangVien' => 5,
-                'idNguoiHuongDan' => 9,
+          array('emailSV' =>  '110117003@sv.tvu.edu.vn',
+                'emailGV' => 'nmphuc@tvu.edu.vn',
+                'emailNHD' => 'nhiemnb@gmail.com',
                 'maDonVi' => 'DV02',
-                'idKinhPhi' => 1,
                 'ngayBatDauThucTap' => '2018-06-01'
               ),
-          array('idSinhVien' =>  4,
-                'idGiangVien' => 6,
-                'idNguoiHuongDan' => 12,
+          array('emailSV' =>  '110117004@sv.tvu.edu.vn',
+                'emailGV' => 'ptpnam@tvu.edu.vn',
+                'emailNHD' => 'pthai@gmail.com',
                 'maDonVi' => 'DV03',
-                'idKinhPhi' => 1,
                 'ngayBatDauThucTap' => '2018-06-01'
               ),
 
@@ -328,43 +324,43 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('chamdiem')->insert([
-          array('idSinhVien' => 1,
-                'idNguoiCham' => 5,
+          array('emailSV' => '110117001@sv.tvu.edu.vn',
+                'emailNguoiCham' => 'nmphuc@tvu.edu.vn',
                 'maPhieuCham' => 1,
                 'ngayKetThucThucTap' => '2018-08-31'
               ),
-          array('idSinhVien' => 2,
-                'idNguoiCham' => 6,
+          array('emailSV' => '110117002@sv.tvu.edu.vn',
+                'emailNguoiCham' => 'ptpnam@tvu.edu.vn',
                 'maPhieuCham' => 2,
                 'ngayKetThucThucTap' => '2018-08-31'
               ),
-          array('idSinhVien' => 3,
-                'idNguoiCham' => 5,
+          array('emailSV' => '110117003@sv.tvu.edu.vn',
+                'emailNguoiCham' => 'nmphuc@tvu.edu.vn',
                 'maPhieuCham' => 3,
                 'ngayKetThucThucTap' => '2018-08-31'
               ),
-          array('idSinhVien' => 4,
-                'idNguoiCham' => 6,
+          array('emailSV' => '110117004@sv.tvu.edu.vn',
+                'emailNguoiCham' => 'ptpnam@tvu.edu.vn',
                 'maPhieuCham' => 4,
                 'ngayKetThucThucTap' => '2018-08-31'
               ),
-          array('idSinhVien' => 1,
-                'idNguoiCham' => 7,
+          array('emailSV' => '110117001@sv.tvu.edu.vn',
+                'emailNguoiCham' => 'dthop@gmail.com',
                 'maPhieuCham' => 5,
                 'ngayKetThucThucTap' => '2018-08-31'
               ),
-          array('idSinhVien' => 2,
-                'idNguoiCham' => 8,
+          array('emailSV' => '110117002@sv.tvu.edu.vn',
+                'emailNguoiCham' => 'ltthep@gmail.com',
                 'maPhieuCham' => 6,
                 'ngayKetThucThucTap' => '2018-08-31'
               ),
-          array('idSinhVien' => 3,
-                'idNguoiCham' => 9,
+          array('emailSV' => '110117003@sv.tvu.edu.vn',
+                'emailNguoiCham' => 'nhiemnb@gmail.com',
                 'maPhieuCham' => 7,
                 'ngayKetThucThucTap' => '2018-08-31'
               ),
-          array('idSinhVien' => 4,
-                'idNguoiCham' => 12,
+          array('emailSV' => '110117004@sv.tvu.edu.vn',
+                'emailNguoiCham' => 'pthai@gmail.com',
                 'maPhieuCham' => 8 ,
                 'ngayKetThucThucTap' => '2018-08-31'
               ),

@@ -1,6 +1,8 @@
 <?php
 namespace App\Objects;
 use App\User;
+use App\DonViThucTapModel;
+
 
 class DonVi {
 	protected $maDonVi;	
@@ -9,22 +11,12 @@ class DonVi {
     protected $sdtDonVi;
     protected $soKM;
 
+    private $donvi_table;
 
-    /**
-     * Class Constructor
-     * @param    $maDonVi   
-     * @param    $tenDonVi   
-     * @param    $diaChiDonVi   
-     * @param    $sdtDonVi   
-     * @param    $soKM   
-     */
-    public function __construct($maDonVi, $tenDonVi, $diaChiDonVi, $sdtDonVi, $soKM)
-    {
-        $this->maDonVi = $maDonVi;
-        $this->tenDonVi = $tenDonVi;
-        $this->diaChiDonVi = $diaChiDonVi;
-        $this->sdtDonVi = $sdtDonVi;
-        $this->soKM = $soKM;
+
+    public function __construct() {
+        $this->donvi_table = new DonViThucTapModel();
+
     }
 
 
@@ -126,5 +118,98 @@ class DonVi {
         $this->soKM = $soKM;
 
         return $this;
+    }
+
+    //============================================================
+    
+    public function setData($maDonVi, $tenDonVi, $diaChiDonVi, $sdtDonVi, $soKM)
+    {
+        $this->maDonVi = $maDonVi;
+        $this->tenDonVi = $tenDonVi;
+        $this->diaChiDonVi = $diaChiDonVi;
+        $this->sdtDonVi = $sdtDonVi;
+        $this->soKM = $soKM;
+    }
+
+    //============================================================
+
+    public function getAllDonVi() {
+        $duLieuDonVi = $this->donvi_table->all();
+        $data = [];
+        foreach ($duLieuDonVi as $value) {
+            $donVi = new DonVi();
+            $donVi->setData($value["maDonVi"], $value["tenDonVi"],$value["diaChiDonVi"], $value["sdtDonVi"], $value["soKM"]);
+            $data[] = $donVi;
+        }
+        return $data;
+    }
+
+    //============================================================
+    
+    public function getAll() {
+        $duLieu = $this->donvi_table->all();
+        $listDonVi = [];
+        foreach($duLieu as $value) {
+            $donViItem = new DonVi();
+            $donViItem->setMaDonVi($value["maDonVi"]);
+            $donViItem->setTenDonVi($value["tenDonVi"]);
+            $donViItem->setDiaChiDonVi($value["diaChiDonVi"]);
+            $donViItem->setSdtDonVi($value["sdtDonVi"]);
+            $donViItem->setSoKM($value["soKM"]);
+            $listDonVi[] = $donViItem;
+        }
+        return $listDonVi;
+    }
+
+    //============================================================
+
+    public function xoa_don_vi($maDV) {
+        try {
+            $this->donvi_table->where('maDonVi', '=', $maDV)->delete();
+            return true;
+        } catch(\Illuminate\Database\QueryException $ex){ 
+          return false;
+        }
+    }
+
+    //============================================================
+    
+    public function them_don_vi( $data ) {
+        try {
+            $donvi_item = new DonViThucTapModel();
+            $donvi_item->maDonVi = $data["ma-don-vi"];
+            $donvi_item->tenDonVi = $data["ten-don-vi"];
+            $donvi_item->diaChiDonVi = $data["dia-chi"];
+            $donvi_item->sdtDonVi = $data["sdt"];
+            $donvi_item->soKM = $data["so-km"]; 
+            $donvi_item->save();
+            return true;
+        } catch(\Illuminate\Database\QueryException $ex){ 
+          return false;
+        }
+    }
+
+    //============================================================
+    public function sua_don_vi( $maDV, $data ) {
+        try {
+            $donvi_item = $this->donvi_table->where('maDonVi', '=', $maDV)->first();
+            $donvi_item->maDonVi = $data["ma-don-vi"];
+            $donvi_item->tenDonVi = $data["ten-don-vi"];
+            $donvi_item->diaChiDonVi = $data["dia-chi"];
+            $donvi_item->sdtDonVi = $data["sdt"];
+            $donvi_item->soKM = $data["so-km"];  
+            $donvi_item->save();
+
+            return true;
+        } catch(\Illuminate\Database\QueryException $ex){ 
+          return false;
+        }
+    }
+
+    //============================================================
+
+    public function getSoKMByMaDV( $maDV ) {
+        $data = $this->donvi_table->where('maDonVi', '=', $maDV)->get();
+        return $data[0]["soKM"];
     }
 }

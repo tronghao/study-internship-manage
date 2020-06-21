@@ -205,9 +205,7 @@
         display: none;
     }
 
-    div#tableData_paginate {
-        display: none;
-    }
+
 
     .custom-file-input:lang(en)~.custom-file-label::after {
         content: "Chọn ảnh";
