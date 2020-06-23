@@ -133,19 +133,6 @@ class DonVi {
 
     //============================================================
 
-    public function getAllDonVi() {
-        $duLieuDonVi = $this->donvi_table->all();
-        $data = [];
-        foreach ($duLieuDonVi as $value) {
-            $donVi = new DonVi();
-            $donVi->setData($value["maDonVi"], $value["tenDonVi"],$value["diaChiDonVi"], $value["sdtDonVi"], $value["soKM"]);
-            $data[] = $donVi;
-        }
-        return $data;
-    }
-
-    //============================================================
-    
     public function getAll() {
         $duLieu = $this->donvi_table->all();
         $listDonVi = [];

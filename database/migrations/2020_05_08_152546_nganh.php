@@ -14,7 +14,7 @@ class Nganh extends Migration
     public function up()
     {
         Schema::create('nganh', function (Blueprint $table) {
-            $table->string('maNganh')->unique();
+            $table->string('maNganh', '10')->unique();
             $table->string('tenNganh');
             $table->timestamps();
         });

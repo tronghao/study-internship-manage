@@ -14,9 +14,9 @@ class Lop extends Migration
     public function up()
     {
         Schema::create('lop', function (Blueprint $table) {
-            $table->string('maLop')->unique();
+            $table->string('maLop', '10')->unique();
             $table->string('tenLop');
-            $table->string('maNganh');
+            $table->string('maNganh', '10');
             $table->foreign('maNganh')->references('maNganh')->on('nganh')->onDelete('cascade');
             $table->timestamps();
         });

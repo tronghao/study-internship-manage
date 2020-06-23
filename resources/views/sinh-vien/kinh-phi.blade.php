@@ -6,7 +6,11 @@
     <h6 class="m-0 font-weight-bold text-primary">Kinh phí hỗ trợ</h6>
   </div>
   <div class="card-body">
-    <p>Kinh phí hỗ trợ của bạn là: <span style="color: red; font-size:20px">{{ number_format($soTien, 0, ',', '.')}}</span>đ</p>
+    @if( isset($info) )
+        <p>{{ $info }}</p>
+    @else
+        <p>Kinh phí hỗ trợ của bạn là: <span style="color: red; font-size:20px">{{ number_format($soTien, 0, ',', '.')}}</span>đ</p>
+    @endif
     
   </div>
 </div>

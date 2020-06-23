@@ -14,9 +14,9 @@ class NguoiHuongDan extends Migration
     public function up()
     {
         Schema::create('nguoihuongdan', function (Blueprint $table) {
-            $table->string('email')->unique();
-            $table->string('maChucVu');
-            $table->string('maDonVi');
+            $table->string('email', '100')->unique();
+            $table->string('maChucVu', '10');
+            $table->string('maDonVi', '10');
             $table->foreign('maChucVu')->references('maChucVu')->on('chucvu')->onDelete('cascade');
             $table->foreign('maDonVi')->references('maDonVi')->on('donvithuctap')->onDelete('cascade');
             $table->timestamps();

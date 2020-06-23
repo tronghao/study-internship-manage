@@ -14,9 +14,9 @@ class ChamDiem extends Migration
     public function up()
     {
         Schema::create('chamdiem', function (Blueprint $table) {
-            $table->string('emailSV');
-            $table->string('emailNguoiCham');
-            $table->string('maPhieuCham');
+            $table->string('emailSV', '100');
+            $table->string('emailNguoiCham', '100');
+            $table->string('maPhieuCham', '10');
             $table->date('ngayKetThucThucTap');
             $table->primary(['emailSV', 'emailNguoiCham', 'maPhieuCham']);
             $table->timestamps();

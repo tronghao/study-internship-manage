@@ -14,7 +14,7 @@ class HocVi extends Migration
     public function up()
     {
         Schema::create('hocvi', function (Blueprint $table) {
-            $table->string('maHocVi')->unique();
+            $table->string('maHocVi', '10')->unique();
             $table->string('tenHocVi');
             $table->timestamps();
         });

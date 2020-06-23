@@ -8,6 +8,7 @@ use App\DonViThucTapModel;
 use App\Objects\DonVi;
 use App\ThucTapModel;
 use App\Objects\ThucTap;
+use App\Objects\Diem;
 
 class SinhVien extends NguoiDung {
 
@@ -15,13 +16,15 @@ class SinhVien extends NguoiDung {
 	private $kinhPhi;
 	private $donVi;
 	private $thucTap;
+	private $diem;
 
 	public function __construct() {
 		parent::__construct();
 		$this->sinhVien_table = new SinhVienModel();
 		$this->kinhPhi = new KinhPhiHoTroModel();
 		$this->donVi = new DonVi();
-		$this->thucTap = new ThucTap("sinhvien", $this);
+		$this->thucTap = new ThucTap();
+		$this->diem = new Diem();
 	}
 
 	//==============================================================
@@ -38,19 +41,14 @@ class SinhVien extends NguoiDung {
         $sv->save();
     }
 
-
-	public function sua_Dang_ky() {
-
+    //==============================================================
+	
+	public function xem_diem( $email ) {
+		return $this->diem->getThongTinDiem( $email );
 	}
 
-	public function xem_diem() {
-
-	}
-
-	public function xem_danh_gia_tong_hop() {
-
-	}
-
+	//==============================================================
+	
 	public function ton_tai( $email ) {
 		$soLuong = $this->sinhVien_table->where('email', '=', $email)->count();
         if($soLuong)
@@ -58,11 +56,15 @@ class SinhVien extends NguoiDung {
         else return false;
 	}
 
+	//==============================================================
+
 	public function getKinhPhiHoTro() {
 		$duLieu = $this->kinhPhi->all();
 		return $duLieu[0]["soTien"];
 	}
 
+	//==============================================================
+	
 	public function getSoKM( $email ) {
 		$maDonVi = $this->thucTap->get_maDV_by_emailSV( $email );
 		if( $maDonVi != null ) {
@@ -70,41 +72,43 @@ class SinhVien extends NguoiDung {
 		}else return -1;
 	}
 
+	//==============================================================
+
 	public function get_don_vi() {
-		$data = $this->donVi->getAll();
-		$dsDonVi = [];
-		foreach ($data as $value) {
-			$donVi_item = new DonVi($value["maDonVi"], $value["tenDonVi"], $value["diaChiDonVi"], $value["sdtDonVi"], $value["soKM"]);
-			$dsDonVi[] = $donVi_item;
-		}
-		return $dsDonVi;
+		return $this->donVi->getAll();
 	}
 
-	public function dang_ky_thuc_tap($id, $data) {
-		try { 
-		  	$thucTap = new ThucTapModel();
-			$thucTap->idSinhVien = $id;
-			$thucTap->maDonVi = $data["don-vi"];
-			$thucTap->save();
-		  	return true;
-		} catch(\Illuminate\Database\QueryException $ex){ 
-		  	return false;
-		}
+	//==============================================================
+
+	public function dang_ky_thuc_tap($email, $data) {
+		return $this->thucTap->dang_ky_thuc_tap( $email, $data );
 	}
 
-	public function trangThaiDangKy($id) {
+	//==============================================================
+
+	public function cap_nhat_dang_ky($email, $data) {
+		return $this->thucTap->cap_nhat_dang_ky( $email, $data );
+	}
+
+	//==============================================================
+
+	public function xoa_dang_ky($email) {
+		return $this->thucTap->xoa_dang_ky( $email );
+	}
+
+	//==============================================================
+
+	public function trangThaiDangKy($email) {
 		$thucTap = new ThucTapModel();
-		if( $thucTap->where('idSinhVien', '=', $id)->count() )
+		if( $thucTap->where('emailSV', '=', $email)->count() )
 			return true;
 		else return false;
 	}
 
-	public function getThucTap($id) {
-		$thucTap = new ThucTapModel();
-		$data = $thucTap->where('idSinhVien', '=', $id)->join('users','users.id', '=', 'thuctap.idSinhVien')->join('donvithuctap', 'donvithuctap.maDonVi', '=','thuctap.maDonVi')->get()->toArray();
-		$thucTap_item = new ThucTap();
-		$thucTap_item->setDataDonVi( null, $data[0]["tenDonVi"] );
-		//$thucTap_item->setTenGiangVien( $data[0]["tenGi"] );
+	//==============================================================
+
+	public function getThucTap($email) {
+		$thucTap_item = $this->thucTap->getThucTapByEmail( $email );
 		return $thucTap_item;
 	}
 }

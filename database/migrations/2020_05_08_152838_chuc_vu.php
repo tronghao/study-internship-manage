@@ -14,7 +14,7 @@ class ChucVu extends Migration
     public function up()
     {
         Schema::create('chucvu', function (Blueprint $table) {
-            $table->string('maChucVu')->unique();
+            $table->string('maChucVu', '10')->unique();
             $table->string('tenChucVu');
             $table->timestamps();
         });

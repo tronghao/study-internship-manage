@@ -14,7 +14,7 @@ class DonViThucTap extends Migration
     public function up()
     {
         Schema::create('donvithuctap', function (Blueprint $table) {
-            $table->string('maDonVi')->unique();
+            $table->string('maDonVi', '10')->unique();
             $table->string('tenDonVi');
             $table->string('diaChiDonVi');
             $table->string('sdtDonVi');

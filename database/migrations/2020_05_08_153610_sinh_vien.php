@@ -14,8 +14,8 @@ class SinhVien extends Migration
     public function up()
     {
         Schema::create('sinhvien', function (Blueprint $table) {
-            $table->string('email')->unique();
-            $table->string('maLop');
+            $table->string('email', '100')->unique();
+            $table->string('maLop', '10');
             $table->foreign('maLop')->references('maLop')->on('lop')->onDelete('cascade');
             $table->timestamps();
         });

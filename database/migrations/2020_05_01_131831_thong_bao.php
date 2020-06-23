@@ -19,7 +19,7 @@ class ThongBao extends Migration
             $table->string('title');
             $table->text('content');
             $table->text('quote');
-            $table->string('email');
+            $table->string('email', '100');
             $table->foreign('email')->references('email')->on('users')->onDelete('cascade');
         });
     }

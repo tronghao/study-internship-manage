@@ -119,7 +119,7 @@ class Khach {
     //========================================================
 
     public function getAllDonVi() {
-    	$listDonVi = $this->donVi->getAllDonVi();
+    	$listDonVi = $this->donVi->getAll();
         return $listDonVi;
     }
 

@@ -326,42 +326,42 @@ class DatabaseSeeder extends Seeder
         DB::table('chamdiem')->insert([
           array('emailSV' => '110117001@sv.tvu.edu.vn',
                 'emailNguoiCham' => 'nmphuc@tvu.edu.vn',
-                'maPhieuCham' => 1,
+                'maPhieuCham' => '01',
                 'ngayKetThucThucTap' => '2018-08-31'
               ),
           array('emailSV' => '110117002@sv.tvu.edu.vn',
                 'emailNguoiCham' => 'ptpnam@tvu.edu.vn',
-                'maPhieuCham' => 2,
+                'maPhieuCham' => '02',
                 'ngayKetThucThucTap' => '2018-08-31'
               ),
           array('emailSV' => '110117003@sv.tvu.edu.vn',
                 'emailNguoiCham' => 'nmphuc@tvu.edu.vn',
-                'maPhieuCham' => 3,
+                'maPhieuCham' => '03',
                 'ngayKetThucThucTap' => '2018-08-31'
               ),
           array('emailSV' => '110117004@sv.tvu.edu.vn',
                 'emailNguoiCham' => 'ptpnam@tvu.edu.vn',
-                'maPhieuCham' => 4,
+                'maPhieuCham' => '04',
                 'ngayKetThucThucTap' => '2018-08-31'
               ),
           array('emailSV' => '110117001@sv.tvu.edu.vn',
                 'emailNguoiCham' => 'dthop@gmail.com',
-                'maPhieuCham' => 5,
+                'maPhieuCham' => '05',
                 'ngayKetThucThucTap' => '2018-08-31'
               ),
           array('emailSV' => '110117002@sv.tvu.edu.vn',
                 'emailNguoiCham' => 'ltthep@gmail.com',
-                'maPhieuCham' => 6,
+                'maPhieuCham' => '06',
                 'ngayKetThucThucTap' => '2018-08-31'
               ),
           array('emailSV' => '110117003@sv.tvu.edu.vn',
                 'emailNguoiCham' => 'nhiemnb@gmail.com',
-                'maPhieuCham' => 7,
+                'maPhieuCham' => '07',
                 'ngayKetThucThucTap' => '2018-08-31'
               ),
           array('emailSV' => '110117004@sv.tvu.edu.vn',
                 'emailNguoiCham' => 'pthai@gmail.com',
-                'maPhieuCham' => 8 ,
+                'maPhieuCham' => '08' ,
                 'ngayKetThucThucTap' => '2018-08-31'
               ),
 

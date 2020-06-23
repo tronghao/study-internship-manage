@@ -14,8 +14,8 @@ class GiangVien extends Migration
     public function up()
     {
         Schema::create('giangvien', function (Blueprint $table) {
-            $table->string('email')->unique();
-            $table->string('maHocVi');
+            $table->string('email', '100')->unique();
+            $table->string('maHocVi', '10');
             $table->foreign('maHocVi')->references('maHocVi')->on('hocvi')->onDelete('cascade');
             $table->timestamps();
         });

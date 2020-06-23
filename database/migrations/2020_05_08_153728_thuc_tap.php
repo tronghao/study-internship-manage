@@ -14,12 +14,12 @@ class ThucTap extends Migration
     public function up()
     {
         Schema::create('thuctap', function (Blueprint $table) {
-            $table->string('emailSV')->unique();
+            $table->string('emailSV', '100')->unique();
            
             $table->date('ngayBatDauThucTap')->nullable();
-            $table->string('emailGV')->nullable();
-            $table->string('emailNHD')->nullable();
-            $table->string('maDonVi')->nullable();
+            $table->string('emailGV', '100')->nullable();
+            $table->string('emailNHD', '100')->nullable();
+            $table->string('maDonVi', '10')->nullable();
             $table->foreign('emailGV')->references('email')->on('users')->onDelete('cascade');
             $table->foreign('emailNHD')->references('email')->on('users')->onDelete('cascade');
             $table->foreign('maDonVi')->references('maDonVi')->on('donvithuctap')->onDelete('cascade');

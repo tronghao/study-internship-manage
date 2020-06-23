@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'GuestController@index');
 Route::get('home/{id?}', 'GuestController@index2');
 Auth::routes();
-
+Route::post('login', [ 'as' => 'login', 'uses' => 'Auth\LoginController@postLogin2']);
 Route::get('login', 'GuestController@index');
 Route::get('logout', 'GuestController@logout');
 Route::match(['get', 'post'], 'register', function(){
@@ -34,7 +34,6 @@ Route::get('thong-bao/{id}', 'GuestController@hienThiThongBao');
 
 //middleware - người hướng dẫn
 Route::get('nguoi-huong-dan/home', 'NguoiHuongDanController@index');
-
 
 Route::group(["middleware" => "Admin", "prefix" => "admin"], function(){
 	Route::get('home/{menu?}/{success?}', 'AdminController@home');
@@ -64,10 +63,13 @@ Route::group(["middleware" => "Admin", "prefix" => "admin"], function(){
 });
 
 Route::group(["middleware" => "SinhVien", "prefix" => "sinh-vien"], function(){
-	Route::get('home/{id?}', 'SinhVienController@home');
+	Route::get('home/{id?}/{menu?}', 'SinhVienController@home');
 	Route::get('kinh-phi', 'SinhVienController@xemKinhPhi');
 	Route::get('dang-ky-thuc-tap', 'SinhVienController@dangKyThucTap');
 	Route::post('dang-ky-thuc-tap', 'SinhVienController@xuLyDangKyThucTap');
+	Route::post('cap-nhat-dang-ky-thuc-tap', 'SinhVienController@capNhatDangKyThucTap');
+	Route::get('xoa-dang-ky', 'SinhVienController@xoaDangKyThucTap');
+	Route::get('xem-diem', 'SinhVienController@xemDiem');
 });
 
 
