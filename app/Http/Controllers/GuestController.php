@@ -56,18 +56,12 @@ class GuestController extends Controller
         
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     public function hienThiThongBao($id) {
         $thongBaoItem = $this->khach->get_1_thong_bao($id);
         $loginURL = $this->google->getLoginURL(); 
         return view('guest.thong-bao')->with(compact('thongBaoItem', 'loginURL'));
     }
 
-=======
->>>>>>> parent of 7c607f6... update 17_06_20
-=======
->>>>>>> parent of 7c607f6... update 17_06_20
     public function logout(Request $request) {
         $request->session()->forget('access_token');
         $this->google->logout(); 

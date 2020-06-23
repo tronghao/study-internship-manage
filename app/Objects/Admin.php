@@ -22,6 +22,8 @@ class Admin extends NguoiDung {
 		$this->donVi = new DonVi();
     }
 
+    //=====================================================================
+
 	//getter and setter
 	/**
      * @return mixed
@@ -30,6 +32,8 @@ class Admin extends NguoiDung {
     {
         return $this->password;
     }
+
+    //=====================================================================
 
     /**
      * @param mixed $password
@@ -43,13 +47,10 @@ class Admin extends NguoiDung {
         return $this;
     }
 
-
-
+    //=====================================================================
 
 
 	//CRUD thong bao
-<<<<<<< HEAD
-<<<<<<< HEAD
 	public function them_thong_bao($data, $fileName) {
 		return $this->thongBao->them_thong_bao( $data, $fileName );
 	}
@@ -58,42 +59,29 @@ class Admin extends NguoiDung {
 
 	public function sua_thong_bao($id, $fileName, $data) {
 		return $this->thongBao->sua_thong_bao( $id, $fileName, $data );
-=======
-	public function them_thong_bao() {
-
->>>>>>> parent of 7c607f6... update 17_06_20
-=======
-	public function them_thong_bao() {
-
->>>>>>> parent of 7c607f6... update 17_06_20
 	}
 
-	public function sua_thong_bao() {
+	//=====================================================================
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 	public function xoa_thong_bao($id) {
 		return $this->thongBao->xoa_thong_bao( $id );
-=======
->>>>>>> parent of 7c607f6... update 17_06_20
-=======
->>>>>>> parent of 7c607f6... update 17_06_20
 	}
 
-	
-	public function xoa_thong_bao() {
-
-	}
+	//=====================================================================
 
 	public function hien_thi_thong_bao() {
 		$listThongBao = $this->thongBao->getAll();
 		return $listThongBao;
 	}
 
+	//=====================================================================
+
 	public function hien_thi_kinh_phi() {
 		$duLieu = $this->kinhPhi->all();
 		return $duLieu[0];
 	}
+
+	//=====================================================================
 
 	public function cap_nhat_kinh_phi($kp) {
 		try { 
@@ -107,26 +95,20 @@ class Admin extends NguoiDung {
 		
 	}
 
+	//=====================================================================
+
 	public function hien_thi_don_vi() {
 		return $this->donVi->getAll();
 	}
 
-	//user
-	public function duyet_user() {
+	//=====================================================================
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 	public function xoa_don_vi($maDV) {
 		return $this->donVi->xoa_don_vi( $maDV );
-=======
->>>>>>> parent of 7c607f6... update 17_06_20
 	}
 
-	public function xoa_user() {
-	 
-	}
+	//=====================================================================
 
-<<<<<<< HEAD
 	public function them_don_vi($data) {
 		return $this->donVi->them_don_vi( $data );
 	}
@@ -135,33 +117,16 @@ class Admin extends NguoiDung {
 
 	public function sua_don_vi($maDV, $data) {
 		return $this->donVi->sua_don_vi( $maDV, $data );
-=======
->>>>>>> parent of 7c607f6... update 17_06_20
 	}
 
-	public function xoa_user() {
-	 
-	}
+	//=====================================================================
 
-<<<<<<< HEAD
 	//user
 	 public function danh_sach_user() {
         return $this->getAll();
     }
-=======
-=======
->>>>>>> parent of 7c607f6... update 17_06_20
-	public function sua_user() {
 
-	}
-
-
-	//kinh phi
-	public function sua_kinh_phi() {
-
-	}
->>>>>>> parent of 7c607f6... update 17_06_20
-
+	//=====================================================================
 
 	//dang ky thuc tap
 	public function xoa_dang_ky_thuc_tap() {

@@ -14,7 +14,7 @@ class ThongBao extends Migration
     public function up()
     {
         Schema::create('thong-bao', function(Blueprint $table) {
-            $table->bigInteger('id');
+            $table->bigIncrements('id');
             $table->string('img');
             $table->string('title');
             $table->text('content');
