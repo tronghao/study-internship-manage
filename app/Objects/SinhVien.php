@@ -21,7 +21,7 @@ class SinhVien extends NguoiDung {
 		$this->sinhVien_table = new SinhVienModel();
 		$this->kinhPhi = new KinhPhiHoTroModel();
 		$this->donVi = new DonVi();
-		$this->thucTap = new ThucTap();
+		$this->thucTap = new ThucTap("sinhvien", $this);
 	}
 
 	//==============================================================

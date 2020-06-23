@@ -5,7 +5,7 @@ use App\Objects\SinhVien;
 use App\Objects\GiangVien;
 use App\Objects\NguoiHuongDan;
 use App\Objects\DonVi;
-use App\Objects\ThucTapModel;
+use App\ThucTapModel;
 
 class ThucTap {
 
@@ -25,11 +25,21 @@ class ThucTap {
 	 * @param    $donVi   
 	 * @param    $ngayBatDauThucTap   
 	 */
-	public function __construct()
+	public function __construct($role, $user)
 	{
-		$this->sinhVien = new SinhVien();
-		$this->giangVien = new GiangVien();
-		$this->nguoiHuongDan = new NguoiHuongDan();
+        switch ($role) {
+            case 'sinhvien':
+                $this->sinhVien = $user;
+                break;
+
+            case 'giangvien':
+                $this->giangVien = $user;
+                break;
+
+            case 'nguoihuongdan':
+                $this->nguoiHuongDan = new NguoiHuongDan();
+                break;
+        }
 		$this->donVi = new DonVi();
 		$this->thucTap_table = new ThucTapModel();
 	}
