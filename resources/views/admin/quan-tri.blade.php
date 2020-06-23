@@ -58,6 +58,7 @@
           <span>Đơn Vị Thực Tập</span></a>
       </li>
 
+<<<<<<< HEAD
       <li class="nav-item">
         <a class="nav-link duyet-user-menu" href="#">
           <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -70,6 +71,8 @@
           <span>Danh Sách thực tập</span></a>
       </li>
 
+=======
+>>>>>>> parent of 7c607f6... update 17_06_20
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -199,6 +202,7 @@
                 }
             });
         })
+<<<<<<< HEAD
 
         //Duyệt User
         $('.duyet-user-menu').on('click',function(){
@@ -230,6 +234,8 @@
             });
         })
 
+=======
+>>>>>>> parent of 7c607f6... update 17_06_20
         
     </script>
 @endsection
@@ -247,23 +253,8 @@
   @if(isset($menu))
       @if($menu == 'kinhphi')
         <script>
-            var element = document.getElementsByClassName("kinh-phi-menu");
-            element[0].click();
-        </script>
-      @elseif ($menu == 'thongbao')
-        <script>
-              var element = document.getElementsByClassName("thong-bao-menu");
-              element[0].click();
-        </script>
-      @elseif ($menu == 'duyet-user')
-        <script>
-              var element = document.getElementsByClassName("duyet-user-menu");
-              element[0].click();
-        </script>
-      @elseif ($menu == 'don-vi')
-        <script>
-              var element = document.getElementsByClassName("don-vi-menu");
-              element[0].click();
+            var kinhphi = document.getElementsByClassName("kinh-phi-menu");
+            kinhphi[0].click();
         </script>
       @endif
   @endif

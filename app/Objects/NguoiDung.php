@@ -17,18 +17,38 @@ class NguoiDung {
         $this->user = new User();
     }
 
-    //=====================================================================
 
 	//getter and setter
     /**
      * @return mixed
      */
+<<<<<<< HEAD
+=======
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+>>>>>>> parent of 7c607f6... update 17_06_20
     public function getHoTen()
     {
         return $this->hoTen;
     }
-
-    //=====================================================================
 
     /**
      * @param mixed $hoTen
@@ -42,8 +62,6 @@ class NguoiDung {
         return $this;
     }
 
-    //=====================================================================
-
     /**
      * @return mixed
      */
@@ -51,8 +69,6 @@ class NguoiDung {
     {
         return $this->email;
     }
-
-    //=====================================================================
 
     /**
      * @param mixed $email
@@ -66,8 +82,6 @@ class NguoiDung {
         return $this;
     }
 
-    //=====================================================================
-
     /**
      * @return mixed
      */
@@ -75,8 +89,6 @@ class NguoiDung {
     {
         return $this->sdt;
     }
-
-    //=====================================================================
 
     /**
      * @param mixed $sdt
@@ -90,8 +102,6 @@ class NguoiDung {
         return $this;
     }
 
-    //=====================================================================
-
     /**
      * @return mixed
      */
@@ -99,8 +109,6 @@ class NguoiDung {
     {
         return $this->trangThai;
     }
-
-    //=====================================================================
 
     /**
      * @param mixed $trangThai
@@ -114,8 +122,6 @@ class NguoiDung {
         return $this;
     }
 
-    //=====================================================================
-
     /**
      * @return mixed
      */
@@ -123,8 +129,6 @@ class NguoiDung {
     {
         return $this->loiGioiThieu;
     }
-
-    //=====================================================================
 
     /**
      * @param mixed $loiGioiThieu
@@ -138,8 +142,6 @@ class NguoiDung {
         return $this;
     }
 
-    //=====================================================================
-
         /**
      * @return mixed
      */
@@ -147,8 +149,6 @@ class NguoiDung {
     {
         return $this->anhDaiDien;
     }
-
-    //=====================================================================
 
     /**
      * @param mixed $anhDaiDien
@@ -162,7 +162,6 @@ class NguoiDung {
         return $this;
     }
 
-    //=====================================================================
 
     /**
      * @return mixed
@@ -171,8 +170,6 @@ class NguoiDung {
     {
         return $this->loaiUser;
     }
-
-    //=====================================================================
 
     /**
      * @param mixed $loaiUser
@@ -186,8 +183,6 @@ class NguoiDung {
         return $this;
     }
 
-    //=====================================================================
-
 
     //phuong thuc
     
@@ -200,8 +195,12 @@ class NguoiDung {
         $this->loaiUser = $loaiUser;
     }
 
+<<<<<<< HEAD
+=======
+    public function dang_xuat() {
 
-    //=====================================================================
+    }
+>>>>>>> parent of 7c607f6... update 17_06_20
 
     public function ton_tai_user($email) {
         $soLuong = $this->user->where('email', '=', $email)->count();
@@ -209,8 +208,6 @@ class NguoiDung {
             return true;
         else return false;
     }
-
-    //=====================================================================
 
     public function luu_du_lieu(NguoiDung $data) {
         $this->user->hoTen = $data->getHoTen();
@@ -224,6 +221,7 @@ class NguoiDung {
         $this->user->save();
     }
 
+<<<<<<< HEAD
     //=====================================================================
 
     public function getUser($email) {
@@ -287,7 +285,23 @@ class NguoiDung {
             return true;
         } catch(\Illuminate\Database\QueryException $ex){ 
           return false;
+=======
+    function getGUID(){
+        if (function_exists('com_create_guid')){
+            return com_create_guid();
+        }else{
+            mt_srand((double)microtime()*10000);//optional for php 4.2.0 and up.
+            $charid = strtoupper(md5(uniqid(rand(), true)));
+            $hyphen = chr(45);// "-"
+            $uuid = chr(123)// "{"
+                .substr($charid, 0, 8).$hyphen
+                .substr($charid, 8, 4).$hyphen
+                .substr($charid,12, 4).$hyphen
+                .substr($charid,16, 4).$hyphen
+                .substr($charid,20,12)
+                .chr(125);// "}"
+            return $uuid;
+>>>>>>> parent of 7c607f6... update 17_06_20
         }
     }
-
 }

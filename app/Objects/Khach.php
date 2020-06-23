@@ -43,13 +43,22 @@ class Khach {
         $this->chucVu = new ChucVu();
 	}
 
+<<<<<<< HEAD
     //========================================================
+=======
+	public function get_3_thong_bao() {
+		$data = $this->thongbao_table->all()->take(3);
+		$listThongBao = [];
+		foreach ($data as $value) {
+			$tb = new ThongBao($value["id"], $value["img"], $value["title"], $value["content"], $value["quote"]);
+>>>>>>> parent of 7c607f6... update 17_06_20
 
 	public function get_3_thong_bao() {
 		$listThongBao = $this->thongBao->get_3_thong_bao();
 		return $listThongBao;
 	}
 
+<<<<<<< HEAD
     //========================================================
 
     public function get_1_thong_bao($id) {
@@ -66,6 +75,9 @@ class Khach {
     }
 
     //========================================================
+=======
+	public function kiem_tra_ton_tai() {
+>>>>>>> parent of 7c607f6... update 17_06_20
 
 	public function ton_tai_user( $email ) {
         if( $this->user->ton_tai_user( $email ) )
