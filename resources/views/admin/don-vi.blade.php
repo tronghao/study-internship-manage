@@ -64,6 +64,7 @@
                             <i class="fas fa-edit icon_edit"></i>Sửa
                         </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
                         <a href="{{ asset('admin/xoa-don-vi/'.$value->getMaDonVi()) }}">
                           <div class="btn btn-danger btn_delete">
                               <i class="far fa-trash-alt icon_delete"></i>Xóa
@@ -131,6 +132,11 @@
                                   </div>
                               </div>
                           </div> <!-- end model -->
+=======
+                        <div class="btn btn-danger btn_delete">
+                            <i class="far fa-trash-alt icon_delete"></i>Xóa
+                        </div>
+>>>>>>> parent of 7c607f6... update 17_06_20
 =======
                         <div class="btn btn-danger btn_delete">
                             <i class="far fa-trash-alt icon_delete"></i>Xóa

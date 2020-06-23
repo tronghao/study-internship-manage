@@ -196,6 +196,12 @@ class NguoiDung {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    public function dang_xuat() {
+
+    }
+>>>>>>> parent of 7c607f6... update 17_06_20
 =======
     public function dang_xuat() {
 
@@ -221,6 +227,7 @@ class NguoiDung {
         $this->user->save();
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     //=====================================================================
 
@@ -286,6 +293,8 @@ class NguoiDung {
         } catch(\Illuminate\Database\QueryException $ex){ 
           return false;
 =======
+=======
+>>>>>>> parent of 7c607f6... update 17_06_20
     function getGUID(){
         if (function_exists('com_create_guid')){
             return com_create_guid();

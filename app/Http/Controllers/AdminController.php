@@ -67,6 +67,7 @@ class AdminController extends Controller
     	return view('admin.don-vi')->with(compact('duLieuDonVi'));
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     //=====================================================================
 
@@ -140,6 +141,8 @@ class AdminController extends Controller
         $danhSachThucTap = "";
         return view();
     }
+=======
+>>>>>>> parent of 7c607f6... update 17_06_20
 =======
 >>>>>>> parent of 7c607f6... update 17_06_20
 }

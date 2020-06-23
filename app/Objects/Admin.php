@@ -49,6 +49,7 @@ class Admin extends NguoiDung {
 
 	//CRUD thong bao
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public function them_thong_bao($data, $fileName) {
 		return $this->thongBao->them_thong_bao( $data, $fileName );
 	}
@@ -61,13 +62,20 @@ class Admin extends NguoiDung {
 	public function them_thong_bao() {
 
 >>>>>>> parent of 7c607f6... update 17_06_20
+=======
+	public function them_thong_bao() {
+
+>>>>>>> parent of 7c607f6... update 17_06_20
 	}
 
 	public function sua_thong_bao() {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public function xoa_thong_bao($id) {
 		return $this->thongBao->xoa_thong_bao( $id );
+=======
+>>>>>>> parent of 7c607f6... update 17_06_20
 =======
 >>>>>>> parent of 7c607f6... update 17_06_20
 	}
@@ -107,6 +115,7 @@ class Admin extends NguoiDung {
 	public function duyet_user() {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public function xoa_don_vi($maDV) {
 		return $this->donVi->xoa_don_vi( $maDV );
 =======
@@ -126,15 +135,22 @@ class Admin extends NguoiDung {
 
 	public function sua_don_vi($maDV, $data) {
 		return $this->donVi->sua_don_vi( $maDV, $data );
+=======
+>>>>>>> parent of 7c607f6... update 17_06_20
 	}
 
-	//=====================================================================
+	public function xoa_user() {
+	 
+	}
 
+<<<<<<< HEAD
 	//user
 	 public function danh_sach_user() {
         return $this->getAll();
     }
 =======
+=======
+>>>>>>> parent of 7c607f6... update 17_06_20
 	public function sua_user() {
 
 	}

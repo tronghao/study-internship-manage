@@ -45,6 +45,7 @@ Route::group(["middleware" => "Admin", "prefix" => "admin"], function(){
 	//Quản trị đơn vị
 	Route::get('don-vi', 'AdminController@hienThiDonVi');
 <<<<<<< HEAD
+<<<<<<< HEAD
 	Route::get('xoa-don-vi/{maDV}', 'AdminController@xoaDonVi');
 	Route::post('them-don-vi', 'AdminController@themDonVi');
 	Route::post('sua-don-vi/{maDV}', 'AdminController@suaDonVi');
@@ -57,6 +58,8 @@ Route::group(["middleware" => "Admin", "prefix" => "admin"], function(){
 
 	//Danh sách thực tập
 	Route::get('admin/danh-sach-thuc-tap', 'AdminController@danhSachThucTap');
+=======
+>>>>>>> parent of 7c607f6... update 17_06_20
 });
 
 Route::group(["middleware" => "SinhVien", "prefix" => "sinh-vien"], function(){

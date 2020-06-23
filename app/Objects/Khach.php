@@ -59,6 +59,7 @@ class Khach {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     //========================================================
 
     public function get_1_thong_bao($id) {
@@ -76,6 +77,8 @@ class Khach {
 
     //========================================================
 =======
+=======
+>>>>>>> parent of 7c607f6... update 17_06_20
 	public function kiem_tra_ton_tai() {
 >>>>>>> parent of 7c607f6... update 17_06_20
 

@@ -59,6 +59,7 @@
       </li>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
       <li class="nav-item">
         <a class="nav-link duyet-user-menu" href="#">
           <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -71,6 +72,8 @@
           <span>Danh Sách thực tập</span></a>
       </li>
 
+=======
+>>>>>>> parent of 7c607f6... update 17_06_20
 =======
 >>>>>>> parent of 7c607f6... update 17_06_20
       <!-- Divider -->
@@ -203,6 +206,7 @@
             });
         })
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         //Duyệt User
         $('.duyet-user-menu').on('click',function(){
@@ -234,6 +238,8 @@
             });
         })
 
+=======
+>>>>>>> parent of 7c607f6... update 17_06_20
 =======
 >>>>>>> parent of 7c607f6... update 17_06_20
         
