@@ -30,8 +30,6 @@ Route::post('thong-tin-sinh-vien/{email}', 'GuestController@insertSinhVien');
 Route::post('thong-tin-giang-vien/{email}', 'GuestController@insertGiangVien');
 Route::post('thong-tin-can-bo/{email}', 'GuestController@insertCanBo');
 
-Route::get('thong-bao/{id}', 'GuestController@hienThiThongBao');
-
 //middleware - người hướng dẫn
 Route::get('nguoi-huong-dan/home', 'NguoiHuongDanController@index');
 
@@ -39,9 +37,6 @@ Route::get('nguoi-huong-dan/home', 'NguoiHuongDanController@index');
 Route::group(["middleware" => "Admin", "prefix" => "admin"], function(){
 	Route::get('home/{menu?}/{success?}', 'AdminController@home');
 	Route::get('thong-bao', 'AdminController@hienThiThongBao');
-	Route::post('them-thong-bao', 'AdminController@themThongBao');
-	Route::get('xoa-thong-bao/{id}', 'AdminController@xoaThongBao');
-	Route::post('sua-thong-bao/{id}', 'AdminController@suaThongBao');
 
 	//Quản trị kinh phí
 	Route::get('kinh-phi', 'AdminController@hienThiKinhPhi');
@@ -49,6 +44,8 @@ Route::group(["middleware" => "Admin", "prefix" => "admin"], function(){
 
 	//Quản trị đơn vị
 	Route::get('don-vi', 'AdminController@hienThiDonVi');
+<<<<<<< HEAD
+<<<<<<< HEAD
 	Route::get('xoa-don-vi/{maDV}', 'AdminController@xoaDonVi');
 	Route::post('them-don-vi', 'AdminController@themDonVi');
 	Route::post('sua-don-vi/{maDV}', 'AdminController@suaDonVi');
@@ -61,6 +58,8 @@ Route::group(["middleware" => "Admin", "prefix" => "admin"], function(){
 
 	//Danh sách thực tập
 	Route::get('admin/danh-sach-thuc-tap', 'AdminController@danhSachThucTap');
+=======
+>>>>>>> parent of 7c607f6... update 17_06_20
 });
 
 Route::group(["middleware" => "SinhVien", "prefix" => "sinh-vien"], function(){
@@ -68,6 +67,8 @@ Route::group(["middleware" => "SinhVien", "prefix" => "sinh-vien"], function(){
 	Route::get('kinh-phi', 'SinhVienController@xemKinhPhi');
 	Route::get('dang-ky-thuc-tap', 'SinhVienController@dangKyThucTap');
 	Route::post('dang-ky-thuc-tap', 'SinhVienController@xuLyDangKyThucTap');
+=======
+>>>>>>> parent of 7c607f6... update 17_06_20
 });
 
 
