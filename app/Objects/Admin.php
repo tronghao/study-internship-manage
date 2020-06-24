@@ -8,6 +8,10 @@ use App\KinhPhiHoTroModel;
 use App\DonViThucTapModel;
 use App\Objects\DonVi;
 use App\Objects\ThucTap;
+use App\Objects\HocVi;
+use App\Objects\Nganh;
+use App\Objects\ChucVu;
+use App\Objects\Lop;
 
 class Admin extends NguoiDung {
 
@@ -16,6 +20,10 @@ class Admin extends NguoiDung {
 	private $kinhPhi;
 	private $donVi;
 	private $thucTap;
+	private $hocVi;
+	private $nganh;
+	private $chucVu;
+	private $lop;
 
 	public function __construct() {
 		parent::__construct();
@@ -23,6 +31,10 @@ class Admin extends NguoiDung {
 		$this->kinhPhi = new KinhPhiHoTroModel();
 		$this->donVi = new DonVi();
 		$this->thucTap = new ThucTap();
+		$this->hocVi = new HocVi();
+		$this->nganh = new Nganh();
+		$this->chucVu = new ChucVu();
+		$this->lop = new Lop();
     }
 
     //=====================================================================
@@ -184,26 +196,34 @@ class Admin extends NguoiDung {
 
 
 	//CRUD hoc vi
-	public function them_hoc_vi() {
-
+	public function get_all_hoc_vi() {
+		return $this->hocVi->getAll();
 	}
 
-	public function xoa_hoc_vi() {
 
+	public function them_hoc_vi( $data ) {
+		return $this->hocVi->them_hoc_vi( $data );
 	}
 
-	public function sua_hoc_vi() {
+	public function xoa_hoc_vi( $maHV ) {
+		return $this->hocVi->xoa_hoc_vi( $maHV );
+	}
 
+	public function sua_hoc_vi($maHV, $data) {
+		return $this->hocVi->sua_hoc_vi( $maHV, $data );
 	}
 
 
 	//CRUD lop
+	public function get_all_lop() {
+		return $this->lop->getAllLop();
+	}
 	public function them_lop() {
 
 	}
 
-	public function xoa_lop() {
-
+	public function xoa_lop( $maLop ) {
+		return $this->lop->xoa_lop( $maLop );
 	}
 
 	public function sua_lop() {
@@ -212,16 +232,37 @@ class Admin extends NguoiDung {
 
 
 	//CRUD nganh
-	public function them_nganh() {
-
+	public function get_all_nganh() {
+		return $this->nganh->getAll();
+	}
+	public function them_nganh( $data ) {
+		return $this->nganh->them_nganh( $data );
 	}
 
-	public function xoa_nganh() {
-
+	public function xoa_nganh( $maNganh ) {
+		return $this->nganh->xoa_nganh( $maNganh ); 
 	}
 
-	public function sua_nganh() {
+	public function sua_nganh( $maNganh, $data ) {
+		return $this->nganh->sua_nganh( $maNganh, $data );
+	}
 
+	//CRUD hoc vi
+	public function get_all_chuc_vu() {
+		return $this->chucVu->getAll();
+	}
+
+
+	public function them_chuc_vu( $data ) {
+		return $this->chucVu->them_chuc_vu( $data );
+	}
+
+	public function xoa_chuc_vu( $maCV ) {
+		return $this->chucVu->xoa_chuc_vu( $maCV );
+	}
+
+	public function sua_chuc_vu($maCV, $data) {
+		return $this->chucVu->sua_chuc_vu( $maCV, $data );
 	}
 
 }

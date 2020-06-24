@@ -262,4 +262,160 @@ class AdminController extends Controller
         else
             return redirect("admin/home/danh-sach-thuc-tap/4");
     }
+
+    //=====================================================================
+
+    public function hienThiHocVi(  Request $rq ) {
+        $danhSachHocVi = $this->admin->get_all_hoc_vi(  );
+        return view('admin.hoc-vi')->with( compact('danhSachHocVi') );
+    }
+
+     //=====================================================================
+
+    public function xoaHocVi( $maHV ) {
+        $kq = $this->admin->xoa_hoc_vi( $maHV );
+        if($kq)
+            return redirect("admin/home/hoc-vi/5");
+        else
+            return redirect("admin/home/hoc-vi/6");
+    }
+
+    //=====================================================================
+
+    public function themHocVi( Request $rq ) {
+        $data = $rq->all();
+        $kq = $this->admin->them_hoc_vi( $data );
+        if($kq)
+            return redirect("admin/home/hoc-vi/1");
+        else
+            return redirect("admin/home/hoc-vi/2");
+    }
+
+    //=====================================================================
+
+    public function suaHocVi( $maHV, Request $rq ) {
+        $data = $rq->all();
+        $kq = $this->admin->sua_hoc_vi( $maHV, $data );
+        if($kq)
+            return redirect("admin/home/hoc-vi/3");
+        else
+            return redirect("admin/home/hoc-vi/4");
+    }
+
+    //=====================================================================
+
+    public function hienThiNganh(  Request $rq ) {
+        $danhSachNganh = $this->admin->get_all_nganh(  );
+        return view('admin.nganh')->with( compact('danhSachNganh') );
+    }
+
+    //=====================================================================
+
+    public function themNganh( Request $rq ) {
+        $data = $rq->all();
+        $kq = $this->admin->them_nganh( $data );
+        if($kq)
+            return redirect("admin/home/nganh/1");
+        else
+            return redirect("admin/home/nganh/2");
+    }
+
+    //=====================================================================
+
+    public function xoaNganh( $maNganh ) {
+        $kq = $this->admin->xoa_nganh( $maNganh );
+        if($kq)
+            return redirect("admin/home/nganh/5");
+        else
+            return redirect("admin/home/nganh/6");
+    }
+
+    //=====================================================================
+
+    public function suaNganh( $maNganh, Request $rq ) {
+        $data = $rq->all();
+        $kq = $this->admin->sua_nganh( $maNganh, $data );
+        if($kq)
+            return redirect("admin/home/nganh/3");
+        else
+            return redirect("admin/home/nganh/4");
+    }
+
+    //=====================================================================
+
+    public function hienThiChucVu(  Request $rq ) {
+        $danhSachChucVu = $this->admin->get_all_chuc_vu(  );
+        return view('admin.chuc-vu')->with( compact('danhSachChucVu') );
+    }
+
+     //=====================================================================
+
+    public function xoaChucVu( $maCV ) {
+        $kq = $this->admin->xoa_chuc_vu( $maCV );
+        if($kq)
+            return redirect("admin/home/chuc-vu/5");
+        else
+            return redirect("admin/home/chuc-vu/6");
+    }
+
+    //=====================================================================
+
+    public function themChucVu( Request $rq ) {
+        $data = $rq->all();
+        $kq = $this->admin->them_chuc_vu( $data );
+        if($kq)
+            return redirect("admin/home/chuc-vu/1");
+        else
+            return redirect("admin/home/chuc-vu/2");
+    }
+
+    //=====================================================================
+
+    public function suaChucVu( $maCV, Request $rq ) {
+        $data = $rq->all();
+        $kq = $this->admin->sua_chuc_vu( $maCV, $data );
+        if($kq)
+            return redirect("admin/home/chuc-vu/3");
+        else
+            return redirect("admin/home/chuc-vu/4");
+    }
+
+    //=====================================================================
+
+    public function hienThiLop(  Request $rq ) {
+        $danhSachLop = $this->admin->get_all_lop(  );
+        return view('admin.lop')->with( compact('danhSachLop') );
+    }
+
+     //=====================================================================
+
+    public function xoaLop( $maLop ) {
+        $kq = $this->admin->xoa_lop( $maLop );
+        if($kq)
+            return redirect("admin/home/lop/5");
+        else
+            return redirect("admin/home/lop/6");
+    }
+
+    // //=====================================================================
+
+    // public function themChucVu( Request $rq ) {
+    //     $data = $rq->all();
+    //     $kq = $this->admin->them_chuc_vu( $data );
+    //     if($kq)
+    //         return redirect("admin/home/chuc-vu/1");
+    //     else
+    //         return redirect("admin/home/chuc-vu/2");
+    // }
+
+    // //=====================================================================
+
+    // public function suaChucVu( $maCV, Request $rq ) {
+    //     $data = $rq->all();
+    //     $kq = $this->admin->sua_chuc_vu( $maCV, $data );
+    //     if($kq)
+    //         return redirect("admin/home/chuc-vu/3");
+    //     else
+    //         return redirect("admin/home/chuc-vu/4");
+    // }
 }

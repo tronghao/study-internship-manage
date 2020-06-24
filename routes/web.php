@@ -60,6 +60,30 @@ Route::group(["middleware" => "Admin", "prefix" => "admin"], function(){
 	Route::get('danh-sach-thuc-tap', 'AdminController@danhSachThucTap');
 	Route::get('xoa-thuc-tap/{email?}', 'AdminController@xoaThucTap');
 	Route::post('edit-thuc-tap/{email?}', 'AdminController@editThucTap');
+
+	//Học vị
+	Route::get('hoc-vi', 'AdminController@hienThiHocVi');
+	Route::get('xoa-hoc-vi/{maHV}', 'AdminController@xoaHocVi');
+	Route::post('them-hoc-vi', 'AdminController@themHocVi');
+	Route::post('sua-hoc-vi/{maHV}', 'AdminController@suaHocVi');
+
+	//Ngành
+	Route::get('nganh', 'AdminController@hienThiNganh');
+	Route::get('xoa-nganh/{maNganh}', 'AdminController@xoaNganh');
+	Route::post('them-nganh', 'AdminController@themNganh');
+	Route::post('sua-nganh/{maNganh}', 'AdminController@suaNganh');
+
+	//Chức vụ
+	Route::get('chuc-vu', 'AdminController@hienThiChucVu');
+	Route::get('xoa-chuc-vu/{maCV}', 'AdminController@xoaChucVu');
+	Route::post('them-chuc-vu', 'AdminController@themChucVu');
+	Route::post('sua-chuc-vu/{maCV}', 'AdminController@suaChucVu');
+
+	//Lớp
+	Route::get('lop', 'AdminController@hienThiLop');
+	Route::get('xoa-lop/{maLop}', 'AdminController@xoaLop');
+	// Route::post('them-chuc-vu', 'AdminController@themChucVu');
+	// Route::post('sua-chuc-vu/{maCV}', 'AdminController@suaChucVu');
 });
 
 Route::group(["middleware" => "SinhVien", "prefix" => "sinh-vien"], function(){

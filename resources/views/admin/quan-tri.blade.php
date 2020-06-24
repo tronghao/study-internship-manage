@@ -70,6 +70,30 @@
           <span>Danh Sách thực tập</span></a>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link hoc-vi-menu" href="#">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Học vị</span></a>
+      </li>
+
+       <li class="nav-item">
+        <a class="nav-link nganh-menu" href="#">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Ngành</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link chuc-vu-menu" href="#">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Chức vụ</span></a>
+      </li>
+
+       <li class="nav-item">
+        <a class="nav-link lop-menu" href="#">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Lớp</span></a>
+      </li>
+
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -230,6 +254,65 @@
             });
         })
 
+        //Học vị
+        $('.hoc-vi-menu').on('click',function(){
+            $value = $(this).val();
+            $.ajax({
+                type: 'get',
+                url: '{{ URL::to('admin/hoc-vi') }}',
+                data: {
+                    '': $value
+                },
+                success:function(data){
+                    $('.content-ajax').html(data);
+                }
+            });
+        })
+
+        //ngành
+        $('.nganh-menu').on('click',function(){
+            $value = $(this).val();
+            $.ajax({
+                type: 'get',
+                url: '{{ URL::to('admin/nganh') }}',
+                data: {
+                    '': $value
+                },
+                success:function(data){
+                    $('.content-ajax').html(data);
+                }
+            });
+        })
+
+        //chức vụ
+        $('.chuc-vu-menu').on('click',function(){
+            $value = $(this).val();
+            $.ajax({
+                type: 'get',
+                url: '{{ URL::to('admin/chuc-vu') }}',
+                data: {
+                    '': $value
+                },
+                success:function(data){
+                    $('.content-ajax').html(data);
+                }
+            });
+        })
+
+        //lớp
+        $('.lop-menu').on('click',function(){
+            $value = $(this).val();
+            $.ajax({
+                type: 'get',
+                url: '{{ URL::to('admin/lop') }}',
+                data: {
+                    '': $value
+                },
+                success:function(data){
+                    $('.content-ajax').html(data);
+                }
+            });
+        })
         
     </script>
 @endsection
@@ -268,6 +351,26 @@
       @elseif ($menu == 'danh-sach-thuc-tap')
         <script>
               var element = document.getElementsByClassName("danh-sach-thuc-tap-menu");
+              element[0].click();
+        </script>
+       @elseif ($menu == 'hoc-vi')
+        <script>
+              var element = document.getElementsByClassName("hoc-vi-menu");
+              element[0].click();
+        </script>
+        @elseif ($menu == 'nganh')
+        <script>
+              var element = document.getElementsByClassName("nganh-menu");
+              element[0].click();
+        </script>
+        @elseif ($menu == 'chuc-vu')
+        <script>
+              var element = document.getElementsByClassName("chuc-vu-menu");
+              element[0].click();
+        </script>
+        @elseif ($menu == 'lop')
+        <script>
+              var element = document.getElementsByClassName("lop-menu");
               element[0].click();
         </script>
       @endif
