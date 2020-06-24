@@ -234,7 +234,32 @@ class AdminController extends Controller
     //=====================================================================
 
     public function danhSachThucTap() {
-        $danhSachThucTap = "";
-        return view();
+        $danhSachThucTap = $this->admin->get_danh_sach_thuc_tap();
+        $danhSachGiangVien = $this->admin->getAllRole( "giảng viên" );
+        $danhSachNHD = $this->admin->getAllRole( "người hướng dẫn" );
+        $danhSachDonVi = $this->admin->hien_thi_don_vi();
+        return view('admin.danh-sach-thuc-tap')->with( compact('danhSachThucTap', 'danhSachGiangVien', 'danhSachNHD', 'danhSachDonVi') );
+    }
+
+    //=====================================================================
+
+    public function xoaThucTap( $email ) {
+        $kq = $this->admin->xoa_thuc_tap( $email );
+        if($kq)
+            return redirect("admin/home/danh-sach-thuc-tap/5");
+        else
+            return redirect("admin/home/danh-sach-thuc-tap/6");
+    }
+
+    //=====================================================================
+
+    public function editThucTap( $email, Request $rq ) {
+        $data = $rq->all();
+        $kq = $this->admin->sua_thuc_tap( $email, $data );
+        //print_r($data);
+        if($kq)
+            return redirect("admin/home/danh-sach-thuc-tap/3");
+        else
+            return redirect("admin/home/danh-sach-thuc-tap/4");
     }
 }

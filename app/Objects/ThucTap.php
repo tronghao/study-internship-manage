@@ -47,6 +47,18 @@ class ThucTap {
         return $this->ngayBatDauThucTap;
     }
 
+    /**
+     * @param mixed $ngayBatDauThucTap
+     *
+     * @return self
+     */
+    public function setNgayBatDauThucTap($ngayBatDauThucTap)
+    {
+        $this->ngayBatDauThucTap = $ngayBatDauThucTap;
+
+        return $this;
+    }
+
     //==================================================================
 
     public function setDataDonVi($maDonVi = null, $tenDonVi = null) {
@@ -87,6 +99,24 @@ class ThucTap {
     	if($tenSV != null) {
     		$this->sinhVien->setHoTen( $tenSV );
     	}
+    }
+
+    //==================================================================
+
+    public function getDataSinhVien ( $thuocTinhCanLay ) {
+        switch ($thuocTinhCanLay) {
+            case 'email':
+                return $this->sinhVien->getEmail();
+                break;
+            
+            case 'ten':
+                return $this->sinhVien->getHoTen();
+                break;
+
+            default:
+                # code...
+                break;
+        }
     }
 
     //==================================================================
@@ -219,6 +249,22 @@ class ThucTap {
     public function cap_nhat_dang_ky($email, $data) {
         try { 
             $thucTap = $this->thucTap_table->where('emailSV', '=', $email)->first();
+            if(isset($data["giang-vien"])) {
+                if($data["giang-vien"] == 'NULL')
+                    $thucTap->emailGV = null;
+                else $thucTap->emailGV = $data["giang-vien"];
+            }
+
+
+            if(isset($data["nguoi-huong-dan"])) {
+                if($data["nguoi-huong-dan"] == 'NULL')
+                    $thucTap->emailNHD = null;
+                else $thucTap->emailNHD = $data["nguoi-huong-dan"];   
+            }
+            if(isset($data["ngay-bat-dau"])) {
+                $thucTap->ngayBatDauThucTap = $data["ngay-bat-dau"];    
+            }
+
             $thucTap->maDonVi = $data["don-vi"];
             $thucTap->save();
             return true;
@@ -238,4 +284,59 @@ class ThucTap {
         }
     }
 
+    //=============================================================
+
+    public function getAll(  ) {
+        $dataSV = $this->thucTap_table->join('users','users.email', '=', 'thuctap.emailSV')->get()->toArray();
+
+        $listThucTap = [];
+        foreach ($dataSV as  $value) {
+            $thucTap_item = new ThucTap();
+            $thucTap_item->setDataSinhVien( $value["emailSV"], $value["hoTen"] );
+
+            $data_donvi = $this->thucTap_table->where('emailSV', '=', $value["emailSV"])->join('donvithuctap','donvithuctap.maDonVi', '=', 'thuctap.maDonVi')->get()->toArray();          
+            $data_GiangVien = $this->thucTap_table->where('emailSV', '=', $value["emailSV"])->join('users','users.email', '=', 'thuctap.emailGV')->get()->toArray();
+            $data_NHD = $this->thucTap_table->where('emailSV', '=', $value["emailSV"])->join('users','users.email', '=', 'thuctap.emailNHD')->get()->toArray();
+            
+            if( count($data_donvi) != 0 )
+                $thucTap_item->setDataDonVi( $data_donvi[0]["maDonVi"], $data_donvi[0]["tenDonVi"] );
+            else $thucTap_item->setDataDonVi( null, "Chưa có" );
+            
+            if( count($data_GiangVien) != 0 )
+                $thucTap_item->setDataGiangVien( $data_GiangVien[0]["emailGV"], $data_GiangVien[0]["hoTen"] );
+            else $thucTap_item->setDataGiangVien( null, "Chưa có" );
+            
+            if( count($data_NHD) != 0 )
+                $thucTap_item->setDataNguoiHuongDan( $data_NHD[0]["emailNHD"], $data_NHD[0]["hoTen"] );
+            else $thucTap_item->setDataNguoiHuongDan( null, "Chưa có" );
+
+            if($value["ngayBatDauThucTap"] == null)
+                $thucTap_item->setNgayBatDauThucTap( "Chưa thiết lập" );
+            else  $thucTap_item->setNgayBatDauThucTap( $value["ngayBatDauThucTap"] );
+
+            $listThucTap[] = $thucTap_item;
+        }
+        
+        return $listThucTap;
+    }
+
+    //=======================================================
+    public function getAllThongTinThucTapByEmailNHD( $column, $email ) {
+        $dataSV = $this->thucTap_table->where($column, '=', $email)->join('users','users.email', '=', 'thuctap.emailSV')->get()->toArray();
+
+        $listThucTap = [];
+        foreach ($dataSV as  $value) {
+            $thucTap_item = new ThucTap();
+            $thucTap_item->setDataSinhVien( $value["emailSV"], $value["hoTen"] );
+
+            if($value["ngayBatDauThucTap"] == null)
+                $thucTap_item->setNgayBatDauThucTap( "Chưa thiết lập" );
+            else  $thucTap_item->setNgayBatDauThucTap( $value["ngayBatDauThucTap"] );
+
+            $listThucTap[] = $thucTap_item;
+        }
+        
+        return $listThucTap;
+    }
+    
 }

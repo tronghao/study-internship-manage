@@ -3,14 +3,17 @@ namespace App\Objects;
 
 use App\Objects\NguoiDung;
 use App\NguoiHuongDanModel;
+use App\Objects\ThucTap;
 
 class NguoiHuongDan extends NguoiDung {
 
 	private $nguoiHuongDan_table;
+	private $thucTap;
 
 	public function __construct() {
 		parent::__construct();
 		$this->nguoiHuongDan_table = new NguoiHuongDanModel();
+		$this->thucTap = new ThucTap();
 	}
 
 	//==============================================================
@@ -27,6 +30,12 @@ class NguoiHuongDan extends NguoiDung {
         $cb->maChucVu = $data["maChucVu"];
         $cb->save();
     }
+
+    public function thongTinThucTap( $emailNHD ) {
+    	return $this->thucTap->getAllThongTinThucTapByEmailNHD('emailNHD', $emailNHD); 
+    }
+
+
 	public function dang_ky_chon_sinh_vien_thuc_tap() {
 
 	}
@@ -43,12 +52,6 @@ class NguoiHuongDan extends NguoiDung {
 
 	}
 
-	public function getUserByEmail($email) {
-        $data = $this->user->where('email', '=', $email)->get()->toArray();
-        $nguoiHD = new NguoiHuongDan();
-        $nguoiHD->setData($data[0]["hoTen"], $data[0]["email"], $data[0]["trangThai"], $data[0]["anhDaiDien"], $data[0]["loaiUser"]);
-        return $nguoiHD;
-    }
 
     public function ton_tai( $email ) {
 		$soLuong = $this->nguoiHuongDan_table->where('email', '=', $email)->count();

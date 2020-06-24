@@ -4,6 +4,8 @@ namespace App\Objects;
 use App\ChamDiemModel;
 use App\Objects\NguoiDung;
 
+use Illuminate\Support\Facades\DB;
+
 class Diem {
 	private $emailSV;
 	private $nguoiCham;
@@ -109,22 +111,19 @@ class Diem {
     //==================================================================
     
     public function getThongTinDiem($email) {
-        $data = $this->chamDiem_table->where('emailSV', '=', $email)->join('phieucham', 'phieucham.maPhieuCham', '=', 'chamdiem.maPhieuCham')->join('users', 'users.email', '=', 'chamdiem.emailNguoiCham')->get();
-        
+        // $data = $this->chamDiem_table->where('emailSV', '=', $email)->join('phieucham', 'phieucham.maPhieuCham', '=', 'chamdiem.maPhieuCham')->join('users', 'users.email', '=', 'chamdiem.emailNguoiCham')->get();
+        $data = DB::table('chamdiem')->where('emailSV', '=', $email)->join('phieucham', 'phieucham.maPhieuCham', '=', 'chamdiem.maPhieuCham')->join('users', 'users.email', '=', 'chamdiem.emailNguoiCham')->get();
+
         $listDiem = [];
         foreach ($data as $value) {
-
-	        echo $value["emailSV"];
-
-
-        	// $diem = new Diem();
-        	// $diem->setEmailSV( $value["emailSV"] );
-        	// $diem->setDiem( $value["diem"] );
-        	// $diem->setNhanXet( $value["nhanXet"] ); 
-        	// $diem->setDataNguoiCham( $value["emailNguoiCham"], $value["hoTen"] );
-        	// $listDiem[] = $diem;
+        	$diem = new Diem();
+        	$diem->setEmailSV( $value->emailSV );
+        	$diem->setDiem( $value->diem );
+        	$diem->setNhanXet( $value->nhanXet ); 
+        	$diem->setDataNguoiCham( $value->emailNguoiCham, $value->hoTen );
+        	$listDiem[] = $diem;
         }
-        return $listDiem1;
+        return $listDiem;
     }
 
 

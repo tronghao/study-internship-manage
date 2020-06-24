@@ -7,6 +7,7 @@ use App\Objects\ThongBao;
 use App\KinhPhiHoTroModel;
 use App\DonViThucTapModel;
 use App\Objects\DonVi;
+use App\Objects\ThucTap;
 
 class Admin extends NguoiDung {
 
@@ -14,12 +15,14 @@ class Admin extends NguoiDung {
 	private $thongBao;
 	private $kinhPhi;
 	private $donVi;
+	private $thucTap;
 
 	public function __construct() {
 		parent::__construct();
 		$this->thongBao = new ThongBao();
 		$this->kinhPhi = new KinhPhiHoTroModel();
 		$this->donVi = new DonVi();
+		$this->thucTap = new ThucTap();
     }
 
     //=====================================================================
@@ -122,17 +125,18 @@ class Admin extends NguoiDung {
 	//=====================================================================
 
 	//user
-	 public function danh_sach_user() {
+	public function danh_sach_user() {
         return $this->getAll();
+    }
+
+    public function get_all_role_user( $role) {
+        return $this->getAllRole( $role );
     }
 
 	//=====================================================================
 
 	//dang ky thuc tap
-	public function xoa_dang_ky_thuc_tap() {
-
-	}
-
+	
 	public function sua_dang_ky_thuc_tap($user, $noiDung) {
 
 	}
@@ -156,9 +160,18 @@ class Admin extends NguoiDung {
 
 
 	//danh sach
-	public function danh_sach_thuc_tap() {
-
+	public function get_danh_sach_thuc_tap() {
+		return $this->thucTap->getAll();
 	}
+
+	public function xoa_thuc_tap( $email ) {
+		return $this->thucTap->xoa_dang_ky( $email );
+	}
+
+	public function sua_thuc_tap( $email, $data ) {
+		return $this->thucTap->cap_nhat_dang_ky( $email, $data );
+	}
+
 
 	public function danh_sach_ket_qua() {
 

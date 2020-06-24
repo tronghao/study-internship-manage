@@ -17,7 +17,7 @@ class ChamDiem extends Migration
             $table->string('emailSV', '100');
             $table->string('emailNguoiCham', '100');
             $table->string('maPhieuCham', '10');
-            $table->date('ngayKetThucThucTap');
+            $table->date('ngayKetThucThucTap')->nullable();
             $table->primary(['emailSV', 'emailNguoiCham', 'maPhieuCham']);
             $table->timestamps();
         });

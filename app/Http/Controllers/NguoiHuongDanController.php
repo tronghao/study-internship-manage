@@ -21,7 +21,14 @@ class NguoiHuongDanController extends Controller
 
     public function index() {
     	$email = session('email');
-    	$nguoiHuongDan = $this->nguoiHD->getUserByEmail($email);
-    	return view('nguoi-huong-dan.quan-tri')->with(compact('nguoiHuongDan'));
+    	$userData = $this->nguoiHD->getUser($email);
+    	return view('nguoi-huong-dan.quan-tri')->with(compact('userData'));
+    }
+
+    //=======================================================================
+    public function thongTinThucTap( ) {
+    	$email = session('email');
+    	$thongTinThucTap = $this->nguoiHD->thongTinThucTap($email);
+    	return view('nguoi-huong-dan.thong-tin-thuc-tap')->with(compact('thongTinThucTap'));
     }
 }

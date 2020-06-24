@@ -26,9 +26,9 @@
   <div class="card-body">
     <div class="table-responsive">
      <table class="table table-bordered" id="tableData" width="100%" cellspacing="0">
-        <thead style="color:black; text-align: center;" >
+        <thead style="color:black; text-align: left;" >
           <tr>
-            <th></th>
+            <th style="width: 20%;"> Họ tên người chấm </th>
             <th style="width: 10%;">Điểm</th>
             <th>Đánh giá</th>
           </tr>
@@ -48,6 +48,9 @@
       </table>
       
     </div>
+
+    <br>
+    <b><p style="text-align: right;">Điểm Trung Bình: <span style="color: red; font-size: 20px">{{ $diemTB }} </span></p><b>
   </div>
 </div>
 @endif

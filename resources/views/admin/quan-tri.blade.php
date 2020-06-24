@@ -265,6 +265,11 @@
               var element = document.getElementsByClassName("don-vi-menu");
               element[0].click();
         </script>
+      @elseif ($menu == 'danh-sach-thuc-tap')
+        <script>
+              var element = document.getElementsByClassName("danh-sach-thuc-tap-menu");
+              element[0].click();
+        </script>
       @endif
   @endif
 

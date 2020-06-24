@@ -32,8 +32,6 @@ Route::post('thong-tin-can-bo/{email}', 'GuestController@insertCanBo');
 
 Route::get('thong-bao/{id}', 'GuestController@hienThiThongBao');
 
-//middleware - người hướng dẫn
-Route::get('nguoi-huong-dan/home', 'NguoiHuongDanController@index');
 
 Route::group(["middleware" => "Admin", "prefix" => "admin"], function(){
 	Route::get('home/{menu?}/{success?}', 'AdminController@home');
@@ -59,7 +57,9 @@ Route::group(["middleware" => "Admin", "prefix" => "admin"], function(){
 	Route::post('edit-user/{email}', 'AdminController@suaUser');
 
 	//Danh sách thực tập
-	Route::get('admin/danh-sach-thuc-tap', 'AdminController@danhSachThucTap');
+	Route::get('danh-sach-thuc-tap', 'AdminController@danhSachThucTap');
+	Route::get('xoa-thuc-tap/{email?}', 'AdminController@xoaThucTap');
+	Route::post('edit-thuc-tap/{email?}', 'AdminController@editThucTap');
 });
 
 Route::group(["middleware" => "SinhVien", "prefix" => "sinh-vien"], function(){
@@ -73,7 +73,7 @@ Route::group(["middleware" => "SinhVien", "prefix" => "sinh-vien"], function(){
 });
 
 
-// Route::group(["middleware" => "Admin", "prefix" => "admin"], function(){
-
-	
-// });
+Route::group(["middleware" => "NguoiHuongDan", "prefix" => "nguoi-huong-dan"], function(){
+	Route::get('home', 'NguoiHuongDanController@index');
+	Route::get('thong-tin-thuc-tap', 'NguoiHuongDanController@thongTinThucTap');
+});

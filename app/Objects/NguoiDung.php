@@ -4,10 +4,10 @@ use App\User;
 
 class NguoiDung {
     protected $email;
-	protected $hoTen;
-	protected $sdt;
-	protected $trangThai;
-	protected $loiGioiThieu;
+	  protected $hoTen;
+	  protected $sdt;
+	  protected $trangThai;
+	  protected $loiGioiThieu;
     protected $anhDaiDien;
     protected $loaiUser;
     protected $user;
@@ -237,6 +237,23 @@ class NguoiDung {
 
     public function getAll() {
         $data = $this->user->whereRaw("1 = 1")->orderBy("trangThai", "DESC")->get();
+        $listUserChuaDuyet = [];
+        foreach ($data as $value) {
+            $tb = new NguoiDung();
+            $tb->setEmail( $value["email"] );
+            $tb->setHoTen( $value["hoTen"] );
+            $tb->setLoiGioiThieu( $value["loiGioiThieu"] );
+            $tb->setTrangThai( $value["trangThai"] );
+            $tb->setSdt( $value["sdt"] );
+
+            $listUserChuaDuyet[] = $tb;
+        }
+
+        return $listUserChuaDuyet;
+    }
+
+    public function getAllRole( $role ) {
+        $data = $this->user->whereRaw("loaiUser = ?", [$role])->orderBy("trangThai", "DESC")->get();
         $listUserChuaDuyet = [];
         foreach ($data as $value) {
             $tb = new NguoiDung();

@@ -130,6 +130,15 @@ class SinhVienController extends Controller
     public function xemDiem(Request $rq) {
         $email = $rq->session()->get('email');
         $dataDiem = $this->sv->xem_diem( $email );
-        return view('sinh-vien.diem')->with( compact('dataDiem') );
+        $diemTB = 0;
+        if(count($dataDiem) != 0) {
+            $soLuong = count($dataDiem);
+            $diemTB = 0;
+            foreach ($dataDiem as $value) {
+                $diemTB += $value->getDiem();
+            }
+            $diemTB = $diemTB / (float)$soLuong;
+        }      
+        return view('sinh-vien.diem')->with( compact('dataDiem', 'diemTB') );
     }
 }
