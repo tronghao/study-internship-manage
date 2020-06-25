@@ -70,22 +70,29 @@
           <span>Danh Sách thực tập</span></a>
       </li>
 
+       <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Quản Lý
+      </div>
+
       <li class="nav-item">
         <a class="nav-link hoc-vi-menu" href="#">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Học vị</span></a>
       </li>
 
-       <li class="nav-item">
-        <a class="nav-link nganh-menu" href="#">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Ngành</span></a>
-      </li>
-
       <li class="nav-item">
         <a class="nav-link chuc-vu-menu" href="#">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Chức vụ</span></a>
+      </li>
+
+       <li class="nav-item">
+        <a class="nav-link nganh-menu" href="#">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Ngành</span></a>
       </li>
 
        <li class="nav-item">
@@ -99,8 +106,15 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Interface
+        Xuất dữ liệu
       </div>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ asset('admin/xuat-du-lieu-thuc-tap') }}">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dữ liệu thực tập</span></a>
+      </li>
+
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
@@ -313,7 +327,7 @@
                 }
             });
         })
-        
+
     </script>
 @endsection
 

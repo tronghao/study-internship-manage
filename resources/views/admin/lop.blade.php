@@ -63,41 +63,52 @@
                               <i class="far fa-trash-alt icon_delete"></i>Xóa
                           </div>
                         </a>
-{{--
+
                         <!-- The Modal -->
-                          <div class="modal fade" id="md_Edit_{{ $i }}">
-                              <div class="modal-dialog">
-                                  <div class="modal-content">
-                                  
-                                      <!-- Modal Header -->
-                                      <div class="modal-header">
-                                      <h4 class="modal-title">Cập nhật lớp</h4>
-                                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <div class="modal fade" id="md_Edit_{{ $i }}">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                        <h4 class="modal-title">Cập nhật lớp</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            <form action="{{ asset('admin/sua-lop/'.$value->getMaLop() ) }}" method="post">
+                                              {{ csrf_field() }}
+                                                <div class="form-group" style="text-align: left;">
+                                                  <label for="maLop">Mã Lớp:</label>
+                                                  <input type="text" class="form-control" id="maLop" name="ma-lop" required value=" {{ $value->getMaLop() }} ">
+                                                </div> 
+                                                <div class="form-group" style="text-align: left;">
+                                                  <label for="usr">Tên Lớp:</label>
+                                                  <input type="text" class="form-control" id="usr" name="ten-lop" required value=" {{ $value->getTenLop() }} ">
+                                                </div>                  
+                                                <div class="form-group" style="text-align: left;">
+                                                  <label for="sel1">Ngành:</label>
+                                                  <select class="form-control" id="sel1" name="ma-nganh">
+                                                    @foreach($danhSachNganh as $value2)
+                                                      @if( $value->getDataNganh( 'ten' ) == $value2->getTenNganh() )
+                                                        <option value="{{ $value2->getMaNganh() }}" selected> {{ $value2->getTenNganh() }} </option>
+                                                      @else
+                                                        <option value="{{ $value2->getMaNganh() }}"> {{ $value2->getTenNganh() }} </option>
+                                                      @endif
+                                                    @endforeach
+                                                  </select>
+                                                </div>
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">Cập nhật</button>
+                                        </div>
+                                        </form>
                                       </div>
-                                      
-                                      <!-- Modal body -->
-                                      <div class="modal-body">
-                                          <form action="{{ asset('admin/sua-hoc-vi/'.$value->getMaHocVi()) }}" method="post">
-                                            {{ csrf_field() }}
-
-                                              <div class="input-group mb-3">
-                                                  <div class="input-group-prepend">
-                                                      <span class="input-group-text">Tên học vị:</span>
-                                                  </div>
-                                                  <input type="text" class="form-control" name="ten-hoc-vi" required value="{{ $value->getTenHocVi() }}">
-                                              </div>
-
-                                              
-                                      <!-- Modal footer -->
-                                      <div class="modal-footer">
-                                          <button type="submit" class="btn btn-primary">Cập Nhật</button>
-                                      </div>
-                                      </form>
                                     </div>
-                                  </div>
-                              </div>
-                          </div> <!-- end model -->
---}}
+                                </div>
+                            </div> <!-- end model -->
+
                     </div>
                 </td>
               </tr>
@@ -112,7 +123,7 @@
   @endif
 </div>
 
-{{--
+
   <!-- The Modal -->
         <div class="modal fade" id="md_Add">
             <div class="modal-dialog">
@@ -126,15 +137,24 @@
                     
                     <!-- Modal body -->
                     <div class="modal-body">
-                        <form action="{{ asset('admin/them-hoc-vi') }}" method="post">
+                        <form action="{{ asset('admin/them-lop') }}" method="post">
                           {{ csrf_field() }}
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">Tên học vị:</span>
-                                </div>
-                                <input type="text" class="form-control" name="ten-hoc-vi" required>
+                            <div class="form-group">
+                              <label for="maLop">Mã Lớp:</label>
+                              <input type="text" class="form-control" id="maLop" name="ma-lop" required>
+                            </div> 
+                            <div class="form-group">
+                              <label for="usr">Tên Lớp:</label>
+                              <input type="text" class="form-control" id="usr" name="ten-lop" required>
                             </div>                  
-                    
+                            <div class="form-group">
+                              <label for="sel1">Ngành:</label>
+                              <select class="form-control" id="sel1" name="ma-nganh">
+                                @foreach($danhSachNganh as $value)
+                                  <option value="{{ $value->getMaNganh() }}"> {{ $value->getTenNganh() }} </option>
+                                @endforeach
+                              </select>
+                            </div>
                     <!-- Modal footer -->
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Thêm</button>
@@ -144,7 +164,7 @@
                 </div>
             </div>
         </div>
---}}
+
   <!-- link head -->
   <link rel="stylesheet" href=" {{ asset('public/css/thong-bao.css') }} ">
   <script src=" {{ asset('public/admin/datatables/jquery.dataTables.min.js') }} "></script>

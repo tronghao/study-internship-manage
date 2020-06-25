@@ -383,8 +383,9 @@ class AdminController extends Controller
     //=====================================================================
 
     public function hienThiLop(  Request $rq ) {
-        $danhSachLop = $this->admin->get_all_lop(  );
-        return view('admin.lop')->with( compact('danhSachLop') );
+        $danhSachLop = $this->admin->get_all_lop();
+        $danhSachNganh = $this->admin->get_all_nganh();
+        return view('admin.lop')->with( compact('danhSachLop', 'danhSachNganh') );
     }
 
      //=====================================================================
@@ -397,25 +398,32 @@ class AdminController extends Controller
             return redirect("admin/home/lop/6");
     }
 
-    // //=====================================================================
+    //=====================================================================
 
-    // public function themChucVu( Request $rq ) {
-    //     $data = $rq->all();
-    //     $kq = $this->admin->them_chuc_vu( $data );
-    //     if($kq)
-    //         return redirect("admin/home/chuc-vu/1");
-    //     else
-    //         return redirect("admin/home/chuc-vu/2");
-    // }
+    public function themLop( Request $rq ) {
+        $data = $rq->all();
+        $kq = $this->admin->them_lop( $data );
+        if($kq)
+            return redirect("admin/home/lop/1");
+        else
+            return redirect("admin/home/lop/2");
+    }
 
-    // //=====================================================================
+    //=====================================================================
 
-    // public function suaChucVu( $maCV, Request $rq ) {
-    //     $data = $rq->all();
-    //     $kq = $this->admin->sua_chuc_vu( $maCV, $data );
-    //     if($kq)
-    //         return redirect("admin/home/chuc-vu/3");
-    //     else
-    //         return redirect("admin/home/chuc-vu/4");
-    // }
+    public function suaLop( $maLop, Request $rq ) {
+        $data = $rq->all();
+        $kq = $this->admin->sua_lop( $maLop, $data );
+        if($kq)
+            return redirect("admin/home/lop/3");
+        else
+            return redirect("admin/home/lop/4");
+    }
+
+    //=====================================================================
+
+    public function xuatDuLieuThucTap() {
+        $this->admin->xuat_du_lieu_thuc_tap();
+        return redirect('admin/home');
+    }
 }

@@ -32,26 +32,12 @@ class NguoiHuongDan extends NguoiDung {
     }
 
     public function thongTinThucTap( $emailNHD ) {
-    	return $this->thucTap->getAllThongTinThucTapByEmailNHD('emailNHD', $emailNHD); 
+    	return $this->thucTap->getAllThongTinThucTapByEmailNHD('emailNHD', $emailNHD, "nguoi-huong-dan"); 
     }
 
-
-	public function dang_ky_chon_sinh_vien_thuc_tap() {
-
-	}
-
-	public function them_danh_gia() {
-
-	}
-
-	public function xoa_danh_gia() {
-
-	}
-
-	public function sua_danh_gia() {
-
-	}
-
+    public function cham_diem_thuc_tap($emailSV, $emailNHD, $data, $role) {
+    	return $this->thucTap->cham_diem( $emailSV, $emailNHD, $data, $role );
+    }
 
     public function ton_tai( $email ) {
 		$soLuong = $this->nguoiHuongDan_table->where('email', '=', $email)->count();

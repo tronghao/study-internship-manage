@@ -163,8 +163,13 @@ class DonVi {
     
     public function them_don_vi( $data ) {
         try {
+            $donvi_final = $this->donvi_table->orderBy('maDonVi', 'DESC')->take(1)->get()->toArray(); 
+            $chuoi = explode("V", $donvi_final[0]["maDonVi"]);
+            $thuTu = (int)$chuoi[1] + 1;
+            $maDonVi = "DV".$thuTu;
+
             $donvi_item = new DonViThucTapModel();
-            $donvi_item->maDonVi = $data["ma-don-vi"];
+            $donvi_item->maDonVi = $maDonVi;
             $donvi_item->tenDonVi = $data["ten-don-vi"];
             $donvi_item->diaChiDonVi = $data["dia-chi"];
             $donvi_item->sdtDonVi = $data["sdt"];
@@ -180,7 +185,6 @@ class DonVi {
     public function sua_don_vi( $maDV, $data ) {
         try {
             $donvi_item = $this->donvi_table->where('maDonVi', '=', $maDV)->first();
-            $donvi_item->maDonVi = $data["ma-don-vi"];
             $donvi_item->tenDonVi = $data["ten-don-vi"];
             $donvi_item->diaChiDonVi = $data["dia-chi"];
             $donvi_item->sdtDonVi = $data["sdt"];

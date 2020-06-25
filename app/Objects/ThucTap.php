@@ -6,6 +6,7 @@ use App\Objects\GiangVien;
 use App\Objects\NguoiHuongDan;
 use App\Objects\DonVi;
 use App\Objects\NguoiDung;
+use App\Objects\Diem;
 use App\ThucTapModel;
 
 
@@ -16,8 +17,10 @@ class ThucTap {
 	private $nguoiHuongDan;
 	private $donVi;
 	private $ngayBatDauThucTap;
+    private $ngayKetThucThucTap;
 	private $thucTap_table;
-
+    private $diemNguoiHuongDan;
+    private $diemGiangVien;
 
 
 	/**
@@ -35,6 +38,8 @@ class ThucTap {
         $this->nguoiHuongDan = new NguoiDung();
 		$this->donVi = new DonVi();
 		$this->thucTap_table = new ThucTapModel();
+        $this->diemGiangVien = new Diem();
+        $this->diemNguoiHuongDan = new Diem();
 	}
 
     
@@ -55,6 +60,26 @@ class ThucTap {
     public function setNgayBatDauThucTap($ngayBatDauThucTap)
     {
         $this->ngayBatDauThucTap = $ngayBatDauThucTap;
+
+        return $this;
+    }
+
+        /**
+     * @return mixed
+     */
+    public function getNgayKetThucThucTap()
+    {
+        return $this->ngayKetThucThucTap;
+    }
+
+    /**
+     * @param mixed $ngayKetThucThucTap
+     *
+     * @return self
+     */
+    public function setNgayKetThucThucTap($ngayKetThucThucTap)
+    {
+        $this->ngayKetThucThucTap = $ngayKetThucThucTap;
 
         return $this;
     }
@@ -182,6 +207,40 @@ class ThucTap {
 
     //==================================================================
 
+    public function getDataDiem ( $thuocTinhCanLay, $role ) {
+        if( $role == "nguoi-huong-dan" ) {
+            switch ($thuocTinhCanLay) {
+                case 'diem':
+                    return $this->diemNguoiHuongDan->getDiem();
+                    break;
+                
+                case 'nhanxet':
+                    return $this->diemNguoiHuongDan->getNhanXet();
+                    break;
+
+                default:
+                    # code...
+                    break;
+            }
+        }else if($role == "giang-vien") {
+            switch ($thuocTinhCanLay) {
+                case 'diem':
+                    return $this->diemGiangVien->getDiem();
+                    break;
+                
+                case 'nhanxet':
+                    return $this->diemGiangVien->getNhanXet();
+                    break;
+
+                default:
+                    # code...
+                    break;
+            }
+        }
+    }
+
+    //==================================================================
+
     public function getDanhSachThucTap() {
 		$data = $this->thucTap_table->whereRaw('1 = 1')->join('users','users.id', '=', 'thuctap.idSinhVien')->join('donvithuctap', 'donvithuctap.maDonVi', '=','thuctap.maDonVi')->get()->toArray();
 		
@@ -302,12 +361,17 @@ class ThucTap {
                 $thucTap_item->setDataDonVi( $data_donvi[0]["maDonVi"], $data_donvi[0]["tenDonVi"] );
             else $thucTap_item->setDataDonVi( null, "Chưa có" );
             
-            if( count($data_GiangVien) != 0 )
+            if( count($data_GiangVien) != 0 ) {
                 $thucTap_item->setDataGiangVien( $data_GiangVien[0]["emailGV"], $data_GiangVien[0]["hoTen"] );
+                $thucTap_item->diemGiangVien = $thucTap_item->diemGiangVien->getThongTinDiemTheoNguoiCham( $value["emailSV"], $data_GiangVien[0]["emailGV"] );
+            }
             else $thucTap_item->setDataGiangVien( null, "Chưa có" );
             
-            if( count($data_NHD) != 0 )
+            if( count($data_NHD) != 0 ) {
                 $thucTap_item->setDataNguoiHuongDan( $data_NHD[0]["emailNHD"], $data_NHD[0]["hoTen"] );
+                $thucTap_item->setNgayKetThucThucTap( $thucTap_item->diemNguoiHuongDan->getNgayKetThucThucTap( $value["emailSV"], $data_NHD[0]["emailNHD"] ) );
+                $thucTap_item->diemNguoiHuongDan = $thucTap_item->diemNguoiHuongDan->getThongTinDiemTheoNguoiCham( $value["emailSV"],  $data_NHD[0]["emailNHD"] );
+            }
             else $thucTap_item->setDataNguoiHuongDan( null, "Chưa có" );
 
             if($value["ngayBatDauThucTap"] == null)
@@ -321,13 +385,20 @@ class ThucTap {
     }
 
     //=======================================================
-    public function getAllThongTinThucTapByEmailNHD( $column, $email ) {
+    public function getAllThongTinThucTapByEmailNHD( $column, $email, $role ) {
         $dataSV = $this->thucTap_table->where($column, '=', $email)->join('users','users.email', '=', 'thuctap.emailSV')->get()->toArray();
 
         $listThucTap = [];
         foreach ($dataSV as  $value) {
             $thucTap_item = new ThucTap();
             $thucTap_item->setDataSinhVien( $value["emailSV"], $value["hoTen"] );
+
+            if($role == "nguoi-huong-dan")
+                $thucTap_item->diemNguoiHuongDan = $thucTap_item->diemNguoiHuongDan->getThongTinDiemTheoNguoiCham( $value["emailSV"], $email );
+            else
+                $thucTap_item->diemGiangVien = $thucTap_item->diemGiangVien->getThongTinDiemTheoNguoiCham( $value["emailSV"], $email );
+
+            $thucTap_item->setNgayKetThucThucTap( $thucTap_item->diemNguoiHuongDan->getNgayKetThucThucTap( $value["emailSV"], $email ) );
 
             if($value["ngayBatDauThucTap"] == null)
                 $thucTap_item->setNgayBatDauThucTap( "Chưa thiết lập" );
@@ -339,4 +410,28 @@ class ThucTap {
         return $listThucTap;
     }
     
+
+    //===============================================================
+    public function cham_diem( $emailSV, $emailNHD, $data, $role ) {
+        return $this->diemNguoiHuongDan->cham_diem( $emailSV, $emailNHD, $data, $role );
+    }
+
+    //===============================================================
+    public function tinh_diem_trung_binh( ThucTap $tt ) {
+        $soLuong = 0;
+        $diem = 0;
+        if( $tt->getDataDiem( 'diem', 'giang-vien' ) != "Chưa chấm" ) {
+            $soLuong++;
+            $diem += $tt->getDataDiem( 'diem', 'giang-vien' );
+        }
+
+        if( $tt->getDataDiem( 'diem', 'nguoi-huong-dan' ) != "Chưa chấm" ) {
+            $soLuong++;
+            $diem += $tt->getDataDiem( 'diem', 'nguoi-huong-dan' );
+        }
+
+        if($soLuong == 0)
+            return 0;
+        else return ($diem / (float)$soLuong);
+    }
 }

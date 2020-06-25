@@ -2,15 +2,18 @@
 namespace App\Objects;
 
 use App\Objects\NguoiDung;
+use App\Objects\ThucTap;
 use App\GiangVienModel;
 
 class GiangVien extends NguoiDung {
 
 	private $giangVien_table; 
+	private $thucTap;
 
 	public function __construct() {
 		parent::__construct();
 		$this->giangVien_table = new GiangVienModel();
+		$this->thucTap = new ThucTap();
 	}
 
 	//==============================================================
@@ -27,28 +30,18 @@ class GiangVien extends NguoiDung {
         $gv->save();
     }
 
-
-
-	public function dang_ky_chon_sinh_vien_thuc_tap() {
-
-	}
-
-	public function them_danh_gia() {
-
-	}
-
-	public function xoa_danh_gia() {
-
-	}
-
-	public function sua_danh_gia() {
-
-	}
-
 	public function ton_tai( $email ) {
 		$soLuong = $this->giangVien_table->where('email', '=', $email)->count();
         if($soLuong)
             return true;
         else return false;
 	}
+
+	public function thongTinThucTap( $emailNHD ) {
+    	return $this->thucTap->getAllThongTinThucTapByEmailNHD('emailGV', $emailNHD, "giang-vien"); 
+    }
+
+    public function cham_diem_thuc_tap($emailSV, $emailNHD, $data, $role) {
+    	return $this->thucTap->cham_diem( $emailSV, $emailNHD, $data, $role );
+    }
 }

@@ -71,6 +71,7 @@ class GuestController extends Controller
 
     public function handleGoogleLoginAfter($userData) {
         $email = $userData["email"];
+
         $hoTen = $userData["givenName"]." ".$userData["familyName"];
         $anhDaiDien = $userData["picture"];
         $trangThai = "chờ duyệt";

@@ -118,4 +118,32 @@ class Lop {
           return false;
         } 
     }
+
+    public function them_lop( $data ) {
+       try { 
+          $lop_item = new LopModel();
+          $lop_item->maLop = $data["ma-lop"];
+          $lop_item->tenLop = $data["ten-lop"];
+          $lop_item->maNganh = $data["ma-nganh"];
+          $lop_item->save();
+          return true;
+        } catch(\Illuminate\Database\QueryException $ex){ 
+          //code
+          return false;
+        } 
+    }
+
+    public function sua_lop( $maLop, $data ) {
+       try { 
+          $lop_item = $this->lop_table->where('maLop', '=', $maLop)->first();
+          $lop_item->maLop = $data["ma-lop"];
+          $lop_item->tenLop = $data["ten-lop"];
+          $lop_item->maNganh = $data["ma-nganh"];
+          $lop_item->save();
+          return true;
+        } catch(\Illuminate\Database\QueryException $ex){ 
+          //code
+          return false;
+        } 
+    }
 }

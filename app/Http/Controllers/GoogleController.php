@@ -98,6 +98,9 @@ class GoogleController extends Controller
 			case 'sinh-vien.quan-tri':
 				return redirect('sinh-vien/home');
 				break;
+			case 'giang-vien.quan-tri':
+				return redirect('giang-vien/home');
+				break;
 			default:
 				return view($view)->with(compact('email'));
 				break;

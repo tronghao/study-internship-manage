@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Objects\NguoiHuongDan;
+use App\Objects\GiangVien;
 
-class NguoiHuongDanController extends Controller
+class GiangVienController extends Controller
 {
-	private $nguoiHD;
+    private $nguoiHD;
 
 	/**
 	 * Class Constructor
@@ -15,7 +15,7 @@ class NguoiHuongDanController extends Controller
 	 */
 	public function __construct()
 	{
-		$this->nguoiHD = new NguoiHuongDan();
+		$this->nguoiHD = new GiangVien();
 	}
 
 
@@ -23,17 +23,17 @@ class NguoiHuongDanController extends Controller
     	$email = session('email');
     	$userData = $this->nguoiHD->getUser($email);
         if( $success == null )
-    	   return view('nguoi-huong-dan.quan-tri')->with(compact('userData'));
+    	   return view('giang-vien.quan-tri')->with(compact('userData'));
         else {
             switch ($success) {
                 case '1':
                     $info = "Cập nhật điểm thành công";
-                    return view('nguoi-huong-dan.quan-tri')->with(compact('userData', 'info'));
+                    return view('giang-vien.quan-tri')->with(compact('userData', 'info'));
                     break;
                 
                 case '2':
                     $info = "Cập nhật điểm không thành công";
-                    return view('nguoi-huong-dan.quan-tri')->with(compact('userData', 'info'));
+                    return view('giang-vien.quan-tri')->with(compact('userData', 'info'));
                     break;
 
                 default:
@@ -47,17 +47,17 @@ class NguoiHuongDanController extends Controller
     public function thongTinThucTap( ) {
     	$email = session('email');
     	$thongTinThucTap = $this->nguoiHD->thongTinThucTap($email);
-    	return view('nguoi-huong-dan.thong-tin-thuc-tap')->with(compact('thongTinThucTap'));
+    	return view('giang-vien.thong-tin-thuc-tap')->with(compact('thongTinThucTap'));
     }
 
     //=======================================================================
     public function chamDiem( $emailSV, Request $rq) {
         $data = $rq->all();
         $email = session('email');
-        $kq = $this->nguoiHD->cham_diem_thuc_tap($emailSV, $email, $data, 'nguoi-huong-dan');
+        $kq = $this->nguoiHD->cham_diem_thuc_tap($emailSV, $email, $data, 'giang-vien');
         if($kq)
-            return redirect("nguoi-huong-dan/home/1");
+            return redirect("giang-vien/home/1");
         else
-            return redirect("nguoi-huong-dan/home/2");
+            return redirect("giang-vien/home/2");
     }
 }

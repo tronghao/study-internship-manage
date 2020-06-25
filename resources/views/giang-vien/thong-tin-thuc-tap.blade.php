@@ -22,7 +22,6 @@
             <th>Email sinh viên</th>
             <th>Tên sinh viên</th>
             <th>Ngày bắt đầu thực tập</th>
-            <th>Ngày kết thúc thực tập</th>
             <th>Điểm</th>
             <th>Nhận xét</th>
             <th style="width: 15%;"></th>
@@ -39,18 +38,11 @@
                       @if($value->getNgayBatDauThucTap()  == "Chưa thiết lập")
                         {{ $value->getNgayBatDauThucTap() }}
                       @else
-                        {{ date_format(date_create($value->getNgayBatDauThucTap()),"d/m/Y") }} </td>
+                        {{ date_format(date_create($value->getNgayBatDauThucTap()),"d/m/Y") }} 
                       @endif
                     </td>
-                    <td> 
-                      @if($value->getNgayKetThucThucTap()  == "Chưa thiết lập")
-                        {{ $value->getNgayKetThucThucTap() }}
-                      @else
-                        {{ date_format(date_create($value->getNgayKetThucThucTap()),"d/m/Y") }} </td>
-                      @endif
-                    </td>
-                    <td> {{ $value->getDataDiem( 'diem', 'nguoi-huong-dan' ) }} </td>
-                    <td> {{ $value->getDataDiem( 'nhanxet', 'nguoi-huong-dan' ) }} </td>
+                    <td> {{ $value->getDataDiem( 'diem', 'giang-vien' ) }} </td>
+                    <td> {{ $value->getDataDiem( 'nhanxet', 'giang-vien' ) }} </td>
                     <td>
                       <div class="btn_active">
                           <a href="#">
@@ -69,16 +61,16 @@
                                           <button type="button" class="close" data-dismiss="modal">&times;</button>
                                           </div>
                                           <!-- Modal body -->
-                                          <form class="md-form" action="{{ asset('nguoi-huong-dan/cham-diem/'.$value->getDataSinhVien( 'email' )) }}" method="post">
+                                          <form class="md-form" action="{{ asset('giang-vien/cham-diem/'.$value->getDataSinhVien( 'email' )) }}" method="post">
                                           {{ csrf_field() }}
                                           <div class="modal-body" style="text-align: center; font-family: serif; font-style: 29px">
                                               <div class="modal-body_noidung" style="text-align: left">
                                                   <div class="form-group">
                                                     <label for="usr">Điểm:</label>
-                                                    @if( $value->getDataDiem( 'diem', 'nguoi-huong-dan' ) == "Chưa chấm" )
+                                                    @if( $value->getDataDiem( 'diem', 'giang-vien' ) == "Chưa chấm" )
                                                       <input type="number" class="form-control" id="usr" name="diem">
                                                     @else
-                                                      <input type="number" class="form-control" id="usr" name="diem" value="{{ $value->getDataDiem( 'diem', 'nguoi-huong-dan' ) }}">
+                                                      <input type="number" class="form-control" id="usr" name="diem" value="{{ $value->getDataDiem( 'diem', 'giang-vien' ) }}">
                                                     @endif
                                                   </div>
                                               </div>
@@ -86,21 +78,10 @@
                                               <div class="modal-body_noidung" style="text-align: left">
                                                   <div class="form-group">
                                                     <label for="comment">Nhận xét:</label>
-                                                    @if( $value->getDataDiem( 'nhanxet', 'nguoi-huong-dan' ) == "Chưa chấm" )
+                                                    @if( $value->getDataDiem( 'nhanxet', 'giang-vien' ) == "Chưa chấm" )
                                                       <textarea class="form-control" rows="5" id="comment" name="nhan-xet"></textarea>
                                                     @else
-                                                      <textarea class="form-control" rows="5" id="comment" name="nhan-xet">{{ $value->getDataDiem( 'nhanxet', 'nguoi-huong-dan' ) }}</textarea>
-                                                    @endif
-                                                  </div>
-                                              </div>
-                                              <br>
-                                              <div class="modal-body_noidung" style="text-align: left">
-                                                  <div class="form-group">
-                                                    <label for="sel1">Chọn ngày kết thúc thực tập:</label>
-                                                    @if($value->getNgayKetThucThucTap()  == "Chưa thiết lập")
-                                                      <input type="date" name="ngay-ket-thuc">
-                                                    @else
-                                                      <input type="date" name="ngay-ket-thuc" value="{{ $value->getNgayKetThucThucTap() }}">
+                                                      <textarea class="form-control" rows="5" id="comment" name="nhan-xet">{{ $value->getDataDiem( 'nhanxet', 'giang-vien' ) }}</textarea>
                                                     @endif
                                                   </div>
                                               </div>

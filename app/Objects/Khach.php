@@ -75,12 +75,6 @@ class Khach {
 
     //========================================================
 
-	public function them_du_lieu_dang_ky() {
-
-	}
-
-    //========================================================
-
 	public function getUserByEmail($email) {
         $user_item = $this->user->getUser( $email );
         return $user_item;

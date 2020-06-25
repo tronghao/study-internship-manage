@@ -85,13 +85,7 @@
                                       <div class="modal-body">
                                           <form action="{{ asset('admin/sua-don-vi/'.$value->getMaDonVi()) }}" method="post">
                                             {{ csrf_field() }}
-                                              <div class="input-group mb-3">
-                                                  <div class="input-group-prepend">
-                                                      <span class="input-group-text">Mã đơn vị:</span>
-                                                  </div>
-                                                  <input type="text" class="form-control" name="ma-don-vi" value="{{ $value->getMaDonVi() }}" required>
-                                              </div>
-
+                                              
                                               <div class="input-group mb-3">
                                                   <div class="input-group-prepend">
                                                       <span class="input-group-text">Tên đơn vị:</span>
@@ -161,12 +155,7 @@
                     <div class="modal-body">
                         <form action="{{ asset('admin/them-don-vi') }}" method="post">
                           {{ csrf_field() }}
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">Mã đơn vị:</span>
-                                </div>
-                                <input type="text" class="form-control" name="ma-don-vi" required>
-                            </div>
+          
 
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">

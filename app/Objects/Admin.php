@@ -147,16 +147,6 @@ class Admin extends NguoiDung {
 
 	//=====================================================================
 
-	//dang ky thuc tap
-	
-	public function sua_dang_ky_thuc_tap($user, $noiDung) {
-
-	}
-
-	public function duyet_dang_ky_thuc_tap($user, $noiDung) {
-
-	}
-
 	//tim kiem
 	public function tim_user($emailUser) {
 
@@ -190,11 +180,6 @@ class Admin extends NguoiDung {
 	}
 
 
-	public function danh_sach_don_vi_thuc_tap() {
-
-	}
-
-
 	//CRUD hoc vi
 	public function get_all_hoc_vi() {
 		return $this->hocVi->getAll();
@@ -218,16 +203,16 @@ class Admin extends NguoiDung {
 	public function get_all_lop() {
 		return $this->lop->getAllLop();
 	}
-	public function them_lop() {
-
+	public function them_lop( $data ) {
+		return $this->lop->them_lop( $data );
 	}
 
 	public function xoa_lop( $maLop ) {
 		return $this->lop->xoa_lop( $maLop );
 	}
 
-	public function sua_lop() {
-
+	public function sua_lop( $maLop, $data ) {
+		return $this->lop->sua_lop( $maLop, $data );
 	}
 
 
@@ -265,4 +250,8 @@ class Admin extends NguoiDung {
 		return $this->chucVu->sua_chuc_vu( $maCV, $data );
 	}
 
+	public function xuat_du_lieu_thuc_tap() {
+		$data = $this->thucTap->getAll();
+		
+	}
 }

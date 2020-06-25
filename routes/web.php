@@ -82,8 +82,12 @@ Route::group(["middleware" => "Admin", "prefix" => "admin"], function(){
 	//Lớp
 	Route::get('lop', 'AdminController@hienThiLop');
 	Route::get('xoa-lop/{maLop}', 'AdminController@xoaLop');
-	// Route::post('them-chuc-vu', 'AdminController@themChucVu');
-	// Route::post('sua-chuc-vu/{maCV}', 'AdminController@suaChucVu');
+	Route::post('them-lop', 'AdminController@themLop');
+	Route::post('sua-lop/{maLop}', 'AdminController@suaLop');
+
+	//xuat-du-lieu
+	Route::get('xuat-du-lieu-thuc-tap', 'AdminController@xuatDuLieuThucTap');
+
 });
 
 Route::group(["middleware" => "SinhVien", "prefix" => "sinh-vien"], function(){
@@ -98,6 +102,13 @@ Route::group(["middleware" => "SinhVien", "prefix" => "sinh-vien"], function(){
 
 
 Route::group(["middleware" => "NguoiHuongDan", "prefix" => "nguoi-huong-dan"], function(){
-	Route::get('home', 'NguoiHuongDanController@index');
+	Route::get('home/{id?}', 'NguoiHuongDanController@index');
 	Route::get('thong-tin-thuc-tap', 'NguoiHuongDanController@thongTinThucTap');
+	Route::post('cham-diem/{emailSV}', 'NguoiHuongDanController@chamDiem');
+});
+
+Route::group(["middleware" => "GiangVien", "prefix" => "giang-vien"], function(){
+	Route::get('home/{id?}', 'GiangVienController@index');
+	Route::get('thong-tin-thuc-tap', 'GiangVienController@thongTinThucTap');
+	Route::post('cham-diem/{emailSV}', 'GiangVienController@chamDiem');
 });
