@@ -47,7 +47,8 @@ class GiangVienController extends Controller
     public function thongTinThucTap( ) {
     	$email = session('email');
     	$thongTinThucTap = $this->nguoiHD->thongTinThucTap($email);
-    	return view('giang-vien.thong-tin-thuc-tap')->with(compact('thongTinThucTap'));
+        $choPhepChamDiem = $this->nguoiHD->choPhepChamDiem();
+    	return view('giang-vien.thong-tin-thuc-tap')->with(compact('thongTinThucTap', 'choPhepChamDiem'));
     }
 
     //=======================================================================

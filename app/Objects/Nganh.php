@@ -2,6 +2,8 @@
 namespace App\Objects;
 use App\User;
 use App\NganhModel;
+use Excel;
+use PHPExcel_IOFactory;
 
 class Nganh {
 	  protected $maNganh;	
@@ -108,5 +110,60 @@ class Nganh {
           //code
           return false;
         } 
+    }
+
+    public function importByExcel( $data ) {
+        $fileName = "";
+        $fileSize = "";
+        if ( isset( $data['fileToUpload'] ) ) {
+          $file = $data['fileToUpload'];
+
+          //Lấy Tên files
+          $fileName = $file->getClientOriginalName();
+          if( strpos( $fileName, ".xls" )  || strpos( $fileName, ".xlsx" ) )
+          {
+
+          }
+          else return 'File không hợp lệ!';
+          //Lấy kích cỡ của file đơn vị tính theo bytes
+          $fileSize = $file->getSize();
+          if( $fileSize > 10485760 )
+            return 'Kích thước file quá lớn!';
+        }
+
+        if($fileName != "" && $fileSize < 10485760)
+        {
+          $thongTin = "Các dòng dữ liệu không insert thành công";
+          $loi = 0;
+
+          $file = $data['fileToUpload'];
+          $file->move("public/img/upload", $file->getClientOriginalName());
+           $objPHPExcel = PHPExcel_IOFactory::load(base_path("public/img/upload/$fileName")); // load file ra object PHPExcel
+           $provinceSheet = $objPHPExcel->setActiveSheetIndex(0); // Set sheet sẽ được đọc dữ liệu
+           $highestRow  = $provinceSheet->getHighestRow(); // Lấy số row lớn nhất trong sheet
+           for ($row = 2; $row <= $highestRow; $row++) { // For chạy từ 2 vì row 1 là title
+              $ma = $provinceSheet->getCellByColumnAndRow(0, $row)->getValue(); // lấy dữ liệu từng ô theo col và row
+              $ten = $provinceSheet->getCellByColumnAndRow(1, $row)->getValue();
+           
+
+              $data_item = array(
+                "ma-nganh" => $ma,
+                "ten-nganh" => $ten,
+              );
+              if( !$this->them_nganh( $data_item ) ) {
+                $loi = 1;
+                $thongTin .= "\\n$ma - $ten";
+              }
+            }
+
+          if($loi == 0) {
+            $thongTin = "Nhập dữ liệu thành công";
+            return $thongTin;
+          } else return $thongTin;
+        }
+        else
+        {
+            return 'Lỗi file!';
+        }
     }
 }

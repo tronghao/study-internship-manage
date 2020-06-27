@@ -12,6 +12,9 @@ use App\Objects\HocVi;
 use App\Objects\Nganh;
 use App\Objects\ChucVu;
 use App\Objects\Lop;
+use PHPExcel;
+use PHPExcel_IOFactory;
+use App\Objects\Option;
 
 class Admin extends NguoiDung {
 
@@ -24,6 +27,7 @@ class Admin extends NguoiDung {
 	private $nganh;
 	private $chucVu;
 	private $lop;
+	private $option;
 
 	public function __construct() {
 		parent::__construct();
@@ -35,6 +39,7 @@ class Admin extends NguoiDung {
 		$this->nganh = new Nganh();
 		$this->chucVu = new ChucVu();
 		$this->lop = new Lop();
+		$this->option = new Option();
     }
 
     //=====================================================================
@@ -252,6 +257,107 @@ class Admin extends NguoiDung {
 
 	public function xuat_du_lieu_thuc_tap() {
 		$data = $this->thucTap->getAll();
-		
+		$excel = new PHPExcel();
+		$excel->createSheet();
+		$activeSheet = $excel->setActiveSheetIndex(1);
+		$activeSheet->setTitle( "Dữ Liệu Thực Tập" );
+
+		$excel->getActiveSheet()->getColumnDimension('A')->setWidth(5);
+		$excel->getActiveSheet()->getColumnDimension('B')->setWidth(30);
+		$excel->getActiveSheet()->getColumnDimension('C')->setWidth(30);
+		$excel->getActiveSheet()->getColumnDimension('D')->setWidth(20);
+		$excel->getActiveSheet()->getColumnDimension('E')->setWidth(30);
+		$excel->getActiveSheet()->getColumnDimension('F')->setWidth(10);
+		$excel->getActiveSheet()->getColumnDimension('G')->setWidth(30);
+		$excel->getActiveSheet()->getColumnDimension('H')->setWidth(30);
+		$excel->getActiveSheet()->getColumnDimension('I')->setWidth(30);
+		$excel->getActiveSheet()->getStyle('A2:I2')->getFont()->setBold(true);
+
+		$activeSheet->setCellValue('A2', 'STT')
+			->setCellValue('B2', 'Email sinh viên')
+			->setCellValue('C2', 'Tên sinh viên')
+			->setCellValue('D2', 'Điểm trung bình')
+			->setCellValue('E2', 'Tên người chấm')
+			->setCellValue('F2', 'Số điểm')
+			->setCellValue('G2', 'Nhận xét')
+			->setCellValue('H2', 'Ngày bắt đầu thực tập')
+			->setCellValue('I2', 'Ngày kết thúc thực tập');
+
+		$numRow = 3;
+		$stt = 1;
+		foreach ($data as $value) {
+			
+				$excel->getActiveSheet()->setCellValue('A' . $numRow, $stt);
+			    $excel->getActiveSheet()->setCellValue('B' . $numRow, $value->getDataSinhVien( 'email' ) );
+			    $excel->getActiveSheet()->setCellValue('C' . $numRow, $value->getDataSinhVien( 'ten' ) );			    
+			    $excel->getActiveSheet()->setCellValue('D' . $numRow, $value->tinh_diem_trung_binh( $value ) );
+			    $excel->getActiveSheet()->setCellValue('E' . $numRow, $value->getDataGiangVien( 'ten' ) );
+			    $excel->getActiveSheet()->setCellValue('F' . $numRow, $value->getDataDiem( 'diem', 'giang-vien' ) );
+			    $excel->getActiveSheet()->setCellValue('G' . $numRow, $value->getDataDiem( 'nhanxet', 'giang-vien' ) );
+			    $excel->getActiveSheet()->setCellValue('H' . $numRow, $value->getNgayBatDauThucTap() );
+			    $excel->getActiveSheet()->setCellValue('I' . $numRow, $value->getNgayKetThucThucTap() );
+
+			    $numRow++;
+
+			    $excel->getActiveSheet()->setCellValue('E' . $numRow, $value->getDataNguoiHuongDan( 'ten' ) );
+			    $excel->getActiveSheet()->setCellValue('F' . $numRow, $value->getDataDiem( 'diem', 'nguoi-huong-dan' ) );
+			    $excel->getActiveSheet()->setCellValue('G' . $numRow, $value->getDataDiem( 'nhanxet', 'nguoi-huong-dan' ) );
+			    $excel->getActiveSheet()->setCellValue('H' . $numRow, $value->getNgayBatDauThucTap() );
+			    $excel->getActiveSheet()->setCellValue('I' . $numRow, $value->getNgayKetThucThucTap() );
+
+			    $numRowMergePrevious = $numRow - 1;
+			    $activeSheet->mergeCells("A$numRowMergePrevious:A$numRow");
+			    $activeSheet->mergeCells("B$numRowMergePrevious:B$numRow");
+			    $activeSheet->mergeCells("C$numRowMergePrevious:C$numRow");
+			    $activeSheet->mergeCells("D$numRowMergePrevious:D$numRow");
+
+				$numRow++;
+				$stt++;
+		}
+
+		header('Content-type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment; filename="duLieuThucTap.xlsx"');
+		PHPExcel_IOFactory::createWriter($excel, 'Excel2007')->save('php://output');
+	}
+
+	//===============================================================
+	
+	public function choPhepDangKy() {
+		return $this->option->choPhepDangKy();
+	}
+
+	//===============================================================
+	
+	public function choPhepChamDiem() {
+		return $this->option->choPhepChamDiem();
+	}
+
+	//===============================================================
+	
+	public function cap_nhat_cai_dat( $data ) {
+		return $this->option->cap_nhat_cai_dat( $data );
+	}
+
+	public function xu_ly_nhap_du_lieu( $table, $data ) {
+		switch ($table) {
+			case 'nganh':
+				return $this->nganh->importByExcel( $data );
+				break;
+			
+			case 'lop':
+				return $this->lop->importByExcel( $data );
+				break;
+
+			case 'hoc-vi':
+				return $this->hocVi->importByExcel( $data );
+				break;
+
+			case 'chuc-vu':
+				return $this->chucVu->importByExcel( $data );
+				break;
+			default:
+				# code...
+				break;
+		}
 	}
 }

@@ -97,7 +97,7 @@
                                         </div>
                                         <br>
                                         <div class="custom-file">
-                                          <input type="file" class="custom-file-input" id="customFile" name="fileToUpload">
+                                          <input type="file" class="custom-file-input" id="customFile" name="fileToUpload" accept=".jpg,.png">
                                           <label class="custom-file-label" for="customFile">Chọn ảnh đại diện</label>
                                         </div>
                                         <script>
@@ -163,7 +163,7 @@
                     </div>
                     <br>
                     <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="customFile" name="fileToUpload">
+                      <input type="file" class="custom-file-input" id="customFile" name="fileToUpload" accept=".jpg,.png">
                       <label class="custom-file-label" for="customFile">Chọn ảnh đại diện</label>
                     </div>
                     <script>

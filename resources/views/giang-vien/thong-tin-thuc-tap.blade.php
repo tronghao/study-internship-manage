@@ -24,7 +24,9 @@
             <th>Ngày bắt đầu thực tập</th>
             <th>Điểm</th>
             <th>Nhận xét</th>
-            <th style="width: 15%;"></th>
+            @if( $choPhepChamDiem )
+              <th style="width: 15%;"></th>
+            @endif
           </tr>
         </thead>
         <tbody style="color:black">
@@ -43,6 +45,7 @@
                     </td>
                     <td> {{ $value->getDataDiem( 'diem', 'giang-vien' ) }} </td>
                     <td> {{ $value->getDataDiem( 'nhanxet', 'giang-vien' ) }} </td>
+                    @if( $choPhepChamDiem )
                     <td>
                       <div class="btn_active">
                           <a href="#">
@@ -100,6 +103,7 @@
                         </td>
                       </div>
                   </td>
+                  @endif
                 </tr>
                   @php $i++ @endphp
           @endforeach

@@ -11,6 +11,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+      DB::table('option')->insert([
+          array( 
+                'id' => '1', 
+                'optionName' => 'choPhepDangKy',
+                'value' => '1',
+              ),
+          array( 
+                'id' => '2', 
+                'optionName' => 'choPhepChamDiem',
+                'value' => '1',
+              ),
+      ]);
+      
       //admin pass: 12345678
         DB::table('users')->insert([
           array( 

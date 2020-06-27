@@ -4,6 +4,7 @@ namespace App\Objects;
 use App\Objects\NguoiDung;
 use App\NguoiHuongDanModel;
 use App\Objects\ThucTap;
+use App\Objects\Option;
 
 class NguoiHuongDan extends NguoiDung {
 
@@ -14,6 +15,7 @@ class NguoiHuongDan extends NguoiDung {
 		parent::__construct();
 		$this->nguoiHuongDan_table = new NguoiHuongDanModel();
 		$this->thucTap = new ThucTap();
+        $this->option = new Option();
 	}
 
 	//==============================================================
@@ -45,4 +47,8 @@ class NguoiHuongDan extends NguoiDung {
             return true;
         else return false;
 	}
+
+    public function choPhepChamDiem() {
+        return $this->option->choPhepChamDiem();
+    }
 }

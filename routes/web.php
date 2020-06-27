@@ -88,6 +88,14 @@ Route::group(["middleware" => "Admin", "prefix" => "admin"], function(){
 	//xuat-du-lieu
 	Route::get('xuat-du-lieu-thuc-tap', 'AdminController@xuatDuLieuThucTap');
 
+	//nhap-du-lieu
+	Route::get('nhap-du-lieu/{table}', 'AdminController@nhapDuLieu');
+	Route::post('nhap-du-lieu/{table}', 'AdminController@xuLyNhapDuLieu');
+
+	//cai-dat
+	Route::get('cai-dat', 'AdminController@caiDat');
+	Route::post('cap-nhat-cai-dat', 'AdminController@capNhatCaiDat');
+
 });
 
 Route::group(["middleware" => "SinhVien", "prefix" => "sinh-vien"], function(){

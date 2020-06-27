@@ -4,16 +4,19 @@ namespace App\Objects;
 use App\Objects\NguoiDung;
 use App\Objects\ThucTap;
 use App\GiangVienModel;
+use App\Objects\Option;
 
 class GiangVien extends NguoiDung {
 
 	private $giangVien_table; 
 	private $thucTap;
+    private $option;
 
 	public function __construct() {
 		parent::__construct();
 		$this->giangVien_table = new GiangVienModel();
 		$this->thucTap = new ThucTap();
+        $this->option = new Option();
 	}
 
 	//==============================================================
@@ -43,5 +46,9 @@ class GiangVien extends NguoiDung {
 
     public function cham_diem_thuc_tap($emailSV, $emailNHD, $data, $role) {
     	return $this->thucTap->cham_diem( $emailSV, $emailNHD, $data, $role );
+    }
+
+    public function choPhepChamDiem() {
+        return $this->option->choPhepChamDiem();
     }
 }

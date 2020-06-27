@@ -84,13 +84,14 @@ class SinhVienController extends Controller
     	$trangThaiDangKy = "";
     	$email = $rq->session()->get('email');
     	$user_item = $this->sv->getUser($email);
+        $choPhepDangKy = $this->sv->choPhepDangKy();
     	if( $this->sv->trangThaiDangKy( $user_item->getEmail() ) ) {
     		$trangThaiDangKy = 'Đã đăng ký';
     		$thucTap = $this->sv->getThucTap( $user_item->getEmail() );
-    		return view('sinh-vien.dang-ky-thuc-tap')->with(compact('trangThaiDangKy','donVi', 'thucTap'));
+    		return view('sinh-vien.dang-ky-thuc-tap')->with(compact('trangThaiDangKy','donVi', 'thucTap', 'choPhepDangKy'));
     	}else {
     		$trangThaiDangKy = 'Chưa đăng ký';
-    		return view('sinh-vien.dang-ky-thuc-tap')->with(compact('trangThaiDangKy','donVi'));
+    		return view('sinh-vien.dang-ky-thuc-tap')->with(compact('trangThaiDangKy','donVi', 'choPhepDangKy'));
     	}
     }
 

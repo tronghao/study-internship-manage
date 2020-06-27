@@ -4,18 +4,19 @@
   });
 </script>
 
-@if($trangThaiDangKy != "Đã đăng ký")  
-<div class="container_content">
-      <!-- Header content -->
-    <div class="header_content">
+@if($trangThaiDangKy != "Đã đăng ký") 
+  @if( $choPhepDangKy )
+    <div class="container_content">
+          <!-- Header content -->
+        <div class="header_content">
+        </div>
+        <div class="header_button">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#md_Add">
+                <i class="fas fa-plus-circle content_icon-plus"></i>
+                Đăng ký thực tập
+            </button>
+        </div>
     </div>
-    <div class="header_button">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#md_Add">
-            <i class="fas fa-plus-circle content_icon-plus"></i>
-            Đăng ký thực tập
-        </button>
-    </div>
-</div>
 <br>
 
  <!-- The Modal -->
@@ -55,6 +56,17 @@
                 </div>
             </div>
         </div>
+    @else
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Kết Quả Đăng Ký</h6>
+      </div>
+
+      <div class="card-body">
+        <p>Đã hết hạn đăng ký</p>
+      </div>
+    </div>
+    @endif
 @else
 
 <!-- Table -->
@@ -72,7 +84,9 @@
             <th>Tên đơn vị</th>
             <th>Tên cán bộ hướng dẫn</th>
             <th>Tên Giảng viên hướng dẫn</th>
-            <th style="width: 15%;"></th>
+            @if( $choPhepDangKy )
+              <th style="width: 15%;"></th>
+            @endif
           </tr>
         </thead>
         <tbody style="color:black">
@@ -82,6 +96,7 @@
                   <td> {{ $thucTap->getDataDonVi( "tenDonVi" ) }} </td>
                   <td> {{ $thucTap->getDataNguoiHuongDan( "ten" ) }} </td>
                   <td> {{ $thucTap->getDataGiangVien( "ten" ) }} </td>
+                  @if( $choPhepDangKy )
                   <td>
                     <div class="btn_active">
                         <div class="btn btn-success btn_edit" data-toggle="modal" data-target="#md_Edit">
@@ -131,6 +146,7 @@
                           </div> <!-- end modal -->
                     </div>
                 </td>
+                @endif
               </tr>
 
 

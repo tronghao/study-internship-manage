@@ -426,4 +426,39 @@ class AdminController extends Controller
         $this->admin->xuat_du_lieu_thuc_tap();
         return redirect('admin/home');
     }
+
+
+    //===============================================================
+    
+    public function caiDat() {
+        $choPhepDangKy = $this->admin->choPhepDangKy();
+        $choPhepChamDiem = $this->admin->choPhepChamDiem();
+        return view('admin.cai-dat')->with( compact('choPhepDangKy', 'choPhepChamDiem') );
+    }
+
+    //===============================================================
+    
+    public function capNhatCaiDat( Request $rq ) {
+        $data = $rq->all();
+        $kq = $this->admin->cap_nhat_cai_dat( $data );
+        if($kq)
+            return redirect("admin/home/cai-dat/3");
+        else
+            return redirect("admin/home/cai-dat/4");
+    }
+
+    //===============================================================
+    
+    public function nhapDuLieu( $table ) {
+        return view('admin.nhap-du-lieu')->with( compact( 'table' ) );
+    }
+
+    //===============================================================
+    
+    public function xuLyNhapDuLieu( $table, request $rq ) {
+        $data = $rq->all();
+        $info = $this->admin->xu_ly_nhap_du_lieu( $table, $data );
+        $menu = $table;
+        return view('admin.quan-tri')->with( compact( 'menu','info') );
+    }
 }

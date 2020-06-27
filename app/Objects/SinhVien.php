@@ -9,6 +9,7 @@ use App\Objects\DonVi;
 use App\ThucTapModel;
 use App\Objects\ThucTap;
 use App\Objects\Diem;
+use App\Objects\Option;
 
 class SinhVien extends NguoiDung {
 
@@ -17,6 +18,7 @@ class SinhVien extends NguoiDung {
 	private $donVi;
 	private $thucTap;
 	private $diem;
+	private $option;
 
 	public function __construct() {
 		parent::__construct();
@@ -25,6 +27,7 @@ class SinhVien extends NguoiDung {
 		$this->donVi = new DonVi();
 		$this->thucTap = new ThucTap();
 		$this->diem = new Diem();
+		$this->option = new Option();
 	}
 
 	//==============================================================
@@ -110,5 +113,11 @@ class SinhVien extends NguoiDung {
 	public function getThucTap($email) {
 		$thucTap_item = $this->thucTap->getThucTapByEmail( $email );
 		return $thucTap_item;
+	}
+
+	//==============================================================
+
+	public function choPhepDangKy() {
+		return $this->option->choPhepDangKy();
 	}
 }
