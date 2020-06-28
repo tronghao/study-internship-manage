@@ -132,6 +132,8 @@ class SinhVienController extends Controller
         $email = $rq->session()->get('email');
         $dataDiem = $this->sv->xem_diem( $email );
         $diemTB = 0;
+        $soKM = $this->sv->getSoKM($email);
+
         if(count($dataDiem) != 0) {
             $soLuong = count($dataDiem);
             $diemTB = 0;
@@ -139,6 +141,11 @@ class SinhVienController extends Controller
                 $diemTB += $value->getDiem();
             }
             $diemTB = $diemTB / (float)$soLuong;
+        }
+
+        if($soKM == -1) {
+            $info = "Không có điểm thực tập, do bạn chưa đăng ký thực tập";
+            return view('sinh-vien.diem')->with( compact('dataDiem', 'diemTB', 'info') );
         }      
         return view('sinh-vien.diem')->with( compact('dataDiem', 'diemTB') );
     }

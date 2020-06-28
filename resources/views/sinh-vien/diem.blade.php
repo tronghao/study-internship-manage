@@ -24,6 +24,9 @@
   </div>
 
   <div class="card-body">
+    @if( isset($info) )
+      <p>{{ $info }}</p>
+    @else
     <div class="table-responsive">
      <table class="table table-bordered" id="tableData" width="100%" cellspacing="0">
         <thead style="color:black; text-align: left;" >
@@ -48,9 +51,10 @@
       </table>
       
     </div>
-
+    
     <br>
     <b><p style="text-align: right;">Điểm Trung Bình: <span style="color: red; font-size: 20px">{{ $diemTB }} </span></p><b>
+    @endif
   </div>
 </div>
 @endif

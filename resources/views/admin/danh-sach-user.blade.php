@@ -22,6 +22,7 @@
             <th>Email</th>
             <th>Họ Tên</th>
             <th>Lời Giới Thiệu</th>
+            <th>Vai trò</th>
             <th style="width: 15%;"></th>
           </tr>
         </thead>
@@ -31,6 +32,7 @@
             <th>Email</th>
             <th>Họ Tên</th>
             <th>Lời Giới Thiệu</th>
+            <th>Vai trò</th>
             <th style="width: 15%;"></th>
           </tr>
         </tfoot>
@@ -45,6 +47,10 @@
                     <td> {{ $value->getEmail() }} </td>
                     <td> {{ $value->getHoTen() }} </td>
                     <td> {{ $value->getLoiGioiThieu() }} </td>
+                    @if( $value->getLoaiUser() != "người hướng dẫn" )
+                      <td> {{ $value->getLoaiUser() }} </td>
+                    @else <td> cán bộ đơn vị </td>
+                    @endif
                     <td>
                       <div class="btn_active">
                         @if( $value->getTrangThai() == "chờ duyệt")
@@ -56,7 +62,7 @@
                         @else
                           <a href="#">
                             <div class="btn btn-success btn_edit" data-toggle="modal" data-target="#md_Edit_{{ $i }}">
-                              <i class="fas fa-edit icon_edit"></i>Edit
+                              <i class="fas fa-edit icon_edit"></i>Sửa
                             </div>
                           </a>
 
@@ -80,7 +86,7 @@
                                               <br>
                                               <div class="modal-body_noidung" style="text-align: left">
                                                   <h4 class="md_text">Số điện thoại</h4>
-                                                  <input type="tel" class="form-control" name="sdt" value="{{ $value->getSdt() }}">
+                                                  <input type="tel" class="form-control" name="sdt" value="{{ $value->getSdt() }}" pattern="(^0[0-9]{9,10})+">
                                               </div>
                                               <br>
                                           </div>

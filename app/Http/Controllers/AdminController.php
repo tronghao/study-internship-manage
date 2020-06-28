@@ -160,6 +160,13 @@ class AdminController extends Controller
 
     //=====================================================================
 
+    public function tongKinhPhi() {
+        $tongKinhPhi = $this->admin->tong_kinh_phi();
+        return view('admin.tong-kinh-phi')->with(compact('tongKinhPhi'));
+    }
+
+    //=====================================================================
+
     public function hienThiDonVi() {
     	$duLieuDonVi = $this->admin->hien_thi_don_vi();
     	return view('admin.don-vi')->with(compact('duLieuDonVi'));

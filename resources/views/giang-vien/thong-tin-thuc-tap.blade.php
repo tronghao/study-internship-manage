@@ -71,9 +71,9 @@
                                                   <div class="form-group">
                                                     <label for="usr">Điểm:</label>
                                                     @if( $value->getDataDiem( 'diem', 'giang-vien' ) == "Chưa chấm" )
-                                                      <input type="number" class="form-control" id="usr" name="diem">
+                                                      <input type="number" step="any" class="form-control" id="usr" name="diem" min="0" max="10">
                                                     @else
-                                                      <input type="number" class="form-control" id="usr" name="diem" value="{{ $value->getDataDiem( 'diem', 'giang-vien' ) }}">
+                                                      <input type="number" step="any" class="form-control" id="usr" name="diem" min="0" max="10" value="{{ $value->getDataDiem( 'diem', 'giang-vien' ) }}">
                                                     @endif
                                                   </div>
                                               </div>

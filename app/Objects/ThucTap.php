@@ -101,7 +101,7 @@ class ThucTap {
     public function getDataDonVi ( $thuocTinhCanLay ) {
     	switch ($thuocTinhCanLay) {
     		case 'maDonVi':
-    			# code...
+    			return $this->donVi->getMaDonVi();
     			break;
     		
     		case 'tenDonVi':
@@ -368,7 +368,7 @@ class ThucTap {
             else $thucTap_item->setDataGiangVien( null, "Chưa có" );
             
             if( count($data_NHD) != 0 ) {
-                $thucTap_item->setDataNguoiHuongDan( $data_NHD[0]["emailNHD"], $data_NHD[0]["hoTen"] );
+                $thucTap_item->setDataNguoiHuongDan( $data_NHD[0]["emailNHD"], $data_NHD[0]["hoTen"], $data_NHD[0]["maDonVi"] );
                 $thucTap_item->setNgayKetThucThucTap( $thucTap_item->diemNguoiHuongDan->getNgayKetThucThucTap( $value["emailSV"], $data_NHD[0]["emailNHD"] ) );
                 $thucTap_item->diemNguoiHuongDan = $thucTap_item->diemNguoiHuongDan->getThongTinDiemTheoNguoiCham( $value["emailSV"],  $data_NHD[0]["emailNHD"] );
             }
@@ -434,4 +434,6 @@ class ThucTap {
             return 0;
         else return ($diem / (float)$soLuong);
     }
+
+    
 }

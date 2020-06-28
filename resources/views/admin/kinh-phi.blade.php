@@ -20,7 +20,7 @@
     <h6 class="m-0 font-weight-bold text-primary">Kinh phí hỗ trợ</h6>
   </div>
   <div class="card-body">
-    <p>Kinh phí hỗ trợ hiện tại là: <span style="color: red; font-size:20px">{{ $duLieuKinhPhi["soTien"] }}</span>đ/Km</p>
+    <p>Kinh phí hỗ trợ hiện tại là: <span style="color: red; font-size:20px">{{ number_format($duLieuKinhPhi["soTien"], 0, ',', '.')}}</span>đ/Km</p>
     
   </div>
 </div>
@@ -41,7 +41,7 @@
                 <div class="modal-body">
                     <div class="modal-body_noidung">
                         <h4 class="md_text">Số tiền</h4>
-                        <input type="number" class="form-control" name="soTien" value="{{ $duLieuKinhPhi['soTien'] }}">
+                        <input type="number" class="form-control" name="soTien" value="{{ $duLieuKinhPhi['soTien'] }}" min="0" max="10000000">
                     </div>
                 </div>
                 <!-- Modal footer -->

@@ -182,9 +182,9 @@ class ThongBao {
         try {
             $tb_item = new ThongBaoModel();
             $tb_item->img = $fileName;
-            $tb_item->title = $data["tieu-de"];
-            $tb_item->content = $data["noi-dung"];
-            $tb_item->quote = $data["trich-dan"];
+            $tb_item->title = htmlspecialchars( $data["tieu-de"] );
+            $tb_item->content = htmlspecialchars( $data["noi-dung"] );
+            $tb_item->quote = htmlspecialchars( $data["trich-dan"] );
             $tb_item->email = "admin@admin";
             $tb_item->save();
             return true;

@@ -10,6 +10,27 @@ class NguoiHuongDan extends NguoiDung {
 
 	private $nguoiHuongDan_table;
 	private $thucTap;
+    private $maDonVi;
+
+    /**
+     * @return mixed
+     */
+    public function getMaDonVi()
+    {
+        return $this->maDonVi;
+    }
+
+    /**
+     * @param mixed $maDonVi
+     *
+     * @return self
+     */
+    public function setMaDonVi($maDonVi)
+    {
+        $this->maDonVi = $maDonVi;
+
+        return $this;
+    }
 
 	public function __construct() {
 		parent::__construct();
@@ -50,5 +71,24 @@ class NguoiHuongDan extends NguoiDung {
 
     public function choPhepChamDiem() {
         return $this->option->choPhepChamDiem();
+    }
+
+    public function getAll(  ) {
+        $role="người hướng dẫn";
+        $data = $this->user->whereRaw("loaiUser = ?", [$role])->join('nguoihuongdan', 'nguoihuongdan.email', '=', 'users.email')->orderBy("trangThai", "DESC")->get();
+        $listUser = [];
+        foreach ($data as $value) {
+            $tb = new NguoiHuongDan();
+            $tb->setEmail( $value["email"] );
+            $tb->setHoTen( $value["hoTen"] );
+            $tb->setLoiGioiThieu( $value["loiGioiThieu"] );
+            $tb->setTrangThai( $value["trangThai"] );
+            $tb->setSdt( $value["sdt"] );
+            $tb->setMaDonVi( $value["maDonVi"] );
+
+            $listUser[] = $tb;
+        }
+
+        return $listUser;
     }
 }

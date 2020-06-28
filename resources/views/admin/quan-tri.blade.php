@@ -9,7 +9,7 @@
 @endsection
 
 @section('title-content-page-link')
-	{{ asset('/') }}
+	{{ asset('admin/home') }}
 @endsection
 
 @section('copyright')
@@ -47,11 +47,19 @@
           <i class="fas fa-info-circle"></i>
           <span>Thông Báo</span></a>
       </li>
-
+      
       <li class="nav-item">
-        <a class="nav-link kinh-phi-menu" href="#">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fa fa-money"></i>
-          <span>Kinh Phí</span></a>
+          <span>Kinh phí</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Kinh phí:</h6>
+            <a class="collapse-item kinh-phi-menu" href="#">Kinh phí hỗ trợ</a>
+            <a class="collapse-item tong-kinh-phi-menu" href="#">Tổng kinh phí hỗ trợ</a>
+          </div>
+        </div>
       </li>
 
       <li class="nav-item">
@@ -169,6 +177,21 @@
             $.ajax({
                 type: 'get',
                 url: '{{ URL::to('admin/kinh-phi') }}',
+                data: {
+                    '': $value
+                },
+                success:function(data){
+                    $('.content-ajax').html(data);
+                }
+            });
+        })
+
+        //tổng kinh phí hỗ trợ
+        $('.tong-kinh-phi-menu').on('click',function(){
+            $value = $(this).val();
+            $.ajax({
+                type: 'get',
+                url: '{{ URL::to('admin/tong-kinh-phi') }}',
                 data: {
                     '': $value
                 },

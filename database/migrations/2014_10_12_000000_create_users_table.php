@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('hoTen');
             $table->string('anhDaiDien');
             $table->string('password');
-            $table->string('sdt', 10);
+            $table->string('sdt', 11);
             $table->string('trangThai', 9);
             $table->text('loiGioiThieu');
             $table->text('loaiUser');

@@ -25,6 +25,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
+<style>
+    @media screen and (max-width: 1087px) {
+        .banner_list_dv {
+            margin-top: 28px;
+        }
+
+        .container__gioithieu, .logo-banner {
+            display: none;
+        }
+    }
+</style>
 <body>
 
     @if( isset($info) )
@@ -70,7 +81,7 @@
             </div> -->
             </div>
 
-            <div>
+            <div class="logo-banner">
                 <img src="{{ asset('public/img/logo_tvu.png') }}" alt="logo TVU" class="container__gioithieu_img">
             </div>
           
@@ -117,7 +128,7 @@
                             <a href="#">Nhà trường</a>
                         </h4>
                         <p class="banner_text">
-                            Viết nội dung vào đây
+                            Dễ dàng cho công tác quản lý
                         </p>
                     </div>
                 </div>
@@ -130,7 +141,7 @@
                             <a href="#">Sinh viên</a>
                         </h4>
                         <p class="banner_text">
-                            Viết nội dung vào đây
+                            Dễ dàng đăng ký thực tập
                         </p>
                     </div>
                 </div>
@@ -143,7 +154,7 @@
                             <a href="#">Đơn vị thực tập</a>
                         </h4>
                         <p class="banner_text">
-                            Viết nội dung vào đây
+                            Dễ dàng kết nối và xem thông tin
                         </p>
                     </div>
                 </div>
@@ -181,7 +192,7 @@
                                 <h6 class="qttt-content-title">Bước 1</a></h6>
                             </div>
                             <div class="qttt-content-mo-ta">
-                                <p class="qttt-content-mo-ta-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis gravida maximus.</p>
+                                <p class="qttt-content-mo-ta-text">Đăng nhập vào hệ thống bằng email trường cung cấp.</p>
                             </div>
                         </div>
                     </div>
@@ -199,7 +210,7 @@
                                 <h6 class="qttt-content-title">Bước 2</a></h6>
                             </div>
                             <div class="qttt-content-mo-ta">
-                                <p class="qttt-content-mo-ta-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis gravida maximus.</p>
+                                <p class="qttt-content-mo-ta-text">Điền thông tin cá nhân và lời giới thiệu, sau đó chờ admin duyệt.</p>
                             </div>
                         </div>
                     </div>
@@ -217,7 +228,7 @@
                                 <h6 class="qttt-content-title">Bước 3</a></h6>
                             </div>
                             <div class="qttt-content-mo-ta">
-                                <p class="qttt-content-mo-ta-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis gravida maximus.</p>
+                                <p class="qttt-content-mo-ta-text">Sau khi được duyệt tiến hành đăng ký thực tập.</p>
                             </div>
                         </div>
                     </div>
@@ -235,7 +246,7 @@
                                 <h6 class="qttt-content-title">Bước 4</a></h6>
                             </div>
                             <div class="qttt-content-mo-ta">
-                                <p class="qttt-content-mo-ta-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis gravida maximus.</p>
+                                <p class="qttt-content-mo-ta-text">Admin phân công giảng viên và cán bộ cho sinh viên.</p>
                             </div>
                         </div>
                     </div>
@@ -253,7 +264,7 @@
                                 <h6 class="qttt-content-title">Bước 5</a></h6>
                             </div>
                             <div class="qttt-content-mo-ta">
-                                <p class="qttt-content-mo-ta-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis gravida maximus.</p>
+                                <p class="qttt-content-mo-ta-text">Kết thúc thực tập, giảng viên và cán bộ sẽ chấm điểm.</p>
                             </div>
                         </div>
                     </div>
@@ -271,7 +282,7 @@
                                 <h6 class="qttt-content-title">Bước 6</a></h6>
                             </div>
                             <div class="qttt-content-mo-ta">
-                                <p class="qttt-content-mo-ta-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis gravida maximus.</p>
+                                <p class="qttt-content-mo-ta-text">Sau đó sinh viên có thể xem kết quả thực tập của mình.</p>
                             </div>
                         </div>
                     </div>

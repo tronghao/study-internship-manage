@@ -107,7 +107,7 @@
 
                           <a href="#">
                             <div class="btn btn-success btn_edit" data-toggle="modal" data-target="#md_Edit_{{ $i }}">
-                              <i class="fas fa-edit icon_edit"></i>Edit
+                              <i class="fas fa-edit icon_edit"></i>Sửa
                             </div>
                           </a>
 
@@ -148,7 +148,7 @@
                                               <div class="modal-body_noidung" style="text-align: left">
                                                   <div class="form-group">
                                                     <label for="sel1">Chọn cán bộ:</label>
-                                                    <select class="form-control" id="sel1" name="nguoi-huong-dan" required>
+                                                    <select class="form-control" id="selNHD" name="nguoi-huong-dan" required>
                                                       @if( $value->getDataNguoiHuongDan( 'ten' ) == "Chưa có")
                                                         <option value="NULL" selected></option>
                                                       @else 
@@ -169,7 +169,7 @@
                                               <div class="modal-body_noidung" style="text-align: left">
                                                   <div class="form-group">
                                                     <label for="sel1">Chọn đơn vị:</label>
-                                                    <select class="form-control" id="sel1" name="don-vi" required>
+                                                    <select class="form-control" id="sel1" name="don-vi" required onchange="thayDoiGiaTri(this)">
                                                       @foreach($danhSachDonVi as $dv)
                                                         @if($value->getDataDonVi( 'tenDonVi' ) == $dv->getTenDonVi() )
                                                           <option value="{{ $dv->getMaDonVi() }}" selected> {{ $dv->getTenDonVi() }} </option>

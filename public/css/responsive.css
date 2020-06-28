@@ -12,11 +12,15 @@
 }
 
 /* Mobile */
-@media (max-width: 739px) {
+@media screen and (max-width: 739px) {
     .banner_list {
         margin-top: 15px;
     }
     .banner_list_dv {
         margin-top: 28px;
+    }
+
+    .container__gioithieu, .logo-banner {
+    	display: none;
     }
 }

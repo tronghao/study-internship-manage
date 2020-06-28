@@ -43,6 +43,7 @@ Route::group(["middleware" => "Admin", "prefix" => "admin"], function(){
 	//Quản trị kinh phí
 	Route::get('kinh-phi', 'AdminController@hienThiKinhPhi');
 	Route::post('cap-nhat-kinh-phi', 'AdminController@capNhatKinhPhi');
+	Route::get('tong-kinh-phi', 'AdminController@tongKinhPhi');
 
 	//Quản trị đơn vị
 	Route::get('don-vi', 'AdminController@hienThiDonVi');

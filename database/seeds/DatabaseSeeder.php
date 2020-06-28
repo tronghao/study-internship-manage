@@ -162,15 +162,10 @@ class DatabaseSeeder extends Seeder
         DB::table('thong-bao')->insert([
           array('id'=>1,
           		'img'=>'https://img-cache.coccoc.com/image?url=https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/320px-Image_created_with_a_mobile_phone.png&f=w',
-          		'title'=>'Lao động kinh nghiệm, cấp bậc cao cũng lo thất nghiệp',
-          		'content'=>'<p>Navigos Search vừa chạy thử chiến dịch "Career Support - Hỗ trợ sự nghiệp" trong một tuần cho người lao động. Hơn 1.200 ứng viên ở đa dạng các ngành nghề và lĩnh vực đã gửi hồ sơ về để mong nhận được hỗ trợ giới thiệu cơ hội việc làm mới trong đại dịch. Kết quả là, gần một nửa số hồ sơ đề xuất hỗ trợ việc làm đến từ nhóm ứng viên cấp trung.Cụ thể, 27% đang giữ vị trí phó, trưởng phòng; 19% là trưởng nhóm, giám sát. Ngoài ra, 35% hồ sơ là nhân viên có kinh nghiệm, chuyên viên và chỉ 9% thuộc cấp bậc mới ra trường, dưới 2 năm kinh nghiệm.</p>
-
-					<p>Đáng chú ý, 41% ứng viên nộp hồ sơ có hơn 8 năm kinh nghiệm. Navigos cho rằng, điều này phản ánh các ứng viên cấp trung có nhiều năm kinh nghiệm cũng đang gặp khó khăn khi tìm kiếm cơ hội mới. 32% ứng viên có hơn 10 năm kinh nghiệm và 9% có từ 8 – 10 năm kinh nghiệm.</p>
-
-					<p>Việc ứng viên có kinh nghiệm lâu năm đổ xô tìm việc có thể do thu nhập tại công ty hiện tại giảm mạnh mùa dịch hoặc bị thất nghiệp vì công ty ngừng hoạt động. Số liệu quý I của Tổng cục Thống kê mới công bố cũng cho thấy điều này.</p>
-
-					<p>Số doanh nghiệp thành lập mới nhiều hơn nhưng số ngừng kinh doanh còn tăng cao hơn. Trong ba tháng đầu năm, cả nước có 29.700 doanh nghiệp đăng ký thành lập mới, tăng 4,4%, 14.800 doanh nghiệp trở lại hoạt động nhưng số ngừng kinh doanh có thời hạn lên tới 18.600 doanh nghiệp, tăng 26%. </p>',
-          		'quote'=>'Navigos Search vừa chạy thử chiến dịch "Career Support - Hỗ trợ sự nghiệp" trong một tuần cho người lao động. Hơn 1.200 ứng viên ở đa dạng các ngành nghề và lĩnh vực đã gửi hồ sơ về để mong nhận được hỗ trợ giới thiệu cơ hội việc làm mới trong đại dịch. Kết quả là, gần một nửa số hồ sơ đề xuất hỗ trợ việc làm đến từ nhóm ứng viên cấp trung.',
+          		'title'=>'Thông báo đăng ký thực tập',
+          		'content'=>'<p>Các bạn sinh viên thực hiện theo thông báo này, thời gian đăng ký thực hiện từ ngày 01/06/2020 đến hết ngày 07/06/2020. Các sinh viên không đăng ký trong thời gian trên sẽ không được xét đăng ký thực tập. Mong các bạn sinh viên thực hiện đúng với thông báo này.</p>'
+,
+          		'quote'=>'Các bạn sinh viên thực hiện theo thông báo này, thời gian đăng ký thực hiện từ ngày 01/06/2020 đến hết ngày 07/06/2020.',
               'email' => 'admin@admin',
             ),
 

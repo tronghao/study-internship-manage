@@ -1,6 +1,9 @@
 <?php
 namespace App\Objects;
 use App\User;
+use App\SinhVienModel;
+use App\GiangVienModel;
+use App\NguoiHuongDanModel;
 
 class NguoiDung {
     protected $email;
@@ -244,6 +247,7 @@ class NguoiDung {
             $tb->setHoTen( $value["hoTen"] );
             $tb->setLoiGioiThieu( $value["loiGioiThieu"] );
             $tb->setTrangThai( $value["trangThai"] );
+            $tb->setLoaiUser( $value["loaiUser"] );
             $tb->setSdt( $value["sdt"] );
 
             $listUserChuaDuyet[] = $tb;
@@ -286,7 +290,26 @@ class NguoiDung {
 
     public function xoa_user($email) {
         try {
+            $data = $this->getUser( $email );
+            $role = $data->getLoaiUser();
             $this->user->where('email', '=', $email)->delete();
+            switch ($role) {
+                case 'sinh viên':
+                    SinhVienModel::where('email', '=', $email)->delete();
+                    break;
+
+                case 'người hướng dẫn':
+                    NguoiHuongDanModel::where('email', '=', $email)->delete();
+                    break;
+
+                case 'giảng viên':
+                    GiangVienModel::where('email', '=', $email)->delete();
+                    break;
+
+                default:
+                    # code...
+                    break;
+            }
             return true;
         } catch(\Illuminate\Database\QueryException $ex){ 
           return false;

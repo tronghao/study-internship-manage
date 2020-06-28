@@ -71,7 +71,7 @@ class GoogleController extends Controller
 		// echo "</pre>";
 		// echo $view;
 		$email = $userData["email"];
-		$email = "stucorp@tvu.edu.vn";
+		//$email = "stucorp@tvu.edu.vn";
 
 		switch ($view) {
 			case 'chờ duyệt':

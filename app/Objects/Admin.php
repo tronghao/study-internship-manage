@@ -15,6 +15,7 @@ use App\Objects\Lop;
 use PHPExcel;
 use PHPExcel_IOFactory;
 use App\Objects\Option;
+use App\Objects\NguoiHuongDan;
 
 class Admin extends NguoiDung {
 
@@ -28,6 +29,7 @@ class Admin extends NguoiDung {
 	private $chucVu;
 	private $lop;
 	private $option;
+	private $nguoiHD;
 
 	public function __construct() {
 		parent::__construct();
@@ -40,6 +42,7 @@ class Admin extends NguoiDung {
 		$this->chucVu = new ChucVu();
 		$this->lop = new Lop();
 		$this->option = new Option();
+		$this->nguoiHD = new NguoiHuongDan();
     }
 
     //=====================================================================
@@ -338,6 +341,8 @@ class Admin extends NguoiDung {
 		return $this->option->cap_nhat_cai_dat( $data );
 	}
 
+	//===========================================================
+
 	public function xu_ly_nhap_du_lieu( $table, $data ) {
 		switch ($table) {
 			case 'nganh':
@@ -359,5 +364,30 @@ class Admin extends NguoiDung {
 				# code...
 				break;
 		}
+	}
+
+	//=========================================================
+	
+	public function tong_kinh_phi() {
+		$tongKinhPhi = 0;
+
+		$dataKinhPhi = $this->hien_thi_kinh_phi();
+		$soTienHoTro = $dataKinhPhi["soTien"];
+
+		$dataThucTap = $this->thucTap->getAll();
+		// echo "<pre>";
+		// print_r($dataThucTap);
+		foreach ($dataThucTap as $value) {
+			$soKM = $this->donVi->getSoKMByMaDV( $value->getDataDonVi( 'maDonVi' ) );
+			$tongKinhPhi += ( $soTienHoTro * $soKM );
+		}
+
+		return $tongKinhPhi;
+	}
+
+	//=============================================================
+	
+	public function getAllRoleNHD() {
+		return $this->nguoiHD->getAll();
 	}
 }

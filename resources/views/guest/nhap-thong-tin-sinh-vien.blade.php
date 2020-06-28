@@ -25,13 +25,13 @@
     <!-- Page Content -->
     <div class="container">
         <div class="card border-0 shadow my-5 my_shadow" style="padding: 5%">
-        	<form action=" {{ asset('thong-tin-sinh-vien') }}/{{ $email }}" method="post" class="needs-validation" novalidate>
+        	<form action=" {{ asset('thong-tin-sinh-vien') }}/{{ $email }}" method="post" class="needs-validation">
 				{{ csrf_field() }}
 				<h1 style="text-align: center;">THÔNG TIN SINH VIÊN</h1>
 
 				<div class="form-group">
 					<label for="sdt_sv">Số điện thoại</label>
-					<input type="text" class="form-control" name="sdt" id="sdt_sv" placeholder="Nhập số điện thoại" required>
+					<input type="text" class="form-control" name="sdt" id="sdt_sv" placeholder="Nhập số điện thoại" required pattern="(^0[0-9]{9,10})+">
 					<div class="invalid-feedback">*Vui lòng nhập số điện thoại</div>
 				</div>
 

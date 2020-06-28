@@ -104,14 +104,14 @@
                                                   <div class="input-group-prepend">
                                                       <span class="input-group-text">Số ĐT:</span>
                                                   </div>
-                                                  <input type="text" class="form-control" name="sdt" pattern="(^0[0-9]{9})+" value="{{ $value->getSdtDonVi() }}">
+                                                  <input type="text" class="form-control" name="sdt" pattern="(^0[0-9]{9,10})+" value="{{ $value->getSdtDonVi() }}">
                                               </div>
 
                                               <div class="input-group mb-3">
                                                   <div class="input-group-prepend">
                                                       <span class="input-group-text" >Số Km:</span>
                                                   </div>
-                                                  <input type="text" class="form-control" name="so-km" pattern="\d+" value="{{ $value->getSoKM() }}">
+                                                  <input type="number" class="form-control" name="so-km" required min="0" max="10000" value="{{ $value->getSoKM() }}">
                                               </div>
                                           
                                       
@@ -175,14 +175,14 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Số ĐT:</span>
                                 </div>
-                                <input type="text" class="form-control" name="sdt" pattern="(^0[0-9]{9})+">
+                                <input type="text" class="form-control" name="sdt" pattern="(^0[0-9]{9,10})+">
                             </div>
 
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" >Số Km:</span>
                                 </div>
-                                <input type="text" class="form-control" name="so-km" pattern="\d+">
+                                <input type="number" class="form-control" name="so-km"  required min="0" max="10000">
                             </div>
                         
                     
